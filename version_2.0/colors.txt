@@ -1,0 +1,19 @@
+/* Color styles */
+_off_black_base: #2E2836;
+_secondary_base: #FF1971;
+_secondary_tint_85: #ECC6D4;
+_off_white_base: #F0F7EE;
+_off_white_shade_90: #E0EFDC;
+_off_white_shade_70: #A2CF96;
+_primary_base: #FFB900;
+_primary_shade_48: #F5B200;
+
+<color name="_off_black_base"> #2E2836 </color>
+<color name="_secondary_base"> #FF1971 </color>
+<color name="_secondary_tint_85"> #ECC6D4 </color>
+<color name="_off_white_base"> #F0F7EE </color>
+<color name="_off_white_shade_90"> #E0EFDC </color>
+<color name="_off_white_shade_70"> #A2CF96 </color>
+<color name="_primary_base"> #FFB900 </color>
+<color name="_primary_shade_48"> #F5B200 </color>
+
