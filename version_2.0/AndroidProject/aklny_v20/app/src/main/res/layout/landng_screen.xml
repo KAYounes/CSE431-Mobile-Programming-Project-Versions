@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/_primary_base">
+
+    <TextView
+        android:id="@+id/logo_textView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fontFamily="@font/shrikhand_regular"
+        android:gravity="center"
+        android:text="@string/text_logo"
+        android:textColor="@color/_secondary_base"
+        android:textSize="@dimen/logo_text_size"
+        app:layout_constraintBottom_toTopOf="@id/group"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/group"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/rect_round_top_radius_50"
+        android:backgroundTint="@color/_off_white_base"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo_textView"
+        android:padding="@dimen/landing_screen_group_padding">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:fontFamily="@font/poppins_extrabold"
+            android:text="@string/landing_screen_message"
+            android:textColor="@color/_off_black_base"
+            android:textSize="@dimen/text_size_24"
+            android:layout_marginBottom="@dimen/landing_page_message_bot_margin"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom|center_horizontal"
+            android:fontFamily="@font/poppins_extrabold"
+            android:text="@string/text_login"
+            android:textColor="@color/_secondary_base"
+            android:paddingVertical="@dimen/button_lg_padding"
+            android:background="@drawable/pill_solid"
+            android:backgroundTint="@color/_off_black_base"
+            android:textSize="@dimen/button_lg_text_size"
+            android:layout_marginBottom="@dimen/landing_screen_btn_gap"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:fontFamily="@font/poppins_extrabold"
+            android:text="@string/text_sign_up"
+            android:textColor="@color/_secondary_base"
+            android:paddingVertical="@dimen/button_lg_padding"
+            android:background="@drawable/pill_outline"
+            android:textSize="@dimen/button_lg_text_size" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

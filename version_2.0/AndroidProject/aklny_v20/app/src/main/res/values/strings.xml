@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">AKLNY_V2.0</string>
     <string name="text_logo">AKLNY</string>
+    <string name="landing_screen_message">How would you like to continue?</string>
+    <string name="text_login">LOGIN</string>
+    <string name="text_sign_up">SIGN UP</string>
 </resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="logo_text_size">64sp</dimen>
+    <dimen name="landing_screen_group_padding">30dp</dimen>
+    <dimen name="text_size_24">24sp</dimen>
+    <dimen name="landing_page_message_bot_margin">24dp</dimen>
+    <dimen name="landing_screen_btn_gap">12dp</dimen>
+    <dimen name="button_lg_padding">12dp</dimen>
+    <dimen name="button_lg_text_size">24sp</dimen>
+</resources>
