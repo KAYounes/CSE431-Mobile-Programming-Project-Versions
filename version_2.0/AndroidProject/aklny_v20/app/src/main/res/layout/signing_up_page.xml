@@ -9,16 +9,15 @@
         android:id="@+id/title_group"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@id/form_group"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_weight="1">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:fontFamily="@font/shrikhand_regular"
-            android:gravity="center"
+            android:gravity="bottom|center_horizontal"
             android:text="@string/signUpScreen_title"
             android:textColor="@color/_secondary_base"
             android:textSize="@dimen/title_text_size"
@@ -80,7 +79,7 @@
                     android:paddingHorizontal="@dimen/input_field_padding_horizontal"
                     android:paddingVertical="@dimen/input_field_padding_vertical"
                     android:textColor="@color/_off_black_base"
-                    android:textColorHint="#826220"
+                    android:textColorHint="@color/input_field_hintColor"
                     android:textSize="@dimen/input_field_textSize" />
             </LinearLayout>
 
@@ -114,7 +113,7 @@
                     android:paddingHorizontal="@dimen/input_field_padding_horizontal"
                     android:paddingVertical="@dimen/input_field_padding_vertical"
                     android:textColor="@color/_off_black_base"
-                    android:textColorHint="#826220"
+                    android:textColorHint="@color/input_field_hintColor"
                     android:textSize="@dimen/input_field_textSize" />
             </LinearLayout>
         </LinearLayout>
@@ -166,7 +165,7 @@
                     android:inputType="phone"
                     android:paddingHorizontal="@dimen/input_field_padding_horizontal"
                     android:textColor="@color/_off_black_base"
-                    android:textColorHint="#826220"
+                    android:textColorHint="@color/input_field_hintColor"
                     android:textSize="@dimen/input_field_textSize" />
             </LinearLayout>
 
@@ -228,7 +227,7 @@
                     android:inputType="textEmailAddress"
                     android:paddingHorizontal="@dimen/input_field_padding_horizontal"
                     android:textColor="@color/_off_black_base"
-                    android:textColorHint="#826220"
+                    android:textColorHint="@color/input_field_hintColor"
                     android:textSize="@dimen/input_field_textSize" />
             </LinearLayout>
 
@@ -291,7 +290,7 @@
                     android:inputType="textPassword"
                     android:paddingHorizontal="@dimen/input_field_padding_horizontal"
                     android:textColor="@color/_off_black_base"
-                    android:textColorHint="#826220"
+                    android:textColorHint="@color/input_field_hintColor"
                     android:textSize="@dimen/input_field_textSize" />
 
                 <!-- Password input field icon -->
