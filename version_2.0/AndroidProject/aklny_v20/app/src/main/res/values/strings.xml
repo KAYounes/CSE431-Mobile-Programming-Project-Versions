@@ -12,4 +12,6 @@
     <string name="label_password">PASSWORD</string>
     <string name="button_goToLogIn">Login instead?</string>
     <string name="button_goToSignUp">Create a new account?</string>
+    <string name="card_restaurantName">Restaurant Name</string>
+    <string name="card_restaurantDescription">Restaurant description</string>
 </resources>
