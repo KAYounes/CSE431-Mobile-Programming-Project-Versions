@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/_primary_base">
+
+    <LinearLayout
+        android:id="@+id/title_group"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/form_group"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/shrikhand_regular"
+            android:gravity="center"
+            android:text="@string/signUpScreen_title"
+            android:textColor="@color/_secondary_base"
+            android:textSize="@dimen/title_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/form_group"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/rect_round_top_radius_30"
+        android:backgroundTint="@color/_off_white_base"
+        android:paddingHorizontal="30dp"
+        android:paddingTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_group"
+        app:layout_constraintVertical_weight="6">
+
+        <!-- Name input group -->
+        <LinearLayout
+            android:id="@+id/name_input_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- First name input Group -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!-- First name Label -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_extrabold"
+                    android:text="@string/label_firstName"
+                    android:textColor="@color/_off_black_base"
+                    android:textSize="@dimen/input_label_textSize" />
+
+                <!-- First name text input -->
+                <EditText
+                    android:id="@+id/firstName_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/input_field_margin_vertical"
+                    android:background="@color/_primary_base"
+                    android:backgroundTint="@color/_primary_base"
+                    android:fontFamily="@font/poppins_bold"
+                    android:hint="Abdelrahman"
+                    android:inputType="textCapSentences"
+                    android:paddingHorizontal="@dimen/input_field_padding_horizontal"
+                    android:paddingVertical="@dimen/input_field_padding_vertical"
+                    android:textColor="@color/_off_black_base"
+                    android:textSize="@dimen/input_field_textSize" />
+            </LinearLayout>
+
+            <!-- Last name input Group -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!-- First name Label -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_extrabold"
+                    android:text="@string/label_lastName"
+                    android:textColor="@color/_off_black_base"
+                    android:textSize="@dimen/input_label_textSize"  />
+
+                <!-- Username input field text input -->
+                <EditText
+                    android:id="@+id/lastName_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/input_field_margin_vertical"
+                    android:background="@color/_primary_base"
+                    android:backgroundTint="@color/_primary_base"
+                    android:fontFamily="@font/poppins_bold"
+                    android:hint="Sharkawy"
+                    android:inputType="textCapSentences"
+                    android:paddingHorizontal="@dimen/input_field_padding_horizontal"
+                    android:paddingVertical="@dimen/input_field_padding_vertical"
+                    android:textColor="@color/_off_black_base"
+                    android:textSize="@dimen/input_field_textSize" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Phone number form group -->
+        <LinearLayout
+            android:id="@+id/phoneNumber_input_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/email_input_group"
+            app:layout_constraintTop_toBottomOf="@id/name_input_group">
+
+            <!-- Phone number Label -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_extrabold"
+                android:text="@string/label_phoneNumber"
+                android:textColor="@color/_off_black_base"
+                android:textSize="@dimen/input_label_textSize" />
+
+            <!-- Phone number input field group -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/_primary_base"
+                android:layout_marginVertical="@dimen/input_field_margin_vertical"
+                android:orientation="horizontal">
+
+                <!-- Phone number input field icon -->
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/_primary_shade_48"
+                    android:padding="@dimen/input_field_icon_padding"
+                    android:src="@drawable/call" />
+
+                <!-- Username input field text input -->
+                <EditText
+                    android:id="@+id/input_phoneNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/_primary_base"
+                    android:backgroundTint="@color/_primary_base"
+                    android:fontFamily="@font/poppins_bold"
+                    android:hint="+20 101 101 1011"
+                    android:inputType="phone"
+                    android:paddingHorizontal="@dimen/input_field_padding_horizontal"
+                    android:textColor="@color/_off_black_base"
+                    android:textSize="@dimen/input_field_textSize" />
+            </LinearLayout>
+
+            <!-- Username validation message -->
+            <TextView
+                android:id="@+id/validationMessage_phoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Not an Egyptian number"
+                android:textColor="@color/_secondary_base"
+                android:textSize="@dimen/input_validationMessage_textSize" />
+        </LinearLayout>
+
+        <!-- Email form group -->
+        <LinearLayout
+            android:id="@+id/email_input_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/password_input_group"
+            app:layout_constraintTop_toBottomOf="@id/phoneNumber_input_group">
+
+            <!-- Email Label -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_extrabold"
+                android:text="@string/label_email"
+                android:textColor="@color/_off_black_base"
+                android:textSize="@dimen/input_label_textSize" />
+
+            <!-- Email input field group -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/input_field_margin_vertical"
+                android:background="@color/_primary_base"
+                android:orientation="horizontal">
+
+                <!-- Email input field icon -->
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/_primary_shade_48"
+                    android:padding="@dimen/input_field_icon_padding"
+                    android:src="@drawable/profile" />
+
+                <!-- Email input field input -->
+                <EditText
+                    android:id="@+id/input_email"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/_primary_base"
+                    android:backgroundTint="@color/_primary_base"
+                    android:fontFamily="@font/poppins_bold"
+                    android:hint="18P1234@eng.asu.edu.eg"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/_off_black_base"
+                    android:textSize="@dimen/input_field_textSize" />
+            </LinearLayout>
+
+            <!-- Username validation message -->
+            <TextView
+                android:id="@+id/validationMessage_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Email must end with @eng.asu.edu.eg"
+                android:textColor="@color/_secondary_base"
+                android:textSize="@dimen/input_validationMessage_textSize" />
+        </LinearLayout>
+
+        <!-- Password form group -->
+        <LinearLayout
+            android:id="@+id/password_input_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/button_signUp"
+            app:layout_constraintTop_toBottomOf="@id/email_input_group">
+
+            <!-- Password Label -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_extrabold"
+                android:text="@string/label_password"
+                android:textColor="@color/_off_black_base"
+                android:textSize="@dimen/input_label_textSize" />
+
+            <!-- Password input field group -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:background="@color/_primary_base"
+                android:orientation="horizontal">
+
+                <!-- Password input field icon -->
+                <ImageView
+                    android:id="@+id/img_password_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/_primary_shade_48"
+                    android:padding="@dimen/input_field_icon_padding"
+                    android:src="@drawable/key" />
+
+                <!-- Password input field -->
+                <EditText
+                    android:id="@+id/input_password"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/_primary_base"
+                    android:backgroundTint="@color/_primary_base"
+                    android:fontFamily="@font/poppins_bold"
+                    android:inputType="textPassword"
+                    android:textColor="@color/_off_black_base"
+                    android:textSize="@dimen/input_field_textSize" />
+
+                <!-- Password input field icon -->
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/_primary_base"
+                    android:padding="@dimen/input_field_icon_padding"
+                    android:src="@drawable/eye" />
+            </LinearLayout>
+
+            <!-- Password validation message -->
+            <TextView
+                android:id="@+id/text_password_validation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Password must be at least 10 characters long"
+                android:textColor="@color/_secondary_base"
+                android:textSize="@dimen/input_validationMessage_textSize" />
+        </LinearLayout>
+
+        <TextView
+
+            android:id="@+id/button_signUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/pill_solid"
+            android:backgroundTint="@color/_off_black_base"
+            android:fontFamily="@font/poppins_extrabold"
+            android:gravity="center"
+            android:paddingVertical="@dimen/button_lg_padding"
+            android:text="@string/button_signUp"
+            android:textColor="@color/_secondary_base"
+            android:textSize="@dimen/button_lg_text_size"
+            app:layout_constraintBottom_toTopOf="@id/goToLogin_button"
+            app:layout_constraintTop_toBottomOf="@id/password_input_group" />
+
+        <TextView
+            android:id="@+id/goToLogin_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/pill_solid"
+            android:backgroundTint="@color/_secondary_tint_85"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="center"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="8dp"
+            android:text="@string/button_goToLogIn"
+            android:textColor="@color/_secondary_base"
+            android:textSize="@dimen/button_small_textSize"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

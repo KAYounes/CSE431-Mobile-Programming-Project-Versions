@@ -3,5 +3,13 @@
     <string name="text_logo">AKLNY</string>
     <string name="landing_screen_message">How would you like to continue?</string>
     <string name="text_login">LOGIN</string>
-    <string name="text_sign_up">SIGN UP</string>
+    <string name="button_signUp">SIGN UP</string>
+    <string name="signUpScreen_title">WELCOME</string>
+    <string name="label_firstName">FIRST NAME</string>
+    <string name="label_lastName">LAST NAME</string>
+    <string name="label_phoneNumber">PHONE NUMBER</string>
+    <string name="label_email">OFFICIAL EMIAL</string>
+    <string name="label_password">PASSWORD</string>
+    <string name="button_goToLogIn">Login instead?</string>
+    <string name="button_goToSignUp">Create a new account?</string>
 </resources>
