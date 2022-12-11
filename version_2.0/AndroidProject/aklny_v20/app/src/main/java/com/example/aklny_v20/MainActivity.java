@@ -28,17 +28,17 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
         restaurantCardModels.add(new RestaurantCardModel("Chicken Fila",
                 "Chicken, Fries",
-                4.8, 15.99, R.drawable.logo, R.drawable.burger_image, RestaurantCardModel.cardType.CARD_SMALL));
+                4.8, 15.99, R.drawable.logo, R.drawable.burger_image));
 
         restaurantCardModels.add(new RestaurantCardModel("Buffalo Burger",
                 "Burgers, Chicken, Sandwiches, Beef,Burgers, Chicken, Sandwiches, Beef",
-                3.8, 15.99, R.drawable.logo_2, R.drawable.burger_image_2, RestaurantCardModel.cardType.CARD_SMALL));
+                3.8, 15.99, R.drawable.logo_2, R.drawable.burger_image_2));
 
         restaurantCardModels.add(new RestaurantCardModel("Pizza Hut",
                 "Pizza, wings",
-                5.0, 15.99, R.drawable.logo_3, R.drawable.burger_image_3, RestaurantCardModel.cardType.CARD_SMALL));
-
+                5.0, 15.99, R.drawable.logo_3, R.drawable.burger_image_3));
         restaurantRecyclerViewAdapter = new RestaurantRecyclerViewAdapter(restaurantCardModels, this);
+        restaurantRecyclerViewAdapter.type = RestaurantCardModel.cardType.CARD_SMALL;
         restaurantRecyclerView.setAdapter(restaurantRecyclerViewAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseContext()){
             @Override
@@ -59,6 +59,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
                 button_large_list_view.setImageDrawable(getResources().getDrawable(R.drawable.lg_list_icon));
                 button_small_list_view.setBackground(getResources().getDrawable(R.drawable.rect_round_left_radius_sml));
                 button_small_list_view.setImageDrawable(getResources().getDrawable(R.drawable.sm_list_icon_active));
+                restaurantRecyclerViewAdapter.type = RestaurantCardModel.cardType.CARD_SMALL;
+                restaurantRecyclerView.setAdapter(restaurantRecyclerViewAdapter);
+
+
             }
         });
 
@@ -69,6 +73,17 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
                 button_small_list_view.setImageDrawable(getResources().getDrawable(R.drawable.sm_list_icon));
                 button_large_list_view.setBackground(getResources().getDrawable(R.drawable.rect_round_right_radius_xs));
                 button_large_list_view.setImageDrawable(getResources().getDrawable(R.drawable.lg_list_icon_active));
+
+//                restaurantRecyclerViewAdapter.restaurantCardModels = restaurantCardModels;
+                restaurantRecyclerViewAdapter.type = RestaurantCardModel.cardType.CARD_LARGE;
+                restaurantRecyclerView.setAdapter(restaurantRecyclerViewAdapter);
+//                LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseContext()){
+//                    @Override
+//                    public boolean canScrollVertically() {
+//                        return false;
+//                    }
+//                };
+//                restaurantRecyclerView.setLayoutManager(layoutManager);
             }
         });
 

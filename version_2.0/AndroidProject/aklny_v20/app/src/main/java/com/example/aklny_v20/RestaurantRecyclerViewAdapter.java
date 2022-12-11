@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -67,9 +68,11 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
         }
     }
 
-    private ArrayList<RestaurantCardModel> restaurantCardModels;
+    public ArrayList<RestaurantCardModel> restaurantCardModels;
     private static final int CARD_SMALL = 1, CARD_LARGE=2;
     private final RecyclerViewInterface recyclerViewInterface;
+    public enum cardType {CARD_SMALL, CARD_LARGE};
+    public RestaurantCardModel.cardType type;
 
     public RestaurantRecyclerViewAdapter(ArrayList<RestaurantCardModel> restaurantCardModels, RecyclerViewInterface recyclerViewInterface) {
         this.restaurantCardModels = restaurantCardModels;
@@ -101,9 +104,9 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
 //        return super.getItemViewType(position);
 
         RestaurantCardModel item = restaurantCardModels.get(position);
-        if (item.getType() == RestaurantCardModel.cardType.CARD_SMALL) {
+        if (type == RestaurantCardModel.cardType.CARD_SMALL) {
             return CARD_SMALL;
-        } else if (item.getType() == RestaurantCardModel.cardType.CARD_LARGE) {
+        } else if (type == RestaurantCardModel.cardType.CARD_LARGE) {
             return CARD_LARGE;
         } else {
             return -1;
@@ -139,8 +142,14 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
 
         holder.card_title.setText(name);
         holder.card_description.setText(description);
-        holder.card_rating.setText(Double.toString(rate));
-        holder.card_delivery_fee.setText(Double.toString(delivery_fee));
+
+        DecimalFormat rating_decimal_format = new DecimalFormat("0.0");
+        String formatted_rate = rating_decimal_format.format(rate);
+        holder.card_rating.setText(formatted_rate);
+
+        DecimalFormat delivery_fee_decimal_format = new DecimalFormat("00.00");
+        String formatted_delivery_fee = delivery_fee_decimal_format.format(delivery_fee);
+        holder.card_delivery_fee.setText(formatted_delivery_fee);
         holder.card_logo.setImageDrawable(holder.itemView.getResources().getDrawable(logo));
     }
 
