@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Email does not belong to eng.asy.edu.eg"
-                android:textColor="@color/_off_black_base"
+                android:textColor="@color/_secondary_base"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -144,7 +144,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/_primary_shade_48"
                     android:padding="12dp"
-                    android:src="@drawable/profile" />
+                    android:src="@drawable/key" />
 
                 <!-- Username input field text input -->
                 <EditText
@@ -175,7 +175,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Password must be at least 10 characters long"
-                android:textColor="@color/_off_black_base"
+                android:textColor="@color/_secondary_base"
                 android:textSize="12sp" />
         </LinearLayout>
 

@@ -4,7 +4,8 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
 
-    </style><style name="roundTopImageView">
+    </style>
+    <style name="roundTopImageView">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopLeft">4dp</item>
         <item name="cornerSizeTopRight">4dp</item>
