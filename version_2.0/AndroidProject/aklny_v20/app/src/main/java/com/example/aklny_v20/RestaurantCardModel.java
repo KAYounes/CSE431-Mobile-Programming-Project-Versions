@@ -11,24 +11,24 @@ public class RestaurantCardModel implements Parcelable {
     private int logo, thumbnail;
 
 
-    public RestaurantCardModel(String name, String description, double rating, double deliveryFee, int logo, int thumbnail) {
+    public RestaurantCardModel(String name, String description, double rating, double deliveryFee, int logo, int thumbnail, cardType type) {
         this.name = name;
         this.description = description;
         this.rating = rating;
         this.deliveryFee = deliveryFee;
         this.logo = logo;
         this.thumbnail = thumbnail;
-        this.type = cardType.CARD_LARGE;
+        this.type = type;
     }
 
-    public RestaurantCardModel(String name, String description, double rating, double deliveryFee, int logo) {
-        this.name = name;
-        this.description = description;
-        this.rating = rating;
-        this.deliveryFee = deliveryFee;
-        this.logo = logo;
-        this.type = cardType.CARD_SMALL;
-    }
+//    public RestaurantCardModel(String name, String description, double rating, double deliveryFee, int logo) {
+//        this.name = name;
+//        this.description = description;
+//        this.rating = rating;
+//        this.deliveryFee = deliveryFee;
+//        this.logo = logo;
+//        this.type = cardType.CARD_SMALL;
+//    }
 
     protected RestaurantCardModel(Parcel in) {
         name = in.readString();
