@@ -1,41 +1,53 @@
 package com.example.aklny_v20;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class RestaurantModel implements Parcelable {
+public class RestaurantCardModel implements Parcelable {
+    public enum cardType {CARD_SMALL, CARD_LARGE};
+    private cardType type;
     private String name, description;
     private double rating, deliveryFee;
-    private int thumbnail;
+    private int logo, thumbnail;
 
 
-    public RestaurantModel(String name, String description, double rating, double deliveryFee, int thumbnail) {
+    public RestaurantCardModel(String name, String description, double rating, double deliveryFee, int logo, int thumbnail) {
         this.name = name;
         this.description = description;
         this.rating = rating;
         this.deliveryFee = deliveryFee;
+        this.logo = logo;
         this.thumbnail = thumbnail;
+        this.type = cardType.CARD_LARGE;
     }
 
-    protected RestaurantModel(Parcel in) {
+    public RestaurantCardModel(String name, String description, double rating, double deliveryFee, int logo) {
+        this.name = name;
+        this.description = description;
+        this.rating = rating;
+        this.deliveryFee = deliveryFee;
+        this.logo = logo;
+        this.type = cardType.CARD_SMALL;
+    }
+
+    protected RestaurantCardModel(Parcel in) {
         name = in.readString();
         description = in.readString();
         rating = in.readDouble();
         deliveryFee = in.readDouble();
+        logo = in.readInt();
         thumbnail = in.readInt();
     }
 
-    public static final Creator<RestaurantModel> CREATOR = new Creator<RestaurantModel>() {
+    public static final Creator<RestaurantCardModel> CREATOR = new Creator<RestaurantCardModel>() {
         @Override
-        public RestaurantModel createFromParcel(Parcel in) {
-            return new RestaurantModel(in);
+        public RestaurantCardModel createFromParcel(Parcel in) {
+            return new RestaurantCardModel(in);
         }
 
         @Override
-        public RestaurantModel[] newArray(int size) {
-            return new RestaurantModel[size];
+        public RestaurantCardModel[] newArray(int size) {
+            return new RestaurantCardModel[size];
         }
     };
 
@@ -50,9 +62,19 @@ public class RestaurantModel implements Parcelable {
         parcel.writeString(description);
         parcel.writeDouble(rating);
         parcel.writeDouble(deliveryFee);
+        parcel.writeInt(logo);
         parcel.writeInt(thumbnail);
     }
-    
+
+
+    public cardType getType() {
+        return type;
+    }
+
+    public void setType(cardType type) {
+        this.type = type;
+    }
+
     public String getName() {
         return name;
     }
@@ -85,11 +107,19 @@ public class RestaurantModel implements Parcelable {
         this.deliveryFee = deliveryFee;
     }
 
+    public int getLogo() {
+        return logo;
+    }
+
+    public void setLogo(int logo) {
+        this.logo = logo;
+    }
+
     public int getThumbnail() {
         return thumbnail;
     }
 
     public void setThumbnail(int thumbnail) {
-        this.thumbnail = thumbnail;
+        this.thumbnail = RestaurantCardModel.this.thumbnail;
     }
 }

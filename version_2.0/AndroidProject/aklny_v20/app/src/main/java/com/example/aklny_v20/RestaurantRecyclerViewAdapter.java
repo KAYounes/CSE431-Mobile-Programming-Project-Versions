@@ -12,18 +12,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<RestaurantRecyclerViewAdapter.RestaurantCardViewHolder> {
+public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    public class RestaurantCardViewHolder extends RecyclerView.ViewHolder{
+    public class RestaurantCardSmallViewHolder extends RecyclerView.ViewHolder{
         private TextView card_title, card_description, card_rating, card_delivery_fee;
-        private ImageView card_thumbnail;
-        public RestaurantCardViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
+        private ImageView card_logo;
+        public RestaurantCardSmallViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
             this.card_title = itemView.findViewById(R.id.card_title);
             this.card_description = itemView.findViewById(R.id.card_description);
             this.card_rating = itemView.findViewById(R.id.card_rating);
             this.card_delivery_fee = itemView.findViewById(R.id.card_delivery_fee);
-            this.card_thumbnail = itemView.findViewById(R.id.card_thumbnail);
+            this.card_logo = itemView.findViewById(R.id.card_logo);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -39,53 +40,140 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
         }
     }
 
-    private ArrayList<RestaurantModel> restaurantModels;
+    public class RestaurantCardLargeViewHolder extends RecyclerView.ViewHolder{
+        private TextView card_title, card_description, card_rating, card_delivery_fee;
+        private ImageView card_logo, card_thumbnail;
+        public RestaurantCardLargeViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
+            super(itemView);
+            this.card_title = itemView.findViewById(R.id.card_title);
+            this.card_description = itemView.findViewById(R.id.card_description);
+            this.card_rating = itemView.findViewById(R.id.card_rating);
+            this.card_delivery_fee = itemView.findViewById(R.id.card_delivery_fee);
+            this.card_logo = itemView.findViewById(R.id.card_logo);
+            this.card_thumbnail = itemView.findViewById(R.id.card_thumbnail);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(RestaurantRecyclerViewAdapter.this.recyclerViewInterface != null){
+                        int position = getAdapterPosition();
+
+                        if(position != RecyclerView.NO_POSITION){
+                            RestaurantRecyclerViewAdapter.this.recyclerViewInterface.onRecyclerViewClick(position);
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    private ArrayList<RestaurantCardModel> restaurantCardModels;
+    private static final int CARD_SMALL = 1, CARD_LARGE=2;
     private final RecyclerViewInterface recyclerViewInterface;
 
-    public RestaurantRecyclerViewAdapter(ArrayList<RestaurantModel> restaurantModels, RecyclerViewInterface recyclerViewInterface) {
-        this.restaurantModels = restaurantModels;
+    public RestaurantRecyclerViewAdapter(ArrayList<RestaurantCardModel> restaurantCardModels, RecyclerViewInterface recyclerViewInterface) {
+        this.restaurantCardModels = restaurantCardModels;
         this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @NonNull
     @Override
-    public RestaurantCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.card_restaurant_small, parent, false);
-        RestaurantCardViewHolder restaurantCardViewHolder = new RestaurantCardViewHolder(view, recyclerViewInterface);
-        return restaurantCardViewHolder;
+        View view;
+        if(viewType == CARD_SMALL){
+            view = inflater.inflate(R.layout.card_restaurant_small, parent, false);
+            RestaurantCardSmallViewHolder restaurantCardViewHolder = new RestaurantCardSmallViewHolder(view, recyclerViewInterface);
+            return restaurantCardViewHolder;
+        }
+        else if (viewType == CARD_LARGE){
+            view = inflater.inflate(R.layout.card_restaurant_large, parent, false);
+            RestaurantCardLargeViewHolder restaurantCardViewHolder = new RestaurantCardLargeViewHolder(view, recyclerViewInterface);
+            return restaurantCardViewHolder;
+        }else{
+            throw new RuntimeException("UNKNOWN CARD TYPE");
+        }
     }
 
-    //    @NonNull
-//    @Override
-//    public RestaurantCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        Context context = parent.getContext();
-//        LayoutInflater inflater = LayoutInflater.from(context);
-//        View view = inflater.inflate(R.layout.card_restaurant, parent, false);
-//        RestaurantCardViewHolder restaurantCardViewHolder = new RestaurantCardViewHolder(view);
-//        return null;
-//    }
+    @Override
+    public int getItemViewType(int position) {
+//        return super.getItemViewType(position);
 
+        RestaurantCardModel item = restaurantCardModels.get(position);
+        if (item.getType() == RestaurantCardModel.cardType.CARD_SMALL) {
+            return CARD_SMALL;
+        } else if (item.getType() == RestaurantCardModel.cardType.CARD_LARGE) {
+            return CARD_LARGE;
+        } else {
+            return -1;
+        }
+    }
 
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        switch (holder.getItemViewType()){
+            case CARD_SMALL:
+                bindToCardSmall((RestaurantCardSmallViewHolder) holder, position);
+                break;
+            case CARD_LARGE:
+                bindToCardLarge((RestaurantCardLargeViewHolder) holder, position);
+                break;
+            default:
+                break;
+        }
+    }
 
+    private void bindToCardSmall(RestaurantCardSmallViewHolder holder, int position){
+        RestaurantCardModel restaurant = restaurantCardModels.get(position);
 
-    public void onBindViewHolder(@NonNull RestaurantCardViewHolder holder, int position) {
-        RestaurantModel restaurant = restaurantModels.get(position);
-        String name = restaurant.getName(), description = restaurant.getDescription();
-        double rate = restaurant.getRating(), delivery_fee = restaurant.getDeliveryFee();
-        int thumbnail = restaurant.getThumbnail();
+        String
+                name = restaurant.getName(),
+                description = restaurant.getDescription();
+
+        double
+                rate = restaurant.getRating(),
+                delivery_fee = restaurant.getDeliveryFee();
+
+        int
+                logo = restaurant.getLogo();
 
         holder.card_title.setText(name);
         holder.card_description.setText(description);
         holder.card_rating.setText(Double.toString(rate));
         holder.card_delivery_fee.setText(Double.toString(delivery_fee));
+        holder.card_logo.setImageDrawable(holder.itemView.getResources().getDrawable(logo));
+    }
+
+    private void bindToCardLarge(RestaurantCardLargeViewHolder holder, int position){
+        RestaurantCardModel restaurant = restaurantCardModels.get(position);
+
+        String
+                name = restaurant.getName(),
+                description = restaurant.getDescription();
+
+        double
+                rate = restaurant.getRating(),
+                delivery_fee = restaurant.getDeliveryFee();
+
+        int
+                logo = restaurant.getLogo(),
+                thumbnail = restaurant.getThumbnail();
+
+        holder.card_title.setText(name);
+        holder.card_description.setText(description);
+        holder.card_rating.setText(Double.toString(rate));
+        holder.card_delivery_fee.setText(Double.toString(delivery_fee));
+        holder.card_logo.setImageDrawable(holder.itemView.getResources().getDrawable(logo));
         holder.card_thumbnail.setImageDrawable(holder.itemView.getResources().getDrawable(thumbnail));
     }
 
     @Override
     public int getItemCount() {
-        int item_count = restaurantModels.size();
-        return item_count;
+        try {
+            int item_count = restaurantCardModels.size();
+            return item_count;
+        }catch (Exception e){
+            return 0;
+        }
     }
 }

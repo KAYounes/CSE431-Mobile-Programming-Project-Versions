@@ -24,7 +24,7 @@
     <dimen name="input_validationMessage_textSize">10sp</dimen>
     <dimen name="button_small_textSize">12sp</dimen>
     <dimen name="card_restaurant_small_height">97dp</dimen>
-    <dimen name="card_restaurant_small_margin_vertical">4dp</dimen>
+    <dimen name="card_restaurant_spacing">4dp</dimen>
     <dimen name="card_restaurant_elevation">5dp</dimen>
     <dimen name="card_restaurant_padding">8dp</dimen>
     <dimen name="card_restaurant_small_thumbnail_width">81dp</dimen>

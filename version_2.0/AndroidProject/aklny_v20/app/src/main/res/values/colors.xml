@@ -17,4 +17,5 @@
     <color name="_primary_base"> #FFB900 </color>
     <color name="_primary_shade_48"> #F5B200 </color>
     <color name="input_field_hintColor">#D59C0B</color>
+    <color name="_off_white_shade_55">#73B761</color>
 </resources>

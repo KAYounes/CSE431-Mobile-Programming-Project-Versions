@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements RecyclerViewInterface{
     RecyclerView restaurantRecyclerView;
     RestaurantRecyclerViewAdapter restaurantRecyclerViewAdapter;
-    ArrayList<RestaurantModel> restaurantModels = new ArrayList<>();
+    ArrayList<RestaurantCardModel> restaurantCardModels = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,21 +22,21 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
         restaurantRecyclerView = findViewById(R.id.list_restaurant);
 
-        restaurantModels.add(new RestaurantModel("Buffalo Burger",
+        restaurantCardModels.add(new RestaurantCardModel("Buffalo Burger",
                 "Burgers, Chicken, Sandwiches, Beef,Burgers, Chicken, Sandwiches, Beef",
-                3.8, 15.99, R.drawable.teksas_buffalo_burger_logo));
+                3.8, 15.99, R.drawable.logo_2, R.drawable.burger_image));
 //
 
-        restaurantModels.add(new RestaurantModel("Chicken Fila",
+        restaurantCardModels.add(new RestaurantCardModel("Chicken Fila",
                 "Chicken, Fries",
-                4.8, 15.99, R.drawable.logo));
+                4.8, 15.99, R.drawable.logo, R.drawable.burger_image_2));
 //
 
-        restaurantModels.add(new RestaurantModel("Pizza Hut",
+        restaurantCardModels.add(new RestaurantCardModel("Pizza Hut",
                 "Pizza, wings",
-                5.0, 15.99, R.drawable.logo_3));
+                5.0, 15.99, R.drawable.logo_3, R.drawable.burger_image_3));
 
-        restaurantRecyclerViewAdapter = new RestaurantRecyclerViewAdapter(restaurantModels, this);
+        restaurantRecyclerViewAdapter = new RestaurantRecyclerViewAdapter(restaurantCardModels, this);
         restaurantRecyclerView.setAdapter(restaurantRecyclerViewAdapter);
 //
         restaurantRecyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
     @Override
     public void onRecyclerViewClick(int position) {
-        Toast.makeText(this, restaurantModels.get(position).getName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, restaurantCardModels.get(position).getName(), Toast.LENGTH_SHORT).show();
 //        Intent intent = new Intent(MainActivity.this, DummyAcivity.class);
 //        intent.putExtra("Item", restaurantModels.get(position));
 //        startActivity(intent);
