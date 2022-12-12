@@ -31,4 +31,6 @@
     <dimen name="card_restaurant_titleTextSize">16sp</dimen>
     <dimen name="card_restaurant_descriptionTextSize">10sp</dimen>
     <dimen name="card_restaurant_footerTextSize">10sp</dimen>
+    <dimen name="screen_padding">16dp</dimen>
+    <dimen name="screen_top_margin">32dp</dimen>
 </resources>
