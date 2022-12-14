@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style
+        name="roundImage">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <!--<style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">-->
+    <!--    <item name="android:textColor">#F00</item>-->
+    <!--</style>-->
+
+    <style name="helperTextColor" parent="android:TextAppearance">
+        <item name="android:textColor"> #0F0</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="OutlinedRoundedBox" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <!--<item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.TextInputLayout.Rounded</item>-->
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">3dp</item>
+    </style>
+
+    <style name="textInputLayoutYellow">
+        <item name="android:textColor">@color/_off_black_base</item>
+        <item name="android:textSize">10sp</item>
+        <item name="startIconTint">@color/_off_black_base</item>
+        <item name="passwordToggleTint">@color/_off_black_base</item>
+        <item name="android:textColorHint"> @color/input_field_hintColor </item>
+        <item name="boxBackgroundColor"> @color/_primary_base</item>
+        <item name="boxStrokeColor"> @color/_secondary_base</item>
+        <item name="boxStrokeWidth"> 0dp</item>
+        <item name="boxStrokeWidthFocused"> 5dp</item>
+        <item name="helperTextTextAppearance"> @style/helperTextColor</item>
+        <item name="helperTextTextColor"> @color/_secondary_base</item>
+        <item name="hintTextColor"> @color/_secondary_base</item>
+        <item name="shapeAppearanceOverlay"> @style/OutlinedRoundedBox</item>
+        <item name="prefixTextAppearance">@style/prefixTextAppearance</item>
+    </style>
+
+    <style name="prefixTextAppearance">
+        <item name="android:textColor">@color/_off_black_base</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="textInputEditLayoutYellow">
+        <item name="android:textColor">@color/_off_black_base</item>
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/poppins_bold</item>
+    </style>
+</resources>
