@@ -14,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.aklny_v30.AuthorizationActivity;
 import com.example.aklny_v30.R;
+import com.example.aklny_v30.TestActivity;
 import com.example.aklny_v30.databinding.FragmentSignUpWithGoogleBinding;
 import com.example.aklny_v30.databinding.FragmentSignUpWithPasswordBinding;
 import com.example.aklny_v30.ui_controllers.d_signInScreen.LoginScreenActivity;
@@ -72,7 +74,13 @@ public class FragmentSignUpWithGoogle extends Fragment {
 
         if(validateAccountDetails())
         {
-            signInWithGoogle();
+            Log.d("PRINT", "binder.btnSignUpWithPassword > clicked");
+            Intent signUpWithPasswordIntent = new Intent(requireActivity(), AuthorizationActivity.class);
+            signUpWithPasswordIntent.putExtra("ACTION", AuthorizationActivity.SIGN_UP_WITH_GOOGLE);
+            signUpWithPasswordIntent.putExtra("FIRSTNAME", "John");
+            signUpWithPasswordIntent.putExtra("LASTNAME", "Smith");
+            signUpWithPasswordIntent.putExtra("PHONENUMBER", "+201111111111");
+            startActivityForResult(signUpWithPasswordIntent, AuthorizationActivity.AUTHENTICATION_REQUEST_CODE);
         }
 
         binder.textHelpMessage.setText(helperMessage);
@@ -134,24 +142,39 @@ public class FragmentSignUpWithGoogle extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == REQUEST_CODE_SIGN_IN)
-        {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            Exception taskException = task.getException();
-            if(task.isSuccessful())
-            {
-                try
-                {
-                    GoogleSignInAccount account = task.getResult(ApiException.class);
-                    Log.d("PRINT", "LoginScreenActivity > onActivityResult > task is successful > no API exception");
-                    firebaseAuthWithGoogle(account.getIdToken());
-                }
-                catch (ApiException apiException)
-                {
-                    Log.w("PRINT", "LoginScreenActivity > onActivityResult > task is successful > API exception");
-                }
+        Log.d("PRINT", "onActivityResult > "
+                + requestCode
+                + " - " + resultCode
+                + " - " + data.getStringExtra(AuthorizationActivity.RESULT_KEY));
+
+        if(requestCode == AuthorizationActivity.AUTHENTICATION_REQUEST_CODE){
+            String result = data.getStringExtra(AuthorizationActivity.RESULT_KEY);
+            if(result.equals(AuthorizationActivity.AUTHENTICATION_SUCCESS)){
+                Toast.makeText(requireActivity(), "Account Created", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(requireActivity(), HomeScreenActivity.class));
+                requireActivity().finish();
             }
+
+            Toast.makeText(requireActivity(), data.getStringExtra(AuthorizationActivity.RESULT_KEY), Toast.LENGTH_SHORT).show();
         }
+//        if(requestCode == REQUEST_CODE_SIGN_IN)
+//        {
+//            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+//            Exception taskException = task.getException();
+//            if(task.isSuccessful())
+//            {
+//                try
+//                {
+//                    GoogleSignInAccount account = task.getResult(ApiException.class);
+//                    Log.d("PRINT", "LoginScreenActivity > onActivityResult > task is successful > no API exception");
+//                    firebaseAuthWithGoogle(account.getIdToken());
+//                }
+//                catch (ApiException apiException)
+//                {
+//                    Log.w("PRINT", "LoginScreenActivity > onActivityResult > task is successful > API exception");
+//                }
+//            }
+//        }
     }
 
     private void firebaseAuthWithGoogle(String idToken) {

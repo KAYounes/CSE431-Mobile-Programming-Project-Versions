@@ -53,7 +53,7 @@ public class TestActivity extends AppCompatActivity {
                 Log.d("PRINT", "binder.btnSignUpWithPassword > clicked");
                 Intent signUpWithPasswordIntent = new Intent(TestActivity.this, AuthorizationActivity.class);
                 signUpWithPasswordIntent.putExtra("ACTION", 30);
-                startActivityForResult(signUpWithPasswordIntent, 2);
+                startActivityForResult(signUpWithPasswordIntent, AuthorizationActivity.AUTHENTICATION_REQUEST_CODE);
             }
         });
 
@@ -65,7 +65,7 @@ public class TestActivity extends AppCompatActivity {
                 signUpWithPasswordIntent.putExtra("ACTION", 40);
                 signUpWithPasswordIntent.putExtra("EMAIL", binder.inputEmail.getText().toString());
                 signUpWithPasswordIntent.putExtra("PASSWORD", binder.inputPassword.getText().toString());
-                startActivityForResult(signUpWithPasswordIntent, 2);
+                startActivityForResult(signUpWithPasswordIntent, AuthorizationActivity.AUTHENTICATION_REQUEST_CODE);
             }
         });
     }
@@ -74,6 +74,9 @@ public class TestActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Log.d("PRINT", "onActivityResult > " + data.getStringExtra("state"));
+
+
+        Log.d("PRINT", "onActivityResult > "
+                + requestCode + " - " + resultCode + " - " + data.getStringExtra("state"));
     }
 }
