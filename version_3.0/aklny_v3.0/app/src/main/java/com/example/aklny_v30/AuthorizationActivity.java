@@ -302,7 +302,7 @@ public class AuthorizationActivity extends AppCompatActivity {
                                                     {
                                                         Log.d(TAG, "addUserToRoomDatabase: changed > uid > " + e.getLocalizedMessage());
                                                     }
-                                                    returnResult(RESULT_KEY, "Account Created From Email");
+                                                    returnResult(RESULT_KEY, AUTHENTICATION_SUCCESS);
                                                 }
                                             });
                                         }
@@ -317,7 +317,7 @@ public class AuthorizationActivity extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            returnResult(RESULT_KEY, "Account Created From Email");
+                            returnResult(RESULT_KEY, USER_EXISTS);
                         }
                     }
                 });

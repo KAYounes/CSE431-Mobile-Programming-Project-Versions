@@ -105,7 +105,7 @@
             android:text="All fields are required."
             android:textColor="@color/_secondary_base"
             android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@id/btn_signUp_withPassword"
+            app:layout_constraintBottom_toTopOf="@id/btn_signUp_withGoogle"
             app:layout_constraintVertical_weight="1"/>
 
         <Button

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.aklny_v30.AuthorizationActivity;
 import com.example.aklny_v30.databinding.FragmentSignUpWithPasswordBinding;
 import com.example.aklny_v30.ui_controllers.e_homeScreen.HomeScreenActivity;
 import com.example.aklny_v30.viewModels.SignUpViewModel;
@@ -57,39 +59,19 @@ public class FragmentSignUpWithPassword extends Fragment {
 
         if(validateAccountDetails())
         {
-            viewModel.authenticateUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
-                        Log.d("PRINT", "sign up password successful");
-                        helperMessage = "Successfully created your account.";
-                        viewModel.addUserToDatabases(firstName, lastName, phoneNumber, email);
-                        startActivity(new Intent(requireActivity(), HomeScreenActivity.class));
-                        requireActivity().finish();
-                    }
-                    else
-                    {
-                        // Either user already exists, or failure.
-                        Log.d("PRINT", "sign up password failed");
-                        if(viewModel.doesUserExists())
-                        {
-                            Toast.makeText(requireActivity(), "User Exists", Toast.LENGTH_SHORT).show();
-                            helperMessage = "This account already exists";
-                            binder.textHelpMessage.setText(helperMessage);
-                        }
-                        else
-                        {
-                            Toast.makeText(requireActivity(), "Unknown signup failure", Toast.LENGTH_SHORT).show();
-                            helperMessage = "Signup failed, please check your connection.";
-                            binder.textHelpMessage.setText(helperMessage);
-                        }
-                    }
-                }
-            });
+            Intent signUpWithPasswordIntent = new Intent(requireActivity(), AuthorizationActivity.class);
+            signUpWithPasswordIntent.putExtra("ACTION", AuthorizationActivity.SIGN_UP_WITH_PASSWORD);
+            signUpWithPasswordIntent.putExtra("FIRSTNAME", firstName);
+            signUpWithPasswordIntent.putExtra("LASTNAME", lastName);
+            signUpWithPasswordIntent.putExtra("PHONENUMBER", phoneNumber);
+            signUpWithPasswordIntent.putExtra("EMAIL", email);
+            signUpWithPasswordIntent.putExtra("PASSWORD", password);
+            startActivityForResult(signUpWithPasswordIntent, AuthorizationActivity.AUTHENTICATION_REQUEST_CODE);
         }
-
-        binder.textHelpMessage.setText(helperMessage);
+        else
+        {
+            binder.textHelpMessage.setText(helperMessage);
+        }
     }
 
     private boolean validateAccountDetails(){
@@ -163,6 +145,28 @@ public class FragmentSignUpWithPassword extends Fragment {
         }
 
         return true;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.d("PRINT", "onActivityResult > "
+                + requestCode
+                + " - " + resultCode
+                + " - " + data.getStringExtra(AuthorizationActivity.RESULT_KEY));
+
+        if(requestCode == AuthorizationActivity.AUTHENTICATION_REQUEST_CODE){
+            String result = data.getStringExtra(AuthorizationActivity.RESULT_KEY);
+            if(result.equals(AuthorizationActivity.AUTHENTICATION_SUCCESS)){
+                Toast.makeText(requireActivity(), "Account Created", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(requireActivity(), HomeScreenActivity.class));
+                requireActivity().finish();
+            }
+
+            Toast.makeText(requireActivity(), data.getStringExtra(AuthorizationActivity.RESULT_KEY), Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override

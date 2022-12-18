@@ -74,16 +74,17 @@ public class FragmentSignUpWithGoogle extends Fragment {
 
         if(validateAccountDetails())
         {
-            Log.d("PRINT", "binder.btnSignUpWithPassword > clicked");
             Intent signUpWithPasswordIntent = new Intent(requireActivity(), AuthorizationActivity.class);
             signUpWithPasswordIntent.putExtra("ACTION", AuthorizationActivity.SIGN_UP_WITH_GOOGLE);
-            signUpWithPasswordIntent.putExtra("FIRSTNAME", "John");
-            signUpWithPasswordIntent.putExtra("LASTNAME", "Smith");
-            signUpWithPasswordIntent.putExtra("PHONENUMBER", "+201111111111");
+            signUpWithPasswordIntent.putExtra("FIRSTNAME", firstName);
+            signUpWithPasswordIntent.putExtra("LASTNAME", lastName);
+            signUpWithPasswordIntent.putExtra("PHONENUMBER", phoneNumber);
             startActivityForResult(signUpWithPasswordIntent, AuthorizationActivity.AUTHENTICATION_REQUEST_CODE);
         }
-
-        binder.textHelpMessage.setText(helperMessage);
+        else
+        {
+            binder.textHelpMessage.setText(helperMessage);
+        }
     }
 
     private boolean validateAccountDetails(){
@@ -125,19 +126,6 @@ public class FragmentSignUpWithGoogle extends Fragment {
         return true;
     }
 
-    private void signInWithGoogle() {
-        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions
-                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-
-        googleSignInClient = GoogleSignIn.getClient(requireActivity(), googleSignInOptions);
-
-        Intent signInIntent = googleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, REQUEST_CODE_SIGN_IN);
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -175,55 +163,6 @@ public class FragmentSignUpWithGoogle extends Fragment {
 //                }
 //            }
 //        }
-    }
-
-    private void firebaseAuthWithGoogle(String idToken) {
-        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-        viewModel.signInWithCredential(credential)
-                .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful())
-                {
-                    onFirebaseAuthSuccess();
-                }
-                else
-                {
-                    Toast.makeText(requireActivity(), "firebaseAuthWithGoogle > Failed to connect", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    void onFirebaseAuthSuccess(){
-        viewModel.checkUserExists().subscribe(new SingleObserver<LoginScreenViewModel.userAccountStatus>() {
-            @Override
-            public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {return;}
-
-            @Override
-            public void onSuccess(LoginScreenViewModel.@io.reactivex.rxjava3.annotations.NonNull userAccountStatus userAccountStatus) {
-                Toast.makeText(requireActivity(), "Flag> " + userAccountStatus, Toast.LENGTH_SHORT).show();
-                Log.d("PRINT", "onFirebaseAuthSuccess > Single success");
-
-                if(userAccountStatus == LoginScreenViewModel.userAccountStatus.USER_DOES_NOT_EXISTS)
-                {
-                    startActivity(new Intent(requireActivity(), HomeScreenActivity.class));
-                    requireActivity().finish();
-                }
-                else
-                {
-//                    viewModel.assignCurrentUser(firebaseAuth.getUid());
-//                    startActivity(new Intent(requireActivity(), HomeScreenActivity.class));
-                    Log.d("PRINT", "User Exists");
-                }
-            }
-
-            @Override
-            public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
-                Toast.makeText(requireActivity(), "Failed to Connect", Toast.LENGTH_SHORT).show();
-                Log.d("PRINT", "onFirebaseAuthSuccess > Single error");
-            }
-        });
     }
 
     @Override

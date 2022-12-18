@@ -102,17 +102,18 @@ public class LoginScreenActivity extends AppCompatActivity {
     }
 
     private void signInWithGoogle() {
-        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions
-                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-
-        googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
-
-        Intent signInIntent = googleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, REQUEST_CODE_SIGN_IN);
-        dialog.startLoadingDialog();
+//
+//        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions
+//                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestIdToken(getString(R.string.default_web_client_id))
+//                .requestEmail()
+//                .build();
+//
+//        googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
+//
+//        Intent signInIntent = googleSignInClient.getSignInIntent();
+//        startActivityForResult(signInIntent, REQUEST_CODE_SIGN_IN);
+//        dialog.startLoadingDialog();
     }
 
     private void signInWithPassword() {
