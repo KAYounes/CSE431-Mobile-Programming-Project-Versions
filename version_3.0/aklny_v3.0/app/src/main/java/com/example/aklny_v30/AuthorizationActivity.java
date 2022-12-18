@@ -34,7 +34,8 @@ public class AuthorizationActivity extends AppCompatActivity {
     private SignInClient oneTapClient;
     private BeginSignInRequest signInRequest;
     private BeginSignInRequest signUpRequest;
-    private static final int REQ_ONE_TAP = 2;  // Can be any integer unique to the Activity.
+    private static final int GOOGLE_SING_IN = 31;  // Can be any integer unique to the Activity.
+    private static final int GOOGLE_SING_UP = 11;  // Can be any integer unique to the Activity.
     private boolean showOneTapUI = true;
     private FirebaseAuth mAuth;
     private String TAG = "PRINT";
@@ -64,13 +65,12 @@ public class AuthorizationActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: " + action);
 
         switch (action){
-            case SIGN_IN_WITH_GOOGLE:
-                break;
-            case SIGN_IN_WITH_PASSWORD:
-                email = authorizationIntent.getStringExtra("EMAIL");
-                password = authorizationIntent.getStringExtra("PASSWORD");
-                break;
             case SIGN_UP_WITH_GOOGLE:
+                firstName = authorizationIntent.getStringExtra("FIRSTNAME");
+                lastName = authorizationIntent.getStringExtra("LASTNAME");
+                phoneNumber = authorizationIntent.getStringExtra("PHONENUMBER");
+                Log.d(TAG, "SIGN_UP_WITH_GOOGLE");
+                signUpWithGoogle();
                 break;
             case SIGN_UP_WITH_PASSWORD:
                 firstName = authorizationIntent.getStringExtra("FIRSTNAME");
@@ -80,6 +80,16 @@ public class AuthorizationActivity extends AppCompatActivity {
                 password = authorizationIntent.getStringExtra("PASSWORD");
                 Log.d(TAG, "SIGN_UP_WITH_PASSWORD");
                 signUpWithPassword();
+                break;
+            case SIGN_IN_WITH_GOOGLE:
+                Log.d(TAG, "SIGN_IN_WITH_GOOGLE");
+                signInWithGoogle();
+                break;
+            case SIGN_IN_WITH_PASSWORD:
+                email = authorizationIntent.getStringExtra("EMAIL");
+                password = authorizationIntent.getStringExtra("PASSWORD");
+                Log.d(TAG, "SIGN_IN_WITH_PASSWORD");
+                signInWithPassword();
                 break;
             case NO_ACTION:
                 break;
@@ -96,7 +106,7 @@ public class AuthorizationActivity extends AppCompatActivity {
 
         switch (requestCode)
         {
-            case REQ_ONE_TAP:
+            case GOOGLE_SING_IN:
                 try
                 {
                     SignInCredential credential = oneTapClient.getSignInCredentialFromIntent(data);
@@ -148,7 +158,16 @@ public class AuthorizationActivity extends AppCompatActivity {
                         {
                             // Sign in success
                             Log.d(TAG, "signInWithCredential:success");
-                            returnResult("state", "signInWithCredential:success");
+                            if(action == SIGN_UP_WITH_GOOGLE)
+                            {
+                                email = mAuth.getCurrentUser().getEmail();
+                                UserModel newUser = new UserModel(mAuth.getUid(), firstName, lastName, phoneNumber, email);
+                                addUserToDatabases(newUser);
+                            }
+                            else
+                            {
+                                checkUserIsInFirebaseDatabase();
+                            }
                         } else
                         {
                             // If sign in fails
@@ -172,17 +191,19 @@ public class AuthorizationActivity extends AppCompatActivity {
         mAuth.signOut();
     }
 
-    private void signIn(){
-        signInRequest = BeginSignInRequest.builder()
+    private void signInWithGoogle(){
+        signUpRequest = BeginSignInRequest.builder()
                 .setGoogleIdTokenRequestOptions(BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
                         .setSupported(true)
+                        // Your server's client ID, not your Android client ID.
                         .setServerClientId(getString(R.string.default_web_client_id))
+                        // Show all accounts on the device.
                         .setFilterByAuthorizedAccounts(false)
+                        .setRequestVerifiedPhoneNumber(true)
                         .build())
-//                .setAutoSelectEnabled(true) // Automatically sign in when exactly one credential is retrieved.
                 .build();
 
-        beginRequest(signInRequest);
+        beginRequest(signUpRequest);
     }
 
     private void signUpWithGoogle(){
@@ -208,9 +229,11 @@ public class AuthorizationActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
+                            returnResult("state", "signInWithEmail:success");
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            returnResult("state", "signInWithEmail:failure");
                         }
                     }
                 });
@@ -254,6 +277,7 @@ public class AuthorizationActivity extends AppCompatActivity {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
                                             Log.d(TAG, "addUserToFirebaseDatabase: failure");
+                                            mAuth.getCurrentUser().delete();
                                         }
                                     });
                         } else {
@@ -272,7 +296,7 @@ public class AuthorizationActivity extends AppCompatActivity {
                     public void onSuccess(BeginSignInResult beginSignInResult) {
                         try {
                             startIntentSenderForResult(
-                                    beginSignInResult.getPendingIntent().getIntentSender(), REQ_ONE_TAP,
+                                    beginSignInResult.getPendingIntent().getIntentSender(), GOOGLE_SING_IN,
                                     null, 0, 0, 0);
                         } catch (IntentSender.SendIntentException e) {
                             Log.e(TAG, "Couldn't start One Tap UI: " + e.getLocalizedMessage());
@@ -296,6 +320,7 @@ public class AuthorizationActivity extends AppCompatActivity {
                 if(task.isSuccessful())
                 {
                     Log.d(TAG, "checkUserIsInFirebaseDatabase > User Found");
+                    returnResult("state", "User Can Log In With Google");
                 }
                 else
                 {
@@ -309,6 +334,38 @@ public class AuthorizationActivity extends AppCompatActivity {
         usersRepository.userExists(mAuth.getUid());
     }
 
+    private void addUserToDatabases(UserModel newUser){
+        addUserToFirebaseDatabase(newUser)
+                .addOnCompleteListener(AuthorizationActivity.this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.d(TAG, "addUserToFirebaseDatabase: complete");
+                        addUserToRoomDatabase(newUser);
+
+                        usersRepository.getUser(mAuth.getUid()).observe(AuthorizationActivity.this, new Observer<UserModel>() {
+                            @Override
+                            public void onChanged(UserModel userModel) {
+                                try
+                                {
+                                    Log.d(TAG, "addUserToRoomDatabase: changed > uid > " + userModel.getAuth_uid());
+                                }
+                                catch (Exception e)
+                                {
+                                    Log.d(TAG, "addUserToRoomDatabase: changed > uid > " + e.getLocalizedMessage());
+                                }
+                                returnResult("state", "Account Created");
+                            }
+                        });
+                    }
+                })
+                .addOnFailureListener(AuthorizationActivity.this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "addUserToFirebaseDatabase: failure");
+                        mAuth.getCurrentUser().delete();
+                    }
+                });
+    }
     private Task<Void> addUserToFirebaseDatabase(UserModel newUser){
         return firebaseUsersRepository.addUser(newUser);
     }
