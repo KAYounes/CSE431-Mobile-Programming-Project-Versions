@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".TestActivity">
+
+    <EditText
+        android:id="@+id/input_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="email"/>
+    <EditText
+        android:id="@+id/input_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="password"/>
+    <Button
+        android:id="@+id/btn_Sign_Up_With_Password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up With Password"/>
+    <Button
+        android:id="@+id/btn_Sign_Up_With_Google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up With Google"/>
+    <Button
+        android:id="@+id/btn_Sign_In_With_Password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign In With Password"/>
+    <Button
+        android:id="@+id/btn_Sign_In_With_Google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign In With Google"/>
+
+</LinearLayout>

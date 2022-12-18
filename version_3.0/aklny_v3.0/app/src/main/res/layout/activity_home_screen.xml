@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="32dp"
-    tools:context=".HomeScreenActivity">
+    tools:context=".ui_controllers.e_homeScreen.HomeScreenActivity">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/img_profile_img"

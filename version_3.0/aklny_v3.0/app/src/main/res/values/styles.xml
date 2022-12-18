@@ -26,7 +26,8 @@
 
     <style name="textInputLayoutYellow">
         <item name="android:textColor">@color/_off_black_base</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
         <item name="startIconTint">@color/_off_black_base</item>
         <item name="passwordToggleTint">@color/_off_black_base</item>
         <item name="android:textColorHint"> @color/input_field_hintColor </item>
@@ -35,14 +36,18 @@
         <item name="boxStrokeWidth"> 0dp</item>
         <item name="boxStrokeWidthFocused"> 5dp</item>
         <item name="helperTextTextAppearance"> @style/helperTextColor</item>
-        <item name="helperTextTextColor"> @color/_secondary_base</item>
+        <item name="helperTextTextColor"> @color/_off_white_base</item>
+        <item name="helperText">  </item>
         <item name="hintTextColor"> @color/_secondary_base</item>
         <item name="shapeAppearanceOverlay"> @style/OutlinedRoundedBox</item>
         <item name="prefixTextAppearance">@style/prefixTextAppearance</item>
+        <item name="prefixTextColor">@color/_off_black_base</item>
     </style>
 
     <style name="prefixTextAppearance">
         <item name="android:textColor">@color/_off_black_base</item>
+        <item name="textFillColor">@color/_off_black_base</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
         <item name="android:textSize">14sp</item>
     </style>
     <style name="textInputEditLayoutYellow">

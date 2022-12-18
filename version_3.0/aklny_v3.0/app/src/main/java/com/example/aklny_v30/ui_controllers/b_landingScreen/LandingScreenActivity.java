@@ -1,4 +1,4 @@
-package com.example.aklny_v30;
+package com.example.aklny_v30.ui_controllers.b_landingScreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,10 +8,11 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.aklny_v30.databinding.ActivityLandingScreenBinding;
+import com.example.aklny_v30.ui_controllers.d_signInScreen.LoginScreenActivity;
+import com.example.aklny_v30.ui_controllers.c_signUpScreen.SignUpScreenActivity;
 
 public class LandingScreenActivity extends AppCompatActivity {
     private ActivityLandingScreenBinding binder;
@@ -22,8 +23,8 @@ public class LandingScreenActivity extends AppCompatActivity {
         binder = ActivityLandingScreenBinding.inflate(getLayoutInflater());
         View view = binder.getRoot();
         setContentView(view);
-        Intent signUpScreenIntent = new Intent(LandingScreenActivity.this, SignUpScreenActivity.class);
-        startActivity(signUpScreenIntent);
+//        Intent signUpScreenIntent = new Intent(LandingScreenActivity.this, SignUpScreenActivity.class);
+//        startActivity(signUpScreenIntent);
 
         binder.btnLandingScreenLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +52,7 @@ public class LandingScreenActivity extends AppCompatActivity {
                 }
                 else
                 {
+                    // replace with dialog
                     Toast.makeText(LandingScreenActivity.this, "No Internet", Toast.LENGTH_SHORT).show();
                 }
             }

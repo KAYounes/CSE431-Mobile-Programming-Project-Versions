@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/_primary_base"
-    tools:context=".LandingScreenActivity">
+    tools:context=".ui_controllers.b_landingScreen.LandingScreenActivity">
 
     <TextView
         android:id="@+id/tv_landing_screen_title"

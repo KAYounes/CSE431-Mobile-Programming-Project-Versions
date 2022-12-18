@@ -14,4 +14,14 @@
         <item name="android:windowTranslucentStatus">true</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="transparentActivity" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--<item name="colorBackgroundCacheHint">@null</item>-->
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="dialogCorners" parent="Theme.AppCompat.Dialog">
+        <item name="dialogCornerRadius">5dp</item>
+    </style>
 </resources>
