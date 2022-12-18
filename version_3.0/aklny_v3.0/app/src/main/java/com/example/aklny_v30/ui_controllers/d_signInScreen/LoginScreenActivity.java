@@ -11,7 +11,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.aklny_v30.AuthorizationActivity;
 import com.example.aklny_v30.R;
+import com.example.aklny_v30.TestActivity;
 import com.example.aklny_v30.databinding.ActivityLoginScreenBinding;
 import com.example.aklny_v30.ui_controllers.e_homeScreen.HomeScreenActivity;
 import com.example.aklny_v30.ui_controllers.c_signUpScreen.SignUpScreenActivity;
@@ -78,30 +80,27 @@ public class LoginScreenActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == REQUEST_CODE_SIGN_IN)
-        {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            Exception taskException = task.getException();
-            if(task.isSuccessful())
-            {
-                try
-                {
-                    GoogleSignInAccount account = task.getResult(ApiException.class);
-                    Log.d("PRINT", "LoginScreenActivity > onActivityResult > task is successful > no API exception");
-                    firebaseAuthWithGoogle(account.getIdToken());
-                }
-                catch (ApiException apiException)
-                {
-                    Log.w("PRINT", "LoginScreenActivity > onActivityResult > task is successful > API exception");
-                    dialog.failedLoginDialog();
-                }
+        Log.d("PRINT", "onActivityResult > "
+                + requestCode
+                + " - " + resultCode
+                + " - " + data.getStringExtra(AuthorizationActivity.RESULT_KEY));
+
+        if(requestCode == AuthorizationActivity.AUTHENTICATION_REQUEST_CODE){
+            String result = data.getStringExtra(AuthorizationActivity.RESULT_KEY);
+            if(result.equals(AuthorizationActivity.AUTHENTICATION_SUCCESS)){
+                Toast.makeText(LoginScreenActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(LoginScreenActivity.this, HomeScreenActivity.class));
+                LoginScreenActivity.this.finish();
             }
 
-
+            Toast.makeText(LoginScreenActivity.this, data.getStringExtra(AuthorizationActivity.RESULT_KEY), Toast.LENGTH_SHORT).show();
         }
     }
 
     private void signInWithGoogle() {
+        Intent signUpWithPasswordIntent = new Intent(LoginScreenActivity.this, AuthorizationActivity.class);
+        signUpWithPasswordIntent.putExtra("ACTION", AuthorizationActivity.SIGN_IN_WITH_GOOGLE);
+        startActivityForResult(signUpWithPasswordIntent, AuthorizationActivity.AUTHENTICATION_REQUEST_CODE);
 //
 //        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions
 //                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -132,8 +131,11 @@ public class LoginScreenActivity extends AppCompatActivity {
             return;
         }
 
-        dialog.startLoadingDialog();
-        firebaseAuthWithPassword(email, password);
+        Intent signUpWithPasswordIntent = new Intent(LoginScreenActivity.this, AuthorizationActivity.class);
+        signUpWithPasswordIntent.putExtra("ACTION", AuthorizationActivity.SIGN_IN_WITH_PASSWORD);
+        signUpWithPasswordIntent.putExtra("EMAIL", email);
+        signUpWithPasswordIntent.putExtra("PASSWORD", password);
+        startActivityForResult(signUpWithPasswordIntent, AuthorizationActivity.AUTHENTICATION_REQUEST_CODE);
     }
 
     private boolean validateEmail(String email) {

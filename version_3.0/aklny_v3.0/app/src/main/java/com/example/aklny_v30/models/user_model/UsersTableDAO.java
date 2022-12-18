@@ -14,11 +14,14 @@ public interface UsersTableDAO {
     @Query("SELECT * FROM users WHERE uid=:uid")
     LiveData<UserModel> getUser(String uid);
 
+    @Query("SELECT * FROM users")
+    LiveData<List<UserModel>> getAllUsers();
+
     @Query("DELETE FROM users WHERE(uid=:uid)")
     void deleteUser(String uid);
 
-//    @Query("SELECT * FROM users")
-//    UserModel getUser();
+    @Query("DELETE FROM users")
+    void deleteAll();
 
     @Insert
     void addUser(UserModel user);

@@ -1,18 +1,24 @@
 package com.example.aklny_v30.ui_controllers.b_landingScreen;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.aklny_v30.databinding.ActivityLandingScreenBinding;
+import com.example.aklny_v30.models.user_model.UserModel;
+import com.example.aklny_v30.models.user_model.UsersRepository;
 import com.example.aklny_v30.ui_controllers.d_signInScreen.LoginScreenActivity;
 import com.example.aklny_v30.ui_controllers.c_signUpScreen.SignUpScreenActivity;
+
+import java.util.List;
 
 public class LandingScreenActivity extends AppCompatActivity {
     private ActivityLandingScreenBinding binder;
@@ -23,8 +29,18 @@ public class LandingScreenActivity extends AppCompatActivity {
         binder = ActivityLandingScreenBinding.inflate(getLayoutInflater());
         View view = binder.getRoot();
         setContentView(view);
-//        Intent signUpScreenIntent = new Intent(LandingScreenActivity.this, SignUpScreenActivity.class);
-//        startActivity(signUpScreenIntent);
+
+        UsersRepository usersRepository = new UsersRepository(getApplication());
+//        usersRepository.deleteAll();
+        usersRepository.getUsers().observe(this, new Observer<List<UserModel>>() {
+            @Override
+            public void onChanged(List<UserModel> userModels) {
+                Log.d("USERS", "\nUpdate ----------------------\n");
+                for (UserModel user: userModels) {
+                    Log.d("USERS", "- " + user.toString());
+                }
+            }
+        });
 
         binder.btnLandingScreenLogin.setOnClickListener(new View.OnClickListener() {
             @Override

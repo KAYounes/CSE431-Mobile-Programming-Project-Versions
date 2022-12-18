@@ -262,11 +262,11 @@ public class AuthorizationActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
-                            returnResult(RESULT_KEY, "signInWithEmail:success");
+                            returnResult(RESULT_KEY, AUTHENTICATION_SUCCESS);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            returnResult(RESULT_KEY, "signInWithEmail:failure");
+                            returnResult(RESULT_KEY, AUTHENTICATION_FAILED);
                         }
                     }
                 });
@@ -336,11 +336,19 @@ public class AuthorizationActivity extends AppCompatActivity {
                     if (task.getResult().getValue() != null)
                     {
                         Log.d(TAG, "checkUserIsInFirebaseDatabase > User Found > " + task.getResult().getValue());
-                        returnResult(RESULT_KEY, USER_EXISTS);
+                        if(action == SIGN_UP_WITH_GOOGLE)
+                        {
+                            returnResult(RESULT_KEY, AUTHENTICATION_FAILED);
+                        }
+                        else if (action == SIGN_IN_WITH_GOOGLE)
+                        {
+                            returnResult(RESULT_KEY, AUTHENTICATION_SUCCESS);
+                        }
+//                        returnResult(RESULT_KEY, USER_EXISTS);
                     }
                     else
                     {
-                        Log.d(TAG, "checkUserIsInFirebaseDatabase > FAILED");
+                        Log.d(TAG, "checkUserIsInFirebaseDatabase > User Not Found");
 
                         if(action == SIGN_UP_WITH_GOOGLE)
                         {
@@ -348,9 +356,9 @@ public class AuthorizationActivity extends AppCompatActivity {
                             UserModel newUser = new UserModel(mAuth.getUid(), firstName, lastName, phoneNumber, email);
                             addUserToDatabases(newUser);
                         }
-                        else
+                        else if (action == SIGN_IN_WITH_GOOGLE)
                         {
-                            returnResult(RESULT_KEY, USER_DOES_NOT_EXIST);
+                            returnResult(RESULT_KEY, AUTHENTICATION_FAILED);
                         }
                     }
                 }
@@ -363,10 +371,10 @@ public class AuthorizationActivity extends AppCompatActivity {
         });
     }
 
-    private void checkUserIsInRoomDatabase()
-    {
-        usersRepository.userExists(mAuth.getUid());
-    }
+//    private void checkUserIsInRoomDatabase()
+//    {
+//        usersRepository.userExists(mAuth.getUid());
+//    }
 
     private void addUserToDatabases(UserModel newUser)
     {

@@ -20,6 +20,30 @@ public class UserModel {
         this.email = email;
     }
 
+    @NonNull
+    @Override
+    public String toString() {
+        String user = auth_uid + ": "
+                + firstName + " " + lastName
+                + ", > " + phoneNumber
+                + ", > " + email;
+        return user;
+    }
+
+    //    @NonNull
+//    @Override
+//    public String toString() {
+//        super.toString();
+//        String user= "";
+//        String tab = "\t", newLine="\n";
+//        user += "------------";
+//        user += newLine + auth_uid;
+//        user += newLine + tab + firstName + " " + lastName;
+//        user += newLine + tab + phoneNumber;
+//        user += newLine + tab + email;
+//        return user;
+//    }
+
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "uid")

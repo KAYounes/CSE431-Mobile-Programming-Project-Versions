@@ -15,21 +15,26 @@ public class UsersRepository
 {
     private UsersTableDAO dao;
     private MutableLiveData<UserModel> user = new MutableLiveData<>();
+    private LiveData<List<UserModel>> users;
 
     public UsersRepository(Application application)
     {
         RootDatabase db = RootDatabase.getDatabase(application);
         dao = db.usersTableDAO();
+        users = dao.getAllUsers();
+    }
+
+    public void deleteAll(){
+        new deleteAsyncTask(dao).execute();
+    }
+    public LiveData<List<UserModel>> getUsers()
+    {
+        return dao.getAllUsers();
     }
 
     public LiveData<UserModel> getUser(String uid)
     {
         return dao.getUser(uid);
-    }
-
-    public boolean userExists(String uid)
-    {
-        return getUser(uid).getValue() != null;
     }
 
     public void updateUser(UserModel user){
@@ -70,6 +75,7 @@ public class UsersRepository
         @Override
         protected void onPostExecute(UserModel newUser) {
             super.onPostExecute(newUser);
+            Log.d("PRINT", "User >> " + newUser.toString());
             user.setValue(newUser);
         }
     }
@@ -94,6 +100,32 @@ public class UsersRepository
             catch (Exception e)
             {
                 Log.e("PRINT", "Update User error");
+            }
+
+            return null;
+        }
+    }
+
+    private static class deleteAsyncTask extends AsyncTask<Void, Void, Void>
+    {
+        private UsersTableDAO asyncTaskDAO;
+
+        deleteAsyncTask(UsersTableDAO doa)
+        {
+            asyncTaskDAO = doa;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids)
+        {
+
+            try
+            {
+                asyncTaskDAO.deleteAll();
+            }
+            catch (Exception e)
+            {
+                Log.e("PRINT", "deleteAll error");
             }
 
             return null;
