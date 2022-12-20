@@ -7,13 +7,13 @@
     android:background="@color/_primary_base"
     android:orientation="vertical"
     android:id="@+id/layout_sign_up_choices"
-    tools:context=".ui_controllers.c_signUpScreen.SignUpScreenActivity">
+    tools:context=".ui.s3_sign_up_screen.SignUpScreenActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.example.aklny_v30.ui_controllers.c_signUpScreen.FragmentSignUpChoices"
+        android:name="com.example.aklny_v30.ui.s3_sign_up_screen.FragmentSignUpChoices"
         tools:layout="@layout/fragment_sign_up_choices"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

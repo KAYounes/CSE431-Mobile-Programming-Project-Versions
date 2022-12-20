@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/_off_white_base"
     android:orientation="vertical"
-    tools:context=".ui_controllers.c_signUpScreen.SignUpScreenActivity">
+    tools:context=".ui.s3_sign_up_screen.SignUpScreenActivity">
     <!--<TextView-->
     <!--    android:layout_width="match_parent"-->
     <!--    android:layout_height="wrap_content"-->
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/sign_up_screen_bottom_group_bg"
+        android:background="@drawable/bg_sign_up_screen_group"
         android:paddingHorizontal="30dp"
         android:paddingTop="40dp"
         android:paddingBottom="16dp">

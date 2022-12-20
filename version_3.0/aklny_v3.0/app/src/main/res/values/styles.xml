@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style
-        name="roundImage">
+        name="imageCircular">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
+    </style>
+
+    <style
+        name="imageRoundCorners">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">5dp</item>
+    </style>
+
+    <style
+        name="imageRoundTopCorners">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">5dp</item>
+        <item name="cornerSizeTopRight">5dp</item>
     </style>
 
     <!--<style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">-->
@@ -24,6 +37,12 @@
         <item name="cornerSize">3dp</item>
     </style>
 
+    <style name="OutlinedRoundedPill" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <!--<item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.TextInputLayout.Rounded</item>-->
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">100dp</item>
+    </style>
+
     <style name="textInputLayoutYellow">
         <item name="android:textColor">@color/_off_black_base</item>
         <item name="android:textSize">12sp</item>
@@ -42,6 +61,26 @@
         <item name="shapeAppearanceOverlay"> @style/OutlinedRoundedBox</item>
         <item name="prefixTextAppearance">@style/prefixTextAppearance</item>
         <item name="prefixTextColor">@color/_off_black_base</item>
+    </style>
+
+    <!--<style name="pad" parent="Widget.MaterialComponents.TextInputLayout.fi"-->
+    <style name="textInputLayoutSearch" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColor">@color/_off_black_base</item>
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="startIconTint">@color/_off_black_base</item>
+        <item name="android:textColorHint"> @color/input_field_hintColor </item>
+        <item name="boxBackgroundColor"> @color/_primary_base</item>
+        <item name="boxStrokeColor"> @color/_secondary_base</item>
+        <item name="boxStrokeWidth"> 0dp</item>
+        <item name="boxStrokeWidthFocused"> 2dp</item>
+        <!--<item name="helperTextTextAppearance"> @style/helperTextColor</item>-->
+        <!--<item name="helperTextTextColor"> @color/_off_white_base</item>-->
+        <!--<item name="helperText">  </item>-->
+        <!--<item name="hintTextColor"> @color/_secondary_base</item>-->
+        <item name="shapeAppearanceOverlay"> @style/OutlinedRoundedPill</item>
     </style>
 
     <style name="prefixTextAppearance">

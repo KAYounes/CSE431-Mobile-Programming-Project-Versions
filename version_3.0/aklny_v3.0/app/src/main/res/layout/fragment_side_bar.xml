@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFECD1"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingVertical="@dimen/statusBar_escape_margin"
+    android:paddingHorizontal="8dp"
+    tools:context=".ui.FragmentSideBar">
+
+    <ImageView
+        android:id="@+id/btn_close_sidebar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_close_24dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="18dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/_secondary_base" />
+
+    <TextView
+        android:id="@+id/menu_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_sidebar_menu"
+        android:focusable="true"
+        android:fontFamily="@font/poppins_bold"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
+        android:text="Profile"
+        android:textColor="@color/_off_black_base"
+        android:textSize="12dp"
+        app:layout_constraintTop_toBottomOf="@id/btn_close_sidebar"/>
+
+    <TextView
+        android:id="@+id/menu_orders"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_sidebar_menu"
+        android:focusable="true"
+        android:fontFamily="@font/poppins_bold"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
+        android:text="Orders"
+        android:textColor="@color/_off_black_base"
+        android:textSize="12dp"
+        app:layout_constraintTop_toBottomOf="@id/menu_profile"/>
+
+    <TextView
+        android:id="@+id/menu_view_users"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_sidebar_menu"
+        android:focusable="true"
+        android:fontFamily="@font/poppins_bold"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
+        android:text="View Users"
+        android:textColor="@color/_off_black_base"
+        android:textSize="12dp"
+        app:layout_constraintTop_toBottomOf="@id/menu_orders"/>
+
+    <TextView
+        android:id="@+id/menu_add_restaurant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_sidebar_menu"
+        android:focusable="true"
+        android:fontFamily="@font/poppins_bold"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
+        android:text="Add Restaurant"
+        android:textColor="@color/_off_black_base"
+        android:textSize="12dp"
+        app:layout_constraintTop_toBottomOf="@id/menu_view_users"/>
+
+    <TextView
+        android:id="@+id/menu_add_dish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_sidebar_menu"
+        android:focusable="true"
+        android:fontFamily="@font/poppins_bold"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
+        android:text="Add Dish"
+        android:textColor="@color/_off_black_base"
+        android:textSize="12dp"
+        app:layout_constraintTop_toBottomOf="@id/menu_add_restaurant"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

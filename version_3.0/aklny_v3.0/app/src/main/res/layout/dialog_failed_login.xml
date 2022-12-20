@@ -13,7 +13,7 @@
             android:id="@+id/dialog_icon"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@drawable/icons_forbidden_24dp"
+            android:src="@drawable/icon_forbidden_24dp"
             app:layout_constraintBottom_toTopOf="@id/dialog_message"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

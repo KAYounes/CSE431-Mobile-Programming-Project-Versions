@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".TestActivity">
+    tools:context=".ui.testing_activities.TestActivity">
 
     <EditText
         android:id="@+id/input_email"

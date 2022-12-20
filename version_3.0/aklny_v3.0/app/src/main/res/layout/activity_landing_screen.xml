@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/_primary_base"
-    tools:context=".ui_controllers.b_landingScreen.LandingScreenActivity">
+    tools:context=".ui.s2_landing_screen.LandingScreenActivity">
 
     <TextView
         android:id="@+id/tv_landing_screen_title"
@@ -23,7 +23,7 @@
         android:id="@+id/landing_screen_bottom_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/landing_screen_bottom_group"
+        android:background="@drawable/bg_landing_screen_group"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_landing_screen_title">
 

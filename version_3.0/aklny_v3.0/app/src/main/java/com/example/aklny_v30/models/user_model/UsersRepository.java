@@ -7,7 +7,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.aklny_v30.databases.RootDatabase;
+import com.example.aklny_v30.models.databases.RootDatabase;
 
 import java.util.List;
 

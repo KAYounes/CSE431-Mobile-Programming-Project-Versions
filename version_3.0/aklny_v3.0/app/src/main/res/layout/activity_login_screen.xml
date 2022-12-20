@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/_primary_base"
     android:orientation="vertical"
-    tools:context=".ui_controllers.c_signUpScreen.SignUpScreenActivity">
+    tools:context=".ui.s3_sign_up_screen.SignUpScreenActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -22,7 +22,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/sign_up_screen_bottom_group_bg"
+        android:background="@drawable/bg_sign_up_screen_group"
         android:paddingHorizontal="30dp"
         android:paddingVertical="16dp">
 
@@ -56,7 +56,7 @@
             app:helperText=""
             app:layout_constraintBottom_toTopOf="@+id/btn_login"
             app:layout_constraintTop_toBottomOf="@id/textInput_email"
-            app:passwordToggleDrawable="@drawable/password_visibility_toggle_icon_selector"
+            app:passwordToggleDrawable="@drawable/selector_password_visibility_toggle_icon"
             app:passwordToggleEnabled="true"
             app:startIconDrawable="@drawable/icon_key_24dp">
             <com.google.android.material.textfield.TextInputEditText
