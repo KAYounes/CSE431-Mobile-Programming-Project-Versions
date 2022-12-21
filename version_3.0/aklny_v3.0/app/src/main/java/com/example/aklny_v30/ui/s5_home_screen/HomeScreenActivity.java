@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.example.aklny_v30.databinding.ActivityHomeScreenBinding;
 import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
 import com.example.aklny_v30.ui.FragmentSideBar;
+import com.example.aklny_v30.ui.s6_restaurant_screen.RestaurantScreenActivity;
 import com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener;
 import com.example.aklny_v30.viewModels.HomeScreenViewModel;
 
@@ -24,16 +26,37 @@ public class HomeScreenActivity extends AppCompatActivity implements RecyclerVie
     RestaurantListRecyclerViewAdapter recyclerViewAdapter;
     List<RestaurantModel> restaurantModelList = new ArrayList<>();
     HomeScreenViewModel viewModel;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binder = ActivityHomeScreenBinding.inflate(getLayoutInflater());
         setContentView(binder.getRoot());
+
         viewModel = new ViewModelProvider(this).get(HomeScreenViewModel.class);
         viewModel.listenToDatabase();
-//        populateList();
-        recyclerViewAdapter = new RestaurantListRecyclerViewAdapter(restaurantModelList, this);
 
+        binder.btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recyclerViewAdapter.toggleCardTypeDisplay();
+            }
+        });
+
+        binder.btnOpenSidebar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getSupportFragmentManager().beginTransaction().add(binder.sidebar.getId(),new FragmentSideBar()).commit();
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        recyclerViewAdapter = new RestaurantListRecyclerViewAdapter(restaurantModelList, this);
         viewModel.getFetchedRes().observe(this, new Observer<List<RestaurantModel>>() {
             @Override
             public void onChanged(List<RestaurantModel> restaurantModels) {
@@ -52,27 +75,6 @@ public class HomeScreenActivity extends AppCompatActivity implements RecyclerVie
         };
         layoutManager.setReverseLayout(true);
         binder.restaurantList.setLayoutManager(layoutManager);
-
-        binder.btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                recyclerViewAdapter.toggleCardTypeDisplay();
-            }
-        });
-
-        binder.btnOpenSidebar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Toast.makeText(HomeScreenActivity.this, "Click", Toast.LENGTH_SHORT).show();
-//                binder.sidebar.setVisibility(View.VISIBLE);
-                getSupportFragmentManager().beginTransaction().add(binder.sidebar.getId(),new FragmentSideBar()).commit();
-            }
-        });
-
-        Log.d("TEXTSIZE", "TEXTSIZE " + binder.textWelcoming.getTextSize());
-        Log.d("TEXTSIZE", "TEXTSIZE " + binder.textWelcoming.getTextSize());
-//        binder.userFirstName.setTextSize(binder.textWelcoming.getTextSize());
-//        Log.d("TEXTSIZE", "TEXTSIZE " + binder.userFirstName.getTextSize());
     }
 
     private void populateList() {
@@ -573,7 +575,9 @@ public class HomeScreenActivity extends AppCompatActivity implements RecyclerVie
 
     @Override
     public void onRecyclerViewClick(int position) {
-//        Toast.makeText(this, "Clicked " + restaurantModelList.get(position).getName(), Toast.LENGTH_SHORT).show();
-
+        Toast.makeText(this, "Clicked " + recyclerViewAdapter.getItem(position).getName(), Toast.LENGTH_SHORT).show();
+//        Intent intent = new Intent(HomeScreenActivity.this, RestaurantScreenActivity.class);
+//        intent.putExtra("RESTAURANT", recyclerViewAdapter.getItem(position));
+//        startActivity(intent);
     }
 }

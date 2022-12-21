@@ -20,10 +20,16 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class RestaurantListRecyclerViewAdapter extends RecyclerView.Adapter<RestaurantListRecyclerViewAdapter.CardViewHolder> {
-        private cardType cardDisplayType = cardType.SMALL_CARD;;
+    private cardType cardDisplayType = cardType.SMALL_CARD;
     private List<RestaurantModel> restaurants;
     private RecyclerViewOnClickListener onClickListener;
     private boolean rendered = false;
+
+
+    public RestaurantModel getItem(int position){
+        return restaurants.get(position);
+    }
+
     public RestaurantListRecyclerViewAdapter(List<RestaurantModel> restaurants, RecyclerViewOnClickListener onClickListener) {
         this.restaurants = restaurants;
         this.onClickListener = onClickListener;
