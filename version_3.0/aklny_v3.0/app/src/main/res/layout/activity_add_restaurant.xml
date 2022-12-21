@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF3E2"
+    tools:context=".ActivityAddRestaurant">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/statusBar_escape_margin"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
+        android:text="Add a Restaurant"
+        android:textColor="@color/_off_black_base"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+        android:backgroundTint="@color/_off_black_base"
+        android:id="@+id/restaurant_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="Restaurant Name"
+        android:inputType="text"
+        android:text="Dummy Name"
+        android:textColor="@color/_off_black_base"
+        android:textSize="10sp"
+        app:layout_constraintTop_toBottomOf="@id/title"/>
+
+    <EditText
+        android:backgroundTint="@color/_off_black_base"
+        android:id="@+id/restaurant_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="Restaurant Description"
+        android:inputType="text"
+        android:text="Dummy Description"
+        android:textColor="@color/_off_black_base"
+        android:textSize="10sp"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_name"/>
+
+    <EditText
+        android:backgroundTint="@color/_off_black_base"
+        android:id="@+id/restaurant_rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="Restaurant Rating"
+        android:inputType="numberDecimal"
+        android:text="0.0"
+        android:textColor="@color/_off_black_base"
+        android:textSize="10sp"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_description"/>
+
+    <EditText
+        android:backgroundTint="@color/_off_black_base"
+        android:id="@+id/restaurant_delivery_fee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="Restaurant Delivery Fee"
+        android:inputType="numberDecimal"
+        android:text="9.99"
+        android:textColor="@color/_off_black_base"
+        android:textSize="10sp"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_rating"/>
+
+    <EditText
+        android:backgroundTint="@color/_off_black_base"
+        android:id="@+id/restaurant_logo_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="Restaurant Logo URL"
+        android:inputType="text"
+        android:text="https://cdn.logojoy.com/wp-content/uploads/2018/05/30151559/16_big1-768x591.png"
+        android:textColor="@color/_off_black_base"
+        android:textSize="10sp"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_delivery_fee"/>
+
+    <EditText
+        android:backgroundTint="@color/_off_black_base"
+        android:id="@+id/restaurant_thumbnail_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="Restaurant Thumbnail URL"
+        android:inputType="text"
+        android:text="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=999&amp;q=80"
+        android:textColor="@color/_off_black_base"
+        android:textSize="10sp"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_logo_url"/>
+
+    <EditText
+        android:backgroundTint="@color/_off_black_base"
+        android:id="@+id/restaurant_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="Restaurant Phone Number"
+        android:inputType="phone"
+        android:text="+201013013024"
+        android:textColor="@color/_off_black_base"
+        android:textSize="10sp"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_thumbnail_url"/>
+
+    <EditText
+        android:backgroundTint="@color/_off_black_base"
+        android:id="@+id/restaurant_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="Restaurant Address"
+        android:inputType="text"
+        android:text="74 Al Atari, Bein Al Ganayen, El Weili, Cairo"
+        android:textColor="@color/_off_black_base"
+        android:textSize="10sp"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_phone_number"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_add_restaurant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_black_solid_pill"
+        android:fontFamily="@font/poppins_bold"
+        android:paddingHorizontal="50dp"
+        android:text="Add Restaurant"
+        android:textColor="@color/_secondary_base"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_address"/>
+
+    <TextView
+        android:id="@+id/validation_message"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="Validation Message"
+        android:textColor="@color/_off_black_base"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_add_restaurant"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/_primary_base"
+    tools:context=".ui.s2_landing_screen.LandingScreenActivity">
+
+    <TextView
+        android:id="@+id/tv_landing_screen_title"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fontFamily="@font/shrikhand_regular"
+        android:gravity="center"
+        android:text="AKLNY"
+        android:textColor="@color/_secondary_base"
+        android:textSize="64sp"
+        app:layout_constraintBottom_toTopOf="@id/landing_screen_bottom_group"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/landing_screen_bottom_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_landing_screen_group"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_landing_screen_title">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="40dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_extrabold"
+                android:gravity="center"
+                android:text="How would you like to continue?"
+                android:textColor="@color/_off_black_base"
+                android:textSize="24sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_landingScreen_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/btn_black_solid_pill"
+                android:fontFamily="@font/poppins_extrabold"
+                android:padding="12dp"
+                android:text="LOGIN"
+                android:textColor="@color/_secondary_base"
+                android:textSize="20sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_landingScreen_signUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/btn_black_outline_pill"
+                android:fontFamily="@font/poppins_extrabold"
+                android:padding="16dp"
+                android:text="SIGN UP"
+                android:textColor="@color/_secondary_base"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

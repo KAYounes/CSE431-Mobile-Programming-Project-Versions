@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "149894168098",
+    "project_id": "aklny-v3",
+    "storage_bucket": "aklny-v3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:149894168098:android:7a3e5790a4aa9f83a1d47b",
+        "android_client_info": {
+          "package_name": "com.example.aklny_v30"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "149894168098-n8qrffdirdlaffnfmafg91a4iee1llbe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbYWQKARtZHt44Lif9Xi2n0Dm6YEftjVo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "149894168098-n8qrffdirdlaffnfmafg91a4iee1llbe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
