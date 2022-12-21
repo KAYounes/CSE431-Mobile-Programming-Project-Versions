@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.example.aklny_v30.databinding.ActivityLandingScreenBinding;
 import com.example.aklny_v30.models.user_model.UserModel;
-import com.example.aklny_v30.models.user_model.UsersRepository;
+import com.example.aklny_v30.models.user_model.UsersRepos;
 import com.example.aklny_v30.ui.s4_sign_in_screen.LoginScreenActivity;
 import com.example.aklny_v30.ui.s3_sign_up_screen.SignUpScreenActivity;
 
@@ -30,9 +30,8 @@ public class LandingScreenActivity extends AppCompatActivity {
         View view = binder.getRoot();
         setContentView(view);
 
-        UsersRepository usersRepository = new UsersRepository(getApplication());
-//        usersRepository.deleteAll();
-        usersRepository.getUsers().observe(this, new Observer<List<UserModel>>() {
+        UsersRepos usersRepos = new UsersRepos(getApplication());
+        usersRepos.getUsers().observe(this, new Observer<List<UserModel>>() {
             @Override
             public void onChanged(List<UserModel> userModels) {
                 Log.d("USERS", "\nUpdate ----------------------\n");

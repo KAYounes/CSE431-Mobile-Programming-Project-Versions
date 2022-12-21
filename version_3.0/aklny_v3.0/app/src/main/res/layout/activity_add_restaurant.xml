@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF3E2"
-    tools:context=".ActivityAddRestaurant">
+    tools:context=".ui.admin.ActivityAddRestaurant">
 
     <TextView
         android:id="@+id/title"

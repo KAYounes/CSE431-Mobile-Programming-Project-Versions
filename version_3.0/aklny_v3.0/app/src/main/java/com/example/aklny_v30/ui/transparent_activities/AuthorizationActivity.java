@@ -12,9 +12,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.aklny_v30.R;
-import com.example.aklny_v30.models.FirebaseUsersRepository;
+import com.example.aklny_v30.models.databases.FbUserRepo;
 import com.example.aklny_v30.models.user_model.UserModel;
-import com.example.aklny_v30.models.user_model.UsersRepository;
+import com.example.aklny_v30.models.user_model.UsersRepos;
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.identity.BeginSignInResult;
 import com.google.android.gms.auth.api.identity.Identity;
@@ -39,8 +39,8 @@ public class AuthorizationActivity extends AppCompatActivity {
     private BeginSignInRequest signInRequest;
     private BeginSignInRequest signUpRequest;
     private FirebaseAuth mAuth;
-    private FirebaseUsersRepository firebaseUsersRepository;
-    private UsersRepository usersRepository;
+    private FbUserRepo fbUserRepo;
+    private UsersRepos usersRepos;
     static public final int AUTHENTICATION_REQUEST_CODE = 1000;  // Can be any integer unique to the Activity.
 
     int action;
@@ -67,8 +67,8 @@ public class AuthorizationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_authorization);
         mAuth = FirebaseAuth.getInstance();
         oneTapClient = Identity.getSignInClient(this);
-        firebaseUsersRepository = new FirebaseUsersRepository();
-        usersRepository = new UsersRepository(getApplication());
+        fbUserRepo = new FbUserRepo();
+        usersRepos = new UsersRepos(getApplication());
 
 
         Intent authorizationIntent = getIntent();
@@ -292,7 +292,7 @@ public class AuthorizationActivity extends AppCompatActivity {
                                             Log.d(TAG, "addUserToFirebaseDatabase: complete");
                                             addUserToRoomDatabase(newUser);
 
-                                            usersRepository.getUser(mAuth.getUid()).observe(AuthorizationActivity.this, new Observer<UserModel>() {
+                                            usersRepos.getUser(mAuth.getUid()).observe(AuthorizationActivity.this, new Observer<UserModel>() {
                                                 @Override
                                                 public void onChanged(UserModel userModel) {
                                                     try
@@ -328,7 +328,7 @@ public class AuthorizationActivity extends AppCompatActivity {
 /**------------------------------------- Model Controllers -------------------------------------**/
     private void checkUserIsInFirebaseDatabase()
     {
-        firebaseUsersRepository.getUser(mAuth.getUid())
+        fbUserRepo.getUser(mAuth.getUid())
                 .addOnCompleteListener(AuthorizationActivity.this, new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -372,11 +372,6 @@ public class AuthorizationActivity extends AppCompatActivity {
         });
     }
 
-//    private void checkUserIsInRoomDatabase()
-//    {
-//        usersRepository.userExists(mAuth.getUid());
-//    }
-
     private void addUserToDatabases(UserModel newUser)
     {
         addUserToFirebaseDatabase(newUser)
@@ -386,7 +381,7 @@ public class AuthorizationActivity extends AppCompatActivity {
                         Log.d(TAG, "addUserToFirebaseDatabase: complete");
                         addUserToRoomDatabase(newUser);
 
-                        usersRepository.getUser(mAuth.getUid())
+                        usersRepos.getUser(mAuth.getUid())
                                 .observe(AuthorizationActivity.this, new Observer<UserModel>() {
                             @Override
                             public void onChanged(UserModel userModel) {
@@ -414,12 +409,12 @@ public class AuthorizationActivity extends AppCompatActivity {
 
     private Task<Void> addUserToFirebaseDatabase(UserModel newUser)
     {
-        return firebaseUsersRepository.addUser(newUser);
+        return fbUserRepo.addUser(newUser);
     }
 
     private void addUserToRoomDatabase(UserModel newUser)
     {
-        usersRepository.addUser(newUser);
+        usersRepos.addUser(newUser);
     }
 
 

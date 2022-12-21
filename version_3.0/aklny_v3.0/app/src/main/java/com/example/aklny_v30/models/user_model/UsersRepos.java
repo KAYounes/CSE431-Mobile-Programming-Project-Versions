@@ -11,13 +11,13 @@ import com.example.aklny_v30.models.databases.RootDatabase;
 
 import java.util.List;
 
-public class UsersRepository
+public class UsersRepos
 {
     private UsersTableDAO dao;
     private MutableLiveData<UserModel> user = new MutableLiveData<>();
     private LiveData<List<UserModel>> users;
 
-    public UsersRepository(Application application)
+    public UsersRepos(Application application)
     {
         RootDatabase db = RootDatabase.getDatabase(application);
         dao = db.usersTableDAO();

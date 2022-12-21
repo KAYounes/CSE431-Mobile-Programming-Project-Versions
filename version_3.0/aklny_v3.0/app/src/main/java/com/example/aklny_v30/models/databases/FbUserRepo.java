@@ -1,4 +1,4 @@
-package com.example.aklny_v30.models;
+package com.example.aklny_v30.models.databases;
 
 import com.example.aklny_v30.models.user_model.UserModel;
 import com.google.android.gms.tasks.Task;
@@ -6,7 +6,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class FirebaseUsersRepository {
+public class FbUserRepo {
     FirebaseDatabase databaseInstance = FirebaseDatabase.getInstance("https://aklny-v3-default-rtdb.firebaseio.com/");
     public DatabaseReference usersRef = databaseInstance.getReference("users");
     private UserModel user;

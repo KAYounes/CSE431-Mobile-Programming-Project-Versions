@@ -3,41 +3,31 @@ package com.example.aklny_v30.viewModels;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.aklny_v30.models.FirebaseRestaurantRepository;
+import com.example.aklny_v30.models.restaurant_model.RestaurantRepo;
 import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomeScreenViewModel extends ViewModel {
-    private FirebaseRestaurantRepository fbRestaurantRepository;
-    private MutableLiveData<List<RestaurantModel>> restaurantsList;
+    private RestaurantRepo restaurantRepository;
+    private LiveData<List<RestaurantModel>> restaurantsList;
 
     public HomeScreenViewModel() {
-        fbRestaurantRepository = new FirebaseRestaurantRepository();
-        restaurantsList = new MutableLiveData<List<RestaurantModel>>();
+        restaurantRepository = new RestaurantRepo();
+        restaurantsList = restaurantRepository.getFetched();
     }
 
-    public LiveData<List<RestaurantModel>> getRestaurantsList() {
-        Log.d("PRINT", "getRestaurantsList");
-        restaurantsList = (MutableLiveData<List<RestaurantModel>>) fbRestaurantRepository.get_liveRestaurantList();
-        return restaurantsList;
-    }
 
     public LiveData<List<RestaurantModel>> getFetchedRes() {
         Log.d("PRINT", "getFetchedRes");
-        return fbRestaurantRepository.getFetched();
+//        restaurantsList = restaurantRepository.getFetched();
+        return restaurantsList;
     }
 
-//    private void getRestaurantsFromFirebase(){
-//        restaurantsList = fbRestaurantRepository.get_liveRestaurantList();
-//    }
-
-    public void listenToDatabase(){
+    public void listenToRestaurantsNodeChanges(){
         Log.d("PRINT", "listenToDatabase");
-        fbRestaurantRepository.attachPersistentListener();
+        restaurantRepository.attachPersistentListener();
     }
 }

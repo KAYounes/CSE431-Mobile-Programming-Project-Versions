@@ -8,11 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-//import android.widget.Toast;
 
-import com.example.aklny_v30.ActivityAddRestaurant;
-import com.example.aklny_v30.R;
 import com.example.aklny_v30.databinding.FragmentSideBarBinding;
+import com.example.aklny_v30.ui.admin.ActivityAddRestaurant;
 
 public class FragmentSideBar extends Fragment {
     FragmentSideBarBinding binder;
@@ -23,8 +21,6 @@ public class FragmentSideBar extends Fragment {
         binder.btnCloseSidebar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(requireActivity(), "Click 2", Toast.LENGTH_SHORT).show();
-//                binder.getRoot().setVisibility(View.INVISIBLE);
                 getParentFragmentManager().beginTransaction().remove(FragmentSideBar.this).commit();
             }
         });

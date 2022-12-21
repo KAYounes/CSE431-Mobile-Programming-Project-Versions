@@ -5,16 +5,13 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.aklny_v30.databinding.ActivityHomeScreenBinding;
 import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
 import com.example.aklny_v30.ui.FragmentSideBar;
-import com.example.aklny_v30.ui.s6_restaurant_screen.RestaurantScreenActivity;
 import com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener;
 import com.example.aklny_v30.viewModels.HomeScreenViewModel;
 
@@ -35,7 +32,7 @@ public class HomeScreenActivity extends AppCompatActivity implements RecyclerVie
         setContentView(binder.getRoot());
 
         viewModel = new ViewModelProvider(this).get(HomeScreenViewModel.class);
-        viewModel.listenToDatabase();
+        viewModel.listenToRestaurantsNodeChanges();
 
         binder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
