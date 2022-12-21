@@ -14,7 +14,7 @@
         android:elevation="3dp"
         android:paddingHorizontal="6dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/food_image___1_"
+        android:src="@drawable/icon_thumbnail_placeholder"
         app:layout_constraintDimensionRatio="2:1"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/imageRoundCorners" />

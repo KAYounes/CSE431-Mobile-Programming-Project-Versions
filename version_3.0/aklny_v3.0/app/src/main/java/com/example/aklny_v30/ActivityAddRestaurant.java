@@ -7,19 +7,15 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.Toast;
 
 import com.example.aklny_v30.databinding.ActivityAddRestaurantBinding;
 import com.example.aklny_v30.models.FirebaseRestaurantRepository;
 import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
 import com.example.aklny_v30.ui.s5_home_screen.HomeScreenActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 
 public class ActivityAddRestaurant extends AppCompatActivity {
     ActivityAddRestaurantBinding binder;
@@ -71,12 +67,12 @@ public class ActivityAddRestaurant extends AppCompatActivity {
                                     delivery_fee
                             );
 
-                    restaurantRepository.setRestaurant(newRestaurant);
-                    restaurantRepository.addMenuTask()
+                    restaurantRepository.setNewRestaurant(newRestaurant);
+                    restaurantRepository.startMenuTask()
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-                            restaurantRepository.addRestaurantTask()
+                            restaurantRepository.startRestaurantTask()
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {

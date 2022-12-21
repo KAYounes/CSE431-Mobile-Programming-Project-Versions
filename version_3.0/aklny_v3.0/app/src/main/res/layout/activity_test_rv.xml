@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.s5_home_screen.HomeScreenActivity">
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFF3E2"
@@ -129,21 +129,18 @@
 
             <Button
                 android:id="@+id/btn"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TOGGLE"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/restaurant_list"
-                android:nestedScrollingEnabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                tools:listitem="@layout/rv_item_restaurant_card_large"/>
+                android:layout_marginTop="24dp"/>
         </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/sidebar"
@@ -151,89 +148,3 @@
         android:layout_height="match_parent"
         app:layout_constraintLeft_toLeftOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    xmlns:tools="http://schemas.android.com/tools"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    android:orientation="vertical"-->
-<!--    android:padding="32dp"-->
-<!--    tools:context=".ui.s5_home_screen.HomeScreenActivity">-->
-
-<!--    <com.google.android.material.imageview.ShapeableImageView-->
-<!--        android:id="@+id/img_profile_img"-->
-<!--        android:layout_width="60dp"-->
-<!--        android:layout_height="60dp"-->
-<!--        app:shapeAppearanceOverlay="@style/roundImage" />-->
-<!--    <TextView-->
-<!--        android:id="@+id/tv_name"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginVertical="20dp"-->
-<!--        android:text="NAME" />-->
-<!--    <TextView-->
-<!--        android:id="@+id/tv_uuid"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginVertical="20dp"-->
-<!--        android:text="NAME" />-->
-<!--    <Button-->
-<!--        android:id="@+id/btn_sign_out"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="log out" />-->
-<!--</androidx.appcompat.widget.LinearLayoutCompat>-->

@@ -1,8 +1,6 @@
-package com.example.aklny_v30.ui.s5_home_screen;
+package com.example.aklny_v30;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
@@ -11,47 +9,39 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.aklny_v30.databinding.ActivityHomeScreenBinding;
+import com.example.aklny_v30.databinding.ActivityTestRvBinding;
 import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
 import com.example.aklny_v30.ui.FragmentSideBar;
+import com.example.aklny_v30.ui.s5_home_screen.RestaurantListRecyclerViewAdapter;
 import com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener;
-import com.example.aklny_v30.viewModels.HomeScreenViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeScreenActivity extends AppCompatActivity implements RecyclerViewOnClickListener {
-    ActivityHomeScreenBinding binder;
+public class ActivityTestRV extends AppCompatActivity implements RecyclerViewOnClickListener {
+    ActivityTestRvBinding binder;
     RestaurantListRecyclerViewAdapter recyclerViewAdapter;
     List<RestaurantModel> restaurantModelList = new ArrayList<>();
-    HomeScreenViewModel viewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binder = ActivityHomeScreenBinding.inflate(getLayoutInflater());
+        binder = ActivityTestRvBinding.inflate(getLayoutInflater());
         setContentView(binder.getRoot());
-        viewModel = new ViewModelProvider(this).get(HomeScreenViewModel.class);
-        viewModel.listenToDatabase();
-//        populateList();
+
+        populateList();
+
         recyclerViewAdapter = new RestaurantListRecyclerViewAdapter(restaurantModelList, this);
-
-        viewModel.getFetchedRes().observe(this, new Observer<List<RestaurantModel>>() {
-            @Override
-            public void onChanged(List<RestaurantModel> restaurantModels) {
-                Toast.makeText(HomeScreenActivity.this, "onChange", Toast.LENGTH_SHORT).show();
-                recyclerViewAdapter.setData(restaurantModels);
-            }
-        });
-
-
         binder.restaurantList.setAdapter(recyclerViewAdapter);
+        binder.restaurantList.setNestedScrollingEnabled(false);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseContext()){
             @Override
             public boolean canScrollVertically() {
                 return false;
             }
         };
-        layoutManager.setReverseLayout(true);
+        binder.restaurantList.setNestedScrollingEnabled(false);
         binder.restaurantList.setLayoutManager(layoutManager);
+        binder.restaurantList.setNestedScrollingEnabled(false);
 
         binder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -574,6 +564,5 @@ public class HomeScreenActivity extends AppCompatActivity implements RecyclerVie
     @Override
     public void onRecyclerViewClick(int position) {
 //        Toast.makeText(this, "Clicked " + restaurantModelList.get(position).getName(), Toast.LENGTH_SHORT).show();
-
     }
 }

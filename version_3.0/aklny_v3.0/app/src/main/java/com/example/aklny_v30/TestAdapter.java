@@ -1,4 +1,4 @@
-package com.example.aklny_v30.ui.s5_home_screen;
+package com.example.aklny_v30;
 
 import android.content.Context;
 import android.util.Log;
@@ -7,31 +7,27 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.aklny_v30.R;
 import com.example.aklny_v30.databinding.RvItemRestaurantCardLargeBinding;
 import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
+import com.example.aklny_v30.ui.s5_home_screen.RestaurantListRecyclerViewAdapter;
 import com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class RestaurantListRecyclerViewAdapter extends RecyclerView.Adapter<RestaurantListRecyclerViewAdapter.CardViewHolder> {
-        private cardType cardDisplayType = cardType.SMALL_CARD;;
+public class TestAdapter extends RecyclerView.Adapter<TestAdapter.CardViewHolder> {
+    public static enum cardType{SMALL_CARD, LARGE_CARD};
+    private cardType cardDisplayType = cardType.SMALL_CARD;
     private List<RestaurantModel> restaurants;
     private RecyclerViewOnClickListener onClickListener;
     private boolean rendered = false;
-    public RestaurantListRecyclerViewAdapter(List<RestaurantModel> restaurants, RecyclerViewOnClickListener onClickListener) {
+
+    public TestAdapter(List<RestaurantModel> restaurants, RecyclerViewOnClickListener onClickListener) {
         this.restaurants = restaurants;
         this.onClickListener = onClickListener;
-    }
-
-    public void setNewList(List<RestaurantModel> restaurants){
-        this.restaurants = restaurants;
-        notifyDataSetChanged();
     }
 
     public void toggleCardTypeDisplay()
@@ -46,6 +42,12 @@ public class RestaurantListRecyclerViewAdapter extends RecyclerView.Adapter<Rest
         }
 //        Log.d("PRINT", "> " + cardDisplayType);
         notifyDataSetChanged();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
+
     }
 
     @NonNull
@@ -90,14 +92,8 @@ public class RestaurantListRecyclerViewAdapter extends RecyclerView.Adapter<Rest
 
         RestaurantModel restaurant = restaurants.get(position);
 
-        Picasso.get().load(restaurant.getThumbnail())
-                .placeholder(R.drawable.icon_logo_placeholder_100dp)
-                .error(R.drawable.icon_failed_to_load_logo_100dp)
-                .into(holder.binder.restaurantThumbnail);
-        Picasso.get().load(restaurant.getLogo())
-                .placeholder(R.drawable.icon_thumbnail_placeholder)
-                .error(R.drawable.icon_failed_to_load_thumbnail)
-                .into(holder.binder.restaurantLogo);
+        Picasso.get().load(restaurant.getThumbnail()).into(holder.binder.restaurantThumbnail);
+        Picasso.get().load(restaurant.getLogo()).into(holder.binder.restaurantLogo);
 //
 //        holder.binder.restaurantThumbnail.setImageDrawable(holder.binder.getRoot().getResources().getDrawable(R.drawable.food_image___1_));
 //        holder.binder.restaurantLogo.setImageDrawable(holder.binder.getRoot().getResources().getDrawable(R.drawable.logo_1));
@@ -129,15 +125,6 @@ public class RestaurantListRecyclerViewAdapter extends RecyclerView.Adapter<Rest
     {
         return restaurants.size();
     }
-
-    public void setData(List<RestaurantModel> newList){
-        RestaurantListDiffUtil diffUtil = new RestaurantListDiffUtil(restaurants, newList);
-        DiffUtil.DiffResult diffUtilResult = DiffUtil.calculateDiff(diffUtil);
-        restaurants = newList;
-        diffUtilResult.dispatchUpdatesTo(RestaurantListRecyclerViewAdapter.this);
-    }
-
-public static enum cardType{SMALL_CARD, LARGE_CARD}
 
     public static class CardViewHolder extends RecyclerView.ViewHolder
     {
