@@ -4,6 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFF3E2"
+    android:layout_margin="12dp"
     tools:context=".ui.s6_restaurant_screen.RestaurantScreenActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/menus_list"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/inner_recycler_view"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

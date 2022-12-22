@@ -71,7 +71,7 @@ public class ActivityAddRestaurant extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void unused)
                                 {
-                                    newRestaurant.setMenuId(fbMenuRepo.lastMenuId);
+                                    newRestaurant.setMenuId(fbMenuRepo.recentMenuAddedId);
                                     restaurantRepo.addNewRestaurantToFbase(newRestaurant)
                                             .addOnSuccessListener(new OnSuccessListener<Void>()
                                             {
@@ -81,6 +81,10 @@ public class ActivityAddRestaurant extends AppCompatActivity {
                                                     Toast.makeText(ActivityAddRestaurant.this, "Added Successfully", Toast.LENGTH_SHORT).show();
                                                     displayValidationMessage("Restaurant Added");
                                                     dialog.dismiss();
+                                                    Intent intentAddMenu = new Intent(ActivityAddRestaurant.this, ActivityAddMenu.class);
+                                                    intentAddMenu.putExtra("menu key", fbMenuRepo.recentMenuAddedId);
+                                                    startActivity(intentAddMenu);
+                                                    finish();
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener()

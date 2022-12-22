@@ -77,7 +77,7 @@
                     android:id="@+id/image_rating_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_star_24dp"
+                    android:src="@drawable/icon_star_8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="@id/restaurant_description"
                     app:layout_constraintTop_toTopOf="@id/restaurant_rating"/>

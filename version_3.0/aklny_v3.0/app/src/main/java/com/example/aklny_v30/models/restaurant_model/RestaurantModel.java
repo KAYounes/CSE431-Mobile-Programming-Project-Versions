@@ -8,6 +8,8 @@ import androidx.annotation.Nullable;
 
 import com.google.firebase.database.Exclude;
 
+import java.text.DecimalFormat;
+
 public class RestaurantModel implements Parcelable {
 //    public static enum cardType{SMALL_CARD, LARGE_CARD};
 //    private cardType type;
@@ -154,6 +156,10 @@ public class RestaurantModel implements Parcelable {
         return rating;
     }
     public void setRating(Double rating) {
+
+//        DecimalFormat rating_decimal_format = new DecimalFormat("0.0");
+//        String formatted_rate = rating_decimal_format.format(rating);
+
         this.rating = rating;
     }
 
@@ -161,6 +167,8 @@ public class RestaurantModel implements Parcelable {
         return delivery_fee;
     }
     public void setDelivery_fee(Double delivery_fee) {
+//        DecimalFormat delivery_fee_decimal_format = new DecimalFormat("00.00");
+//        String formatted_delivery_fee = delivery_fee_decimal_format.format(delivery_fee);
         this.delivery_fee = delivery_fee;
     }
 

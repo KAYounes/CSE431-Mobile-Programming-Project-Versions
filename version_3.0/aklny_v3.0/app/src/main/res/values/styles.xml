@@ -19,6 +19,21 @@
         <item name="cornerSizeTopRight">5dp</item>
     </style>
 
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/_secondary_base</item>
+        <item name="colorControlActivated">@color/_primary_base</item>
+    </style>
+    <style name="foodRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/icon_star_8dp</item>
+        <item name="android:minHeight">23dip</item>
+        <item name="android:maxHeight">25dip</item>
+    </style>
+
+    <style name="CustomRatingBarStyle" parent="Widget.AppCompat.RatingBar">
+        <item name="android:progressDrawable">@drawable/selector_rating_bar</item>
+        <item name="android:minHeight">15dip</item>
+        <item name="android:maxHeight">47dip</item>
+    </style>
     <!--<style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">-->
     <!--    <item name="android:textColor">#F00</item>-->
     <!--</style>-->

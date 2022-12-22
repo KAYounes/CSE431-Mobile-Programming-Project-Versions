@@ -22,47 +22,17 @@ import java.util.List;
 public class RestaurantRepo {
     FirebaseDatabase databaseInstance = FirebaseDatabase.getInstance("https://aklny-v3-default-rtdb.firebaseio.com/");
     public DatabaseReference restaurantsRef = databaseInstance.getReference("restaurants");
-
-
-
-//    private MutableLiveData<List<RestaurantModel>> _liveRestaurantList = new MutableLiveData<>();
-
     private MutableLiveData<List<RestaurantModel>> fetched = new MutableLiveData<>();
-
-//    public LiveData<List<RestaurantModel>> get_liveRestaurantList() {
-//        return _liveRestaurantList;
-//    }
+    public String recentRestaurantKey;
 
     public LiveData<List<RestaurantModel>> getFetched() {
         return fetched;
     }
 
-    Task<Void> addRestaurantTask;
-
-    private RestaurantModel newRestaurant;
-
-//    public void setNewRestaurant(RestaurantModel newRestaurant, String menuKey) {
-//        Log.d("PRINT", "Res > " + newRestaurant.getName());
-//        String restaurantKey = restaurantsRef.push().getKey();
-//        String menuKey = menusRef.push().getKey();
-//
-//        newRestaurant.setKey(restaurantKey);
-//        newRestaurant.setMenuId(menuKey);
-//        this.newRestaurant = newRestaurant;
-//    }
-//
-//    public Task<Void> startMenuTask(){
-//        return menusRef.child(newRestaurant.getMenuId()).setValue(newRestaurant.getKey());
-//    }
-//
-//    public Task<Void> startRestaurantTask(){
-//        return restaurantsRef.child(newRestaurant.getKey()).setValue(newRestaurant);
-//    }
-
-
     public Task<Void> addNewRestaurantToFbase(RestaurantModel newRestaurant){
         String restaurantKey = restaurantsRef.push().getKey();
         newRestaurant.setKey(restaurantKey);
+        recentRestaurantKey = restaurantKey;
         return restaurantsRef.child(restaurantKey).setValue(newRestaurant);
     }
 

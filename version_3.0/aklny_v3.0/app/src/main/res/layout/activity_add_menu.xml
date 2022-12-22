@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF3E2"
+    tools:context=".ui.admin.ActivityAddRestaurant">
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/statusBar_escape_margin"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
+        android:text="Add Menu"
+        android:textColor="@color/_off_black_base"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+        android:id="@+id/menu_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/_off_black_base"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="Menu Name"
+        android:inputType="text"
+        android:textColor="@color/_off_black_base"
+        android:textSize="10sp"
+        app:layout_constraintTop_toBottomOf="@id/text_title"/>
+
+    <EditText
+        android:id="@+id/item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/_off_black_base"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="Item Name"
+        android:inputType="text"
+        android:textColor="@color/_off_black_base"
+        android:textSize="10sp"
+        app:layout_constraintTop_toBottomOf="@id/menu_name"/>
+
+    <EditText
+        android:id="@+id/item_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/_off_black_base"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="Item Description"
+        android:inputType="text"
+        android:textColor="@color/_off_black_base"
+        android:textSize="10sp"
+        app:layout_constraintTop_toBottomOf="@id/item_name"/>
+
+    <EditText
+        android:id="@+id/item_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/_off_black_base"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="Item price"
+        android:inputType="numberDecimal"
+        android:textColor="@color/_off_black_base"
+        android:textSize="10sp"
+        app:layout_constraintTop_toBottomOf="@id/item_description"/>
+
+    <EditText
+        android:id="@+id/item_thumbnail_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/_off_black_base"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="Item Thumbnail URL"
+        android:inputType="text"
+        android:textColor="@color/_off_black_base"
+        android:textSize="10sp"
+        app:layout_constraintTop_toBottomOf="@id/item_price"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_add_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_black_solid_pill"
+        android:fontFamily="@font/poppins_bold"
+        android:paddingHorizontal="50dp"
+        android:text="Add Item"
+        android:textColor="@color/_secondary_base"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_thumbnail_url"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_add_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_black_solid_pill"
+        android:fontFamily="@font/poppins_bold"
+        android:paddingHorizontal="50dp"
+        android:text="Add Menu"
+        android:textColor="@color/_secondary_base"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_add_item"/>
+
+    <TextView
+        android:id="@+id/validation_message"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="Validation Message"
+        android:textColor="@color/_off_black_base"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_add_menu"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

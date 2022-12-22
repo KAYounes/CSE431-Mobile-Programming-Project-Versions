@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF3E2"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/restaurant_thumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/food_image___1_" />
+
+    <Button
+        android:id="@+id/btn_add_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Add Menu" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        app:cardBackgroundColor="#FFECD1"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/restaurant_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Texas Buffalo Burgers"
+                android:textColor="@color/_off_black_base"
+                android:textSize="18sp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/restaurant_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:maxLines="2"
+                android:layout_marginBottom="24dp"
+                android:text="Beef, Chicken, Burgers, Fries"
+                android:textColor="@color/_off_black_base"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/text_location"
+                app:layout_constraintTop_toBottomOf="@id/restaurant_name" />
+
+            <TextView
+                android:id="@+id/text_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:maxLines="2"
+                android:text="Location"
+                android:textColor="@color/_off_black_base"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/restaurant_address"
+                app:layout_constraintTop_toBottomOf="@+id/restaurant_description" />
+
+            <TextView
+                android:id="@+id/restaurant_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:maxLines="2"
+                android:text="Address"
+                android:textColor="@color/_off_black_base"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/text_phone"
+                app:layout_constraintTop_toBottomOf="@+id/text_location" />
+
+            <TextView
+                android:id="@+id/text_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:maxLines="2"
+                android:text="Phone Number"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/_off_black_base"
+                android:textSize="12sp"
+                app:layout_constraintTop_toBottomOf="@id/restaurant_address"/>
+
+            <TextView
+                android:id="@+id/restaurant_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:maxLines="2"
+                android:text="+20110101101"
+                android:textColor="@color/_off_black_base"
+                android:textSize="12sp"
+                app:layout_constraintTop_toBottomOf="@id/text_phone"/>
+
+            <TextView
+                android:id="@+id/text_delivery_egp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:maxLines="2"
+                android:text="Delivery: EGP "
+                android:layout_marginTop="12dp"
+                android:textColor="@color/_off_black_base"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/restaurant_phone_number" />
+
+            <TextView
+                android:id="@+id/restaurant_delivery_fee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:maxLines="2"
+                android:text="12.00"
+                android:textColor="@color/_off_black_base"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/text_delivery_egp"
+                app:layout_constraintStart_toEndOf="@+id/text_delivery_egp"
+                app:layout_constraintTop_toTopOf="@+id/text_delivery_egp" />
+
+            <ImageView
+                android:id="@+id/image_rating_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/word_spacing"
+                android:src="@drawable/icon_star_12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/restaurant_rating"
+                app:layout_constraintRight_toLeftOf="@id/restaurant_rating"
+                app:layout_constraintTop_toTopOf="@id/restaurant_rating" />
+
+            <TextView
+                android:id="@+id/restaurant_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="4.5"
+                android:textColor="@color/_off_black_base"
+                android:textSize="10sp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/text_delivery_egp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

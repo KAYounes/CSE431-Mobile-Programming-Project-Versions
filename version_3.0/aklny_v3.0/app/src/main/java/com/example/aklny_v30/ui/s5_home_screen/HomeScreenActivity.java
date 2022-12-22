@@ -5,13 +5,16 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.aklny_v30.MenuItemModel;
 import com.example.aklny_v30.databinding.ActivityHomeScreenBinding;
 import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
 import com.example.aklny_v30.ui.FragmentSideBar;
+import com.example.aklny_v30.ui.s6_restaurant_screen.RestaurantScreenActivity;
 import com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener;
 import com.example.aklny_v30.viewModels.HomeScreenViewModel;
 
@@ -573,8 +576,13 @@ public class HomeScreenActivity extends AppCompatActivity implements RecyclerVie
     @Override
     public void onRecyclerViewClick(int position) {
         Toast.makeText(this, "Clicked " + recyclerViewAdapter.getItem(position).getName(), Toast.LENGTH_SHORT).show();
-//        Intent intent = new Intent(HomeScreenActivity.this, RestaurantScreenActivity.class);
-//        intent.putExtra("RESTAURANT", recyclerViewAdapter.getItem(position));
-//        startActivity(intent);
+        Intent intent = new Intent(HomeScreenActivity.this, RestaurantScreenActivity.class);
+        intent.putExtra("RESTAURANT", recyclerViewAdapter.getItem(position));
+        startActivity(intent);
+    }
+
+    @Override
+    public void onRecyclerViewClickPayload(MenuItemModel payload) {
+
     }
 }

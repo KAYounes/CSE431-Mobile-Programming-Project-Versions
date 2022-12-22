@@ -6,9 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
-import com.example.aklny_v30.databinding.ActivityHomeScreenBinding;
 import com.example.aklny_v30.databinding.ActivityTestRvBinding;
 import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
 import com.example.aklny_v30.ui.FragmentSideBar;
@@ -564,5 +562,10 @@ public class ActivityTestRV extends AppCompatActivity implements RecyclerViewOnC
     @Override
     public void onRecyclerViewClick(int position) {
 //        Toast.makeText(this, "Clicked " + restaurantModelList.get(position).getName(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRecyclerViewClickPayload(MenuItemModel payload) {
+
     }
 }
