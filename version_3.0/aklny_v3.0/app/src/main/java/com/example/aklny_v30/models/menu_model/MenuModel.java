@@ -1,8 +1,6 @@
-package com.example.aklny_v30;
+package com.example.aklny_v30.models.menu_model;
 
 import androidx.annotation.NonNull;
-
-import com.google.firebase.database.Exclude;
 
 import java.util.List;
 

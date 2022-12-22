@@ -10,10 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.aklny_v30.MenuItemModel;
-import com.example.aklny_v30.databinding.ActivityHomeScreenBinding;
+import com.example.aklny_v30.models.menu_model.MenuItemModel;
 import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
-import com.example.aklny_v30.ui.FragmentSideBar;
 import com.example.aklny_v30.ui.s6_restaurant_screen.RestaurantScreenActivity;
 import com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener;
 import com.example.aklny_v30.viewModels.HomeScreenViewModel;

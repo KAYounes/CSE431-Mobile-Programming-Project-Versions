@@ -1,4 +1,4 @@
-package com.example.aklny_v30.ui.admin;
+package com.example.aklny_v30.viewModels.admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,8 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.aklny_v30.MenuItemModel;
-import com.example.aklny_v30.MenuModel;
+import com.example.aklny_v30.models.menu_model.MenuItemModel;
+import com.example.aklny_v30.models.menu_model.MenuModel;
 import com.example.aklny_v30.R;
 import com.example.aklny_v30.databinding.ActivityAddMenuBinding;
 import com.example.aklny_v30.models.databases.FbMenuRepo;

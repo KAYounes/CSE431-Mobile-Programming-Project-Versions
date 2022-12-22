@@ -1,10 +1,9 @@
-package com.example.aklny_v30;
+package com.example.aklny_v30.ui.s6_restaurant_screen;
 
 
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -12,14 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.aklny_v30.R;
 import com.example.aklny_v30.databinding.HeaderRestaurantScreenBinding;
 import com.example.aklny_v30.databinding.InnerRecyclerViewBinding;
+import com.example.aklny_v30.models.menu_model.MenuModel;
 import com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class OuterRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class MenuRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private static final int HEADER = 1;
     private static final int MENU = 2;
 
@@ -27,7 +28,7 @@ public class OuterRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
     private List<MenuModel> menus;
     private RecyclerViewOnClickListener onClickListener;
 
-    public OuterRecyclerViewAdapter(List<MenuModel> menus, RecyclerViewOnClickListener onClickListener) {
+    public MenuRecyclerView(List<MenuModel> menus, RecyclerViewOnClickListener onClickListener) {
         this.menus = menus;
         this.onClickListener = onClickListener;
     }
@@ -105,8 +106,8 @@ public class OuterRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
 
     private void binderHeader(HeaderViewHolder holder, int position) {
         Picasso.get().load(headerFields.get(0))
-                .placeholder(R.drawable.icon_logo_placeholder_100dp)
-                .error(R.drawable.icon_failed_to_load_logo_100dp)
+                .placeholder(R.drawable.icon_thumbnail_placeholder)
+                .error(R.drawable.icon_failed_to_load_thumbnail)
                 .into(holder.binder.restaurantThumbnail);
         holder.binder.restaurantName.setText(headerFields.get(1));
         holder.binder.restaurantDescription.setText(headerFields.get(2));
@@ -124,7 +125,7 @@ public class OuterRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
     }
 
     private void binderMenu(MenuViewHolder holder, int position) {
-        InnerRecyclerViewAdapter innerAdapter = new InnerRecyclerViewAdapter(menus.get(position).getMenuItems(), onClickListener);
+        MenuItemsRecyclerView innerAdapter = new MenuItemsRecyclerView(menus.get(position).getMenuItems(), onClickListener);
         holder.binder.menuTitle.setText(menus.get(position).getTitle());
         holder.binder.menuItemsList.setAdapter(innerAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(holder.binder.getRoot().getContext()){

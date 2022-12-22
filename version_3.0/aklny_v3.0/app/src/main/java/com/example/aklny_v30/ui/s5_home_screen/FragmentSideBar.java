@@ -1,4 +1,4 @@
-package com.example.aklny_v30.ui;
+package com.example.aklny_v30.ui.s5_home_screen;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.aklny_v30.databinding.FragmentSideBarBinding;
-import com.example.aklny_v30.ui.admin.ActivityAddRestaurant;
+import com.example.aklny_v30.viewModels.admin.ActivityAddRestaurant;
 
 public class FragmentSideBar extends Fragment {
     FragmentSideBarBinding binder;

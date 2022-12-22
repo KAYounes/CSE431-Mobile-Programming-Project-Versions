@@ -4,6 +4,182 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityMenuItemScreen">
+    android:background="#FFF3E2"
+    tools:context=".ui.s6_restaurant_screen.MenuItemScreenActivity">
+    
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/item_thumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:adjustViewBounds="true"
+        android:elevation="5dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/food_image___1_"
+        app:layout_constraintTop_toTopOf="parent"/>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/item_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="32dp"
+        app:cardBackgroundColor="#FFECD1"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="3dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintTop_toBottomOf="@id/item_thumbnail">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="12dp">
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_extrabold"
+                android:maxLines="2"
+                android:text="Buurrrger"
+                android:textColor="@color/_off_black_base"
+                android:textSize="24sp"
+                app:layout_constraintTop_toTopOf="parent"/>
+            <TextView
+                android:id="@+id/item_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:maxLines="2"
+                android:text="Beefy, juicy, and tasty."
+                android:textColor="@color/_off_black_base"
+                android:textSize="10sp"
+                app:layout_constraintTop_toBottomOf="@id/item_name"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:cardBackgroundColor="@color/_secondary_base"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="3dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintTop_toBottomOf="@id/item_card">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="12dp">
+            <TextView
+                android:id="@+id/text_add"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_extrabold"
+                android:maxLines="2"
+                android:text="Add to Cart"
+                android:textColor="@color/_off_black_base"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+            <TextView
+                android:id="@+id/text_egp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/word_spacing"
+                android:fontFamily="@font/poppins_semibold"
+                android:maxLines="2"
+                android:text="EGP"
+                android:textColor="@color/_off_black_base"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/item_price"
+                app:layout_constraintTop_toTopOf="parent"/>
+            <TextView
+                android:id="@+id/item_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:maxLines="2"
+                android:text="1000.00"
+                android:textColor="@color/_off_black_base"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/_secondary_base"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="12dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/icon_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_shopping_cart_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_cart"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/text_cart"
+            app:layout_constraintTop_toTopOf="@+id/text_cart" />
+
+        <TextView
+            android:id="@+id/text_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/word_spacing"
+            android:fontFamily="@font/poppins_extrabold"
+            android:text="Cart"
+            android:textColor="@color/_off_black_base"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/icon_cart"
+            app:layout_constraintStart_toEndOf="@+id/icon_cart"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/cart_item_count"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/bg_cart_count"
+            android:fontFamily="@font/poppins_extrabold"
+            android:gravity="center"
+            android:paddingTop="4dp"
+            android:text="0"
+            android:textColor="@color/_off_black_base"
+            android:textSize="16sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/text_egp_2"
+            app:layout_constraintBottom_toBottomOf="@id/total_price"
+            app:layout_constraintRight_toLeftOf="@id/text_egp_2"
+            app:layout_constraintTop_toTopOf="@id/total_price"/>
+
+        <TextView
+            android:id="@+id/text_egp_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/word_spacing"
+            android:fontFamily="@font/poppins_extrabold"
+            android:text="EGP"
+            android:textColor="@color/_off_black_base"
+            android:textSize="16sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/total_price"
+            app:layout_constraintBottom_toBottomOf="@id/total_price"
+            app:layout_constraintRight_toLeftOf="@id/total_price"
+            app:layout_constraintTop_toTopOf="@id/total_price"/>
+
+        <TextView
+            android:id="@+id/total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_extrabold"
+            android:text="00.00"
+            android:textColor="@color/_off_black_base"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

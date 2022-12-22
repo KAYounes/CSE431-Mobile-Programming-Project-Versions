@@ -10,12 +10,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.aklny_v30.OuterRecyclerViewAdapter;
-import com.example.aklny_v30.MenuItemModel;
-import com.example.aklny_v30.MenuModel;
+import com.example.aklny_v30.models.menu_model.MenuItemModel;
+import com.example.aklny_v30.models.menu_model.MenuModel;
 import com.example.aklny_v30.databinding.ActivityRestaurantScreenBinding;
 import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
-import com.example.aklny_v30.ui.admin.ActivityAddMenu;
+import com.example.aklny_v30.viewModels.admin.ActivityAddMenu;
 import com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener;
 import com.example.aklny_v30.viewModels.RestaurantScreenViewModel;
 
@@ -28,7 +27,7 @@ public class RestaurantScreenActivity extends AppCompatActivity implements Recyc
     List<MenuModel> menus;
     RestaurantScreenViewModel viewModel;
     RestaurantModel restaurant;
-    OuterRecyclerViewAdapter outerAdapter;
+    MenuRecyclerView outerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +64,7 @@ public class RestaurantScreenActivity extends AppCompatActivity implements Recyc
         headerFields.add(restaurant.getRating().toString());
 
 //        populate();
-        outerAdapter = new OuterRecyclerViewAdapter(menus, RestaurantScreenActivity.this);
+        outerAdapter = new MenuRecyclerView(menus, RestaurantScreenActivity.this);
         outerAdapter.setHeader(headerFields);
         outerAdapter.addHeader();
         binder.menusList.setAdapter(outerAdapter);
@@ -109,6 +108,10 @@ public class RestaurantScreenActivity extends AppCompatActivity implements Recyc
     @Override
     public void onRecyclerViewClickPayload(MenuItemModel payload) {
         Toast.makeText(this, payload.getName(), Toast.LENGTH_SHORT).show();
+        Intent goToItemScreen = new Intent(RestaurantScreenActivity.this, MenuItemScreenActivity.class);
+        goToItemScreen.putExtra("item", payload);
+        startActivity(goToItemScreen);
+
     }
 
 //    @Override

@@ -1,4 +1,4 @@
-package com.example.aklny_v30.ui.admin;
+package com.example.aklny_v30.viewModels.admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

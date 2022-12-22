@@ -1,4 +1,4 @@
-package com.example.aklny_v30;
+package com.example.aklny_v30.ui.s6_restaurant_screen;
 
 import android.content.Context;
 import android.util.Log;
@@ -9,17 +9,19 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.aklny_v30.R;
 import com.example.aklny_v30.databinding.InnerRecyclerViewCardBinding;
+import com.example.aklny_v30.models.menu_model.MenuItemModel;
 import com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class InnerRecyclerViewAdapter extends RecyclerView.Adapter<InnerRecyclerViewAdapter.MenuItemViewHolder> {
+public class MenuItemsRecyclerView extends RecyclerView.Adapter<MenuItemsRecyclerView.MenuItemViewHolder> {
     private List<MenuItemModel> menuItems;
     private RecyclerViewOnClickListener onClickListener;
 
-    public InnerRecyclerViewAdapter(List<MenuItemModel> menuItems, RecyclerViewOnClickListener onClickListener) {
+    public MenuItemsRecyclerView(List<MenuItemModel> menuItems, RecyclerViewOnClickListener onClickListener) {
         this.menuItems = menuItems;
         this.onClickListener = onClickListener;
     }

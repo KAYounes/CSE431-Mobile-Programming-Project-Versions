@@ -5,10 +5,8 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.aklny_v30.MenuModel;
+import com.example.aklny_v30.models.menu_model.MenuModel;
 import com.example.aklny_v30.models.databases.FbMenuRepo;
-import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
-import com.example.aklny_v30.models.restaurant_model.RestaurantRepo;
 
 import java.util.List;
 
