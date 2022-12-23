@@ -12,8 +12,8 @@ import android.widget.Toast;
 
 import com.example.aklny_v30.R;
 import com.example.aklny_v30.databinding.ActivityAddRestaurantBinding;
-import com.example.aklny_v30.models.databases.FbMenuRepo;
-import com.example.aklny_v30.models.restaurant_model.RestaurantRepo;
+import com.example.aklny_v30.repos.FbMenuRepo;
+import com.example.aklny_v30.repos.RestaurantRepo;
 import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
 import com.example.aklny_v30.ui.s5_home_screen.HomeScreenActivity;
 import com.google.android.gms.tasks.OnFailureListener;

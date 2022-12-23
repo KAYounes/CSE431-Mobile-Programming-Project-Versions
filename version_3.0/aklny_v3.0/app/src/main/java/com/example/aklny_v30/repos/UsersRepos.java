@@ -1,4 +1,4 @@
-package com.example.aklny_v30.models.user_model;
+package com.example.aklny_v30.repos;
 
 import android.app.Application;
 import android.os.AsyncTask;
@@ -8,6 +8,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.aklny_v30.models.databases.RootDatabase;
+import com.example.aklny_v30.models.user_model.UserModel;
+import com.example.aklny_v30.models.user_model.UsersTableDAO;
 
 import java.util.List;
 

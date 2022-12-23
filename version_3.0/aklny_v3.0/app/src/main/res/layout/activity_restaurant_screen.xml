@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/cart"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/inner_recycler_view"/>
+        tools:listitem="@layout/rv_item_menu"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cart"
@@ -59,9 +59,9 @@
             android:text="0"
             android:textColor="@color/_off_black_base"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@id/total_price"
+            app:layout_constraintBottom_toBottomOf="@id/cart_subtotal"
             app:layout_constraintRight_toLeftOf="@id/text_egp_2"
-            app:layout_constraintTop_toTopOf="@id/total_price"/>
+            app:layout_constraintTop_toTopOf="@id/cart_subtotal"/>
 
         <TextView
             android:id="@+id/text_egp_2"
@@ -72,12 +72,12 @@
             android:text="EGP"
             android:textColor="@color/_off_black_base"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@id/total_price"
-            app:layout_constraintRight_toLeftOf="@id/total_price"
-            app:layout_constraintTop_toTopOf="@id/total_price"/>
+            app:layout_constraintBottom_toBottomOf="@id/cart_subtotal"
+            app:layout_constraintRight_toLeftOf="@id/cart_subtotal"
+            app:layout_constraintTop_toTopOf="@id/cart_subtotal"/>
 
         <TextView
-            android:id="@+id/total_price"
+            android:id="@+id/cart_subtotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_extrabold"

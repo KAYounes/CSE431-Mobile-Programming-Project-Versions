@@ -3,7 +3,9 @@ package com.example.aklny_v30.models.menu_model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class MenuItemModel implements Parcelable {
+import androidx.annotation.NonNull;
+
+public class MenuItemModel implements Parcelable{
     public static final Creator<MenuItemModel> CREATOR = new Creator<MenuItemModel>() {
         @Override
         public MenuItemModel createFromParcel(Parcel in) {
@@ -15,12 +17,12 @@ public class MenuItemModel implements Parcelable {
             return new MenuItemModel[size];
         }
     };
-    private String name, description, thumbnail;
-    private Double price;
-
+    private String key, name, description, thumbnail;
+    private double price;
 
     public MenuItemModel() {
     }
+
 
     public MenuItemModel(String name, String description, Double price, String thumbnail) {
         this.name = name;
@@ -30,15 +32,15 @@ public class MenuItemModel implements Parcelable {
     }
 
     protected MenuItemModel(Parcel in) {
+        key = in.readString();
         name = in.readString();
         description = in.readString();
         thumbnail = in.readString();
-        if (in.readByte() == 0) {
-            price = null;
-        } else {
-            price = in.readDouble();
-        }
+        price = in.readDouble();
     }
+
+    public String getKey() {return key;}
+    public void setKey(String key) {this.key = key;}
 
     public String getName() {return name;}
     public void setName(String name) {this.name = name;}
@@ -46,11 +48,17 @@ public class MenuItemModel implements Parcelable {
     public String getDescription() {return description;}
     public void setDescription(String description) {this.description = description;}
 
-    public Double getPrice() {return price;}
-    public void setPrice(Double price) {this.price = price;}
+    public double getPrice() {return price;}
+    public void setPrice(double price) {this.price = price;}
 
     public String getThumbnail() {return thumbnail;}
     public void setThumbnail(String thumbnail) {this.thumbnail = thumbnail;}
+
+    @NonNull
+    @Override
+    public String toString() {
+        return key + ", " + name + ", " + price;
+    }
 
     @Override
     public int describeContents() {
@@ -59,14 +67,10 @@ public class MenuItemModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(key);
         parcel.writeString(name);
         parcel.writeString(description);
         parcel.writeString(thumbnail);
-        if (price == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeDouble(price);
-        }
+        parcel.writeDouble(price);
     }
 }

@@ -10,12 +10,15 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.aklny_v30.models.CartItemModel;
+import com.example.aklny_v30.models.CartTableDAO;
 import com.example.aklny_v30.models.user_model.UserModel;
 import com.example.aklny_v30.models.user_model.UsersTableDAO;
 
-@Database(entities = {UserModel.class}, version = 1, exportSchema = false)
+@Database(entities = {UserModel.class, CartItemModel.class}, version = 1, exportSchema = false)
 public abstract class RootDatabase extends RoomDatabase {
     public abstract UsersTableDAO usersTableDAO();
+    public abstract CartTableDAO cartTableDAO();
     private static RootDatabase INSTANCE;
 
     public static RootDatabase getDatabase(final Context context)

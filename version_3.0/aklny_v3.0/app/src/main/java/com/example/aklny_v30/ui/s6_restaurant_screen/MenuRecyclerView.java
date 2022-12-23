@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aklny_v30.R;
 import com.example.aklny_v30.databinding.HeaderRestaurantScreenBinding;
-import com.example.aklny_v30.databinding.InnerRecyclerViewBinding;
+import com.example.aklny_v30.databinding.RvItemMenuBinding;
 import com.example.aklny_v30.models.menu_model.MenuModel;
 import com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener;
 import com.squareup.picasso.Picasso;
@@ -78,8 +78,8 @@ public class MenuRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHold
                 return viewHolder;
             case MENU:
                 Log.d("OUTER ADAPTER", "viewType > MENU");
-                InnerRecyclerViewBinding binderMenu;
-                binderMenu = InnerRecyclerViewBinding.inflate(
+                RvItemMenuBinding binderMenu;
+                binderMenu = RvItemMenuBinding.inflate(
                         LayoutInflater.from(context), parent, false);
                 viewHolder = new MenuViewHolder(binderMenu, onClickListener);
                 return viewHolder;
@@ -160,9 +160,9 @@ public class MenuRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     class MenuViewHolder extends RecyclerView.ViewHolder{
-        private InnerRecyclerViewBinding binder;
+        private RvItemMenuBinding binder;
 
-        public MenuViewHolder(@NonNull InnerRecyclerViewBinding binder, RecyclerViewOnClickListener onClickListener) {
+        public MenuViewHolder(@NonNull RvItemMenuBinding binder, RecyclerViewOnClickListener onClickListener) {
             super(binder.getRoot());
             this.binder = binder;
         }

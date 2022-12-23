@@ -1,4 +1,4 @@
-package com.example.aklny_v30.models.restaurant_model;
+package com.example.aklny_v30.repos;
 
 import android.util.Log;
 

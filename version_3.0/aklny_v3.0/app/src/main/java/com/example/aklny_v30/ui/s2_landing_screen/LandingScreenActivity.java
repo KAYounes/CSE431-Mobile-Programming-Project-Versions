@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.example.aklny_v30.databinding.ActivityLandingScreenBinding;
 import com.example.aklny_v30.models.user_model.UserModel;
-import com.example.aklny_v30.models.user_model.UsersRepos;
+import com.example.aklny_v30.repos.UsersRepos;
 import com.example.aklny_v30.ui.s4_sign_in_screen.LoginScreenActivity;
 import com.example.aklny_v30.ui.s3_sign_up_screen.SignUpScreenActivity;
 

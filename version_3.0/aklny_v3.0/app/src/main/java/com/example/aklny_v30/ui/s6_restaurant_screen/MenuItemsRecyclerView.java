@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aklny_v30.R;
-import com.example.aklny_v30.databinding.InnerRecyclerViewCardBinding;
+import com.example.aklny_v30.databinding.RvItemMenuItemCardBinding;
 import com.example.aklny_v30.models.menu_model.MenuItemModel;
 import com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener;
 import com.squareup.picasso.Picasso;
@@ -30,8 +30,8 @@ public class MenuItemsRecyclerView extends RecyclerView.Adapter<MenuItemsRecycle
     @Override
     public MenuItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
-        InnerRecyclerViewCardBinding binder;
-        binder = InnerRecyclerViewCardBinding.inflate(LayoutInflater.from(context), parent, false);
+        RvItemMenuItemCardBinding binder;
+        binder = RvItemMenuItemCardBinding.inflate(LayoutInflater.from(context), parent, false);
         return new MenuItemViewHolder(binder, onClickListener);
     }
 
@@ -40,14 +40,13 @@ public class MenuItemsRecyclerView extends RecyclerView.Adapter<MenuItemsRecycle
     public void onBindViewHolder(@NonNull MenuItemViewHolder holder, int position) {
         MenuItemModel menuItem = menuItems.get(position);
 
-
         Picasso.get().load(menuItem.getThumbnail())
                 .placeholder(R.drawable.icon_logo_placeholder_100dp)
                 .error(R.drawable.icon_failed_to_load_logo_100dp)
                 .into(holder.binder.itemThumbnail);
         holder.binder.itemName.setText(menuItem.getName());
         holder.binder.itemDescription.setText(menuItem.getDescription());
-        holder.binder.itemPrice.setText(menuItem.getPrice().toString());
+        holder.binder.itemPrice.setText(Double.toString(menuItem.getPrice()));
 
         holder.binder.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,9 +66,9 @@ public class MenuItemsRecyclerView extends RecyclerView.Adapter<MenuItemsRecycle
     }
 
     class MenuItemViewHolder extends RecyclerView.ViewHolder{
-        private InnerRecyclerViewCardBinding binder;
+        private RvItemMenuItemCardBinding binder;
 
-        public MenuItemViewHolder(@NonNull InnerRecyclerViewCardBinding binder, RecyclerViewOnClickListener onClickListener) {
+        public MenuItemViewHolder(@NonNull RvItemMenuItemCardBinding binder, RecyclerViewOnClickListener onClickListener) {
             super(binder.getRoot());
             this.binder = binder;
         }
