@@ -31,7 +31,7 @@ public class RestaurantScreenViewModel extends AndroidViewModel {
     }
 
 //    public void addMenu(String key, MenuModel menu){
-//        fbMenuRepo.addMenuKeyToFB(key, menu);
+//        fbMenuRepo.addMenuModelToFB(key, menu);
 //    }
 
 

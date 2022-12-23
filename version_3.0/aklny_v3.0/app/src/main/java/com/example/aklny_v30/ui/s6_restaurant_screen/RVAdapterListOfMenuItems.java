@@ -17,11 +17,11 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class MenuItemsRecyclerView extends RecyclerView.Adapter<MenuItemsRecyclerView.MenuItemViewHolder> {
+public class RVAdapterListOfMenuItems extends RecyclerView.Adapter<RVAdapterListOfMenuItems.MenuItemViewHolder> {
     private List<MenuItemModel> menuItems;
     private RecyclerViewOnClickListener onClickListener;
 
-    public MenuItemsRecyclerView(List<MenuItemModel> menuItems, RecyclerViewOnClickListener onClickListener) {
+    public RVAdapterListOfMenuItems(List<MenuItemModel> menuItems, RecyclerViewOnClickListener onClickListener) {
         this.menuItems = menuItems;
         this.onClickListener = onClickListener;
     }

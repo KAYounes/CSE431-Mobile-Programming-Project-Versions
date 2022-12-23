@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF3E2"
-    tools:context=".viewModels.admin.ActivityAddRestaurant">
+    tools:context=".ui.admin.ActivityAddRestaurant">
 
     <TextView
         android:id="@+id/text_title"
@@ -20,7 +20,21 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
-        android:id="@+id/menu_name"
+        android:id="@+id/menu_key"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/_off_black_base"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="Menu key"
+        android:inputType="text"
+        android:textColor="@color/_off_black_base"
+        android:textSize="10sp"
+        app:layout_constraintTop_toBottomOf="@id/text_title"/>
+
+    <EditText
+        android:id="@+id/menu_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
@@ -31,7 +45,7 @@
         android:inputType="text"
         android:textColor="@color/_off_black_base"
         android:textSize="10sp"
-        app:layout_constraintTop_toBottomOf="@id/text_title"/>
+        app:layout_constraintTop_toBottomOf="@id/menu_key"/>
 
     <EditText
         android:id="@+id/item_name"
@@ -45,7 +59,7 @@
         android:inputType="text"
         android:textColor="@color/_off_black_base"
         android:textSize="10sp"
-        app:layout_constraintTop_toBottomOf="@id/menu_name"/>
+        app:layout_constraintTop_toBottomOf="@id/menu_title"/>
 
     <EditText
         android:id="@+id/item_description"

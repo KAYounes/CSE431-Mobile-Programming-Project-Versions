@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.aklny_v30.databinding.FragmentSideBarBinding;
-import com.example.aklny_v30.viewModels.admin.ActivityAddRestaurant;
+import com.example.aklny_v30.ui.admin.ActivityAddRestaurant;
 
 public class FragmentSideBar extends Fragment {
     FragmentSideBarBinding binder;

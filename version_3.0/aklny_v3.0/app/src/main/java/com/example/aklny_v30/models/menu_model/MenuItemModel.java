@@ -57,7 +57,7 @@ public class MenuItemModel implements Parcelable{
     @NonNull
     @Override
     public String toString() {
-        return key + ", " + name + ", " + price;
+        return "Menu Item Model: " + key + ", " + name + ", " + price;
     }
 
     @Override

@@ -3,13 +3,11 @@ package com.example.aklny_v30.repos;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,7 +27,7 @@ public class RestaurantRepo {
         return fetched;
     }
 
-    public Task<Void> addNewRestaurantToFbase(RestaurantModel newRestaurant){
+    public Task<Void> addNewRestaurantToFB(RestaurantModel newRestaurant){
         String restaurantKey = restaurantsRef.push().getKey();
         newRestaurant.setKey(restaurantKey);
         recentRestaurantKey = restaurantKey;
@@ -50,6 +48,7 @@ public class RestaurantRepo {
                         restaurantKey = data.getKey();
                         restaurant = data.getValue(RestaurantModel.class);
                         restaurant.setKey(restaurantKey);
+                        Log.w("PRINT", "restaurant > " + restaurant.getDeliveryFee());
                         fetchedRestaurants.add(restaurant);
                     }
 

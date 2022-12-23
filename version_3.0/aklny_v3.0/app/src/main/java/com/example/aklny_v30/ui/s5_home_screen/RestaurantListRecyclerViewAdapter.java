@@ -116,7 +116,7 @@ public class RestaurantListRecyclerViewAdapter extends RecyclerView.Adapter<Rest
         holder.binder.restaurantRating.setText(formatted_rate);
 
         DecimalFormat delivery_fee_decimal_format = new DecimalFormat("00.00");
-        String formatted_delivery_fee = delivery_fee_decimal_format.format(restaurant.getDelivery_fee());
+        String formatted_delivery_fee = delivery_fee_decimal_format.format(restaurant.getDeliveryFee());
         holder.binder.restaurantDeliveryFee.setText(formatted_delivery_fee);
 
         holder.binder.getRoot().setOnClickListener(new View.OnClickListener() {

@@ -33,21 +33,21 @@ public class FbMenuRepo {
         return menusLive;
     }
 
-//    public Task<Void> addMenuKeyToFB(String menuKey, MenuModel newMenu){
+//    public Task<Void> addMenuModelToFB(String menuKey, MenuModel newMenu){
 //        return menusRef.child(menuKey).child(newMenu.getTitle()).setValue(newMenu);
 //    }
 
-    public Task<Void> addMenuKeyToFB(String menuKey, MenuModel newMenu){
-        String itemKey;
-        List<String> keys = new ArrayList<>();
+    public Task<Void> addMenuModelToFB(String menuKey, MenuModel newMenu){
+        String menuItemKey;
+        List<String> listOfMenuItemKeys = new ArrayList<>();
         HashMap<String, Object> menuRefUpdates = new HashMap<>();
         HashMap<String, Object> menuItemsRefUpdates = new HashMap<>();
 
         for(MenuItemModel item: newMenu.getMenuItems()){
-            itemKey = menusRef.child(menuKey).child(newMenu.getTitle()).push().getKey();
-            keys.add(itemKey);
-            menuItemsRefUpdates.put(menuKey + "/" + itemKey , item);
-            menuRefUpdates.put(menuKey + "/" + newMenu.getTitle() + "/" + itemKey, item);
+            menuItemKey = menusRef.child(menuKey).child(newMenu.getTitle()).push().getKey();
+            listOfMenuItemKeys.add(menuItemKey);
+            menuItemsRefUpdates.put(menuKey + "/" + menuItemKey , item);
+            menuRefUpdates.put(menuKey + "/" + newMenu.getTitle() + "/" + menuItemKey, item);
         }
 
 //        menusItemRef.updateChildren(menuItemsRefUpdates)

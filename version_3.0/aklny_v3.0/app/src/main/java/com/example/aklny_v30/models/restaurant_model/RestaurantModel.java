@@ -8,21 +8,32 @@ import androidx.annotation.Nullable;
 
 import com.google.firebase.database.Exclude;
 
-import java.text.DecimalFormat;
-
 public class RestaurantModel implements Parcelable {
+    /** Parcelable **/
+    public static final Creator<RestaurantModel> CREATOR = new Creator<RestaurantModel>()
+    {
+        @Override
+        public RestaurantModel createFromParcel(Parcel in)
+        {
+            return new RestaurantModel(in);
+        }
+
+        @Override
+        public RestaurantModel[] newArray(int size)
+        {
+            return new RestaurantModel[size];
+        }
+    };
 //    public static enum cardType{SMALL_CARD, LARGE_CARD};
 //    private cardType type;
     private String key, name, description, phoneNumber, address, menuId, logo, thumbnail;
-    private Double rating, delivery_fee;
-
-
+    private double rating, deliveryFee;
 
     public RestaurantModel() {}
 
     public RestaurantModel(String name, String description, String phoneNumber,
                            String address, String logo, String thumbnail,
-                           Double rating, Double delivery_fee)
+                           double rating, double deliveryFee)
     {
         this.name = name;
         this.description = description;
@@ -31,12 +42,12 @@ public class RestaurantModel implements Parcelable {
         this.logo = logo;
         this.thumbnail = thumbnail;
         this.rating = rating;
-        this.delivery_fee = delivery_fee;
+        this.deliveryFee = deliveryFee;
     }
 
     public RestaurantModel(String name, String description, String phoneNumber, String address,
-                           String menuId, String logo, String thumbnail, Double rating,
-                           Double delivery_fee)
+                           String menuId, String logo, String thumbnail, double rating,
+                           double deliveryFee)
     {
         this.name = name;
         this.description = description;
@@ -46,10 +57,11 @@ public class RestaurantModel implements Parcelable {
         this.logo = logo;
         this.thumbnail = thumbnail;
         this.rating = rating;
-        this.delivery_fee = delivery_fee;
+        this.deliveryFee = deliveryFee;
     }
 
-    protected RestaurantModel(Parcel in) {
+    protected RestaurantModel(Parcel in)
+    {
         key = in.readString();
         name = in.readString();
         description = in.readString();
@@ -58,21 +70,14 @@ public class RestaurantModel implements Parcelable {
         menuId = in.readString();
         logo = in.readString();
         thumbnail = in.readString();
-        if (in.readByte() == 0) {
-            rating = null;
-        } else {
-            rating = in.readDouble();
-        }
-        if (in.readByte() == 0) {
-            delivery_fee = null;
-        } else {
-            delivery_fee = in.readDouble();
-        }
+        rating = in.readDouble();
+        deliveryFee = in.readDouble();
     }
 
     @NonNull
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Restaurant \nkey: " + key +
                 "\nname:" + name +
                 "\ndescription:" + description +
@@ -81,131 +86,61 @@ public class RestaurantModel implements Parcelable {
     }
 
     @Override
-    public boolean equals(@Nullable Object obj) {
-
-        // If the object is compared with itself then return true
-        if (obj == this) {
-            return true;
-        }
-
-        /* Check if o is an instance of Complex or not
-        "null instanceof [type]" also returns false */
-        if (!(obj instanceof RestaurantModel)) {
-        return false;
-        }
+    public boolean equals(@Nullable Object obj)
+    {
+        if (obj == this) {return true;}
+        if (!(obj instanceof RestaurantModel)) {return false;}
 
         RestaurantModel castedObj = (RestaurantModel) obj;
-
-        obj = (RestaurantModel) obj;
-        return this.key == castedObj.key
-                && this.name == castedObj.name
-                && this.description == castedObj.description
-                && this.phoneNumber == castedObj.phoneNumber
-                && this.address == castedObj.address
-                && this.menuId == castedObj.menuId
-                && this.logo == castedObj.logo
-                && this.thumbnail == castedObj.thumbnail
+        return this.key.equals(castedObj.key)
+                && this.name.equals(castedObj.name)
+                && this.description.equals(castedObj.description)
+                && this.phoneNumber.equals(castedObj.phoneNumber)
+                && this.address.equals(castedObj.address)
+                && this.menuId.equals(castedObj.menuId)
+                && this.logo.equals(castedObj.logo)
+                && this.thumbnail.equals(castedObj.thumbnail)
                 && this.rating == castedObj.rating
-                && this.delivery_fee == castedObj.delivery_fee;
+                && this.deliveryFee == castedObj.deliveryFee;
     }
 
     @Exclude
-    public String getKey() {
-        return key;
-    }
-    public void setKey(String key) {
-        this.key = key;
-    }
+    public String getKey() {return key;}
+    public void setKey(String key) {this.key = key;}
 
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
+    public String getName() {return name;}
+    public void setName(String name) {this.name = name;}
 
-    public String getDescription() {
-        return description;
-    }
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public String getDescription() {return description;}
+    public void setDescription(String description) {this.description = description;}
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+    public String getPhoneNumber() {return phoneNumber;}
+    public void setPhoneNumber(String phoneNumber) {this.phoneNumber = phoneNumber;}
 
-    public String getAddress() {
-        return address;
-    }
-    public void setAddress(String address) {
-        this.address = address;
-    }
+    public String getAddress() {return address;}
+    public void setAddress(String address) {this.address = address;}
 
-    public String getMenuId() {
-        return menuId;
-    }
-    public void setMenuId(String menuId) {
-        this.menuId = menuId;
-    }
+    public String getMenuId() {return menuId;}
+    public void setMenuId(String menuId) {this.menuId = menuId;}
 
-    public Double getRating() {
-        return rating;
-    }
-    public void setRating(Double rating) {
+    public double getRating() {return rating;}
+    public void setRating(double rating) {this.rating = rating;}
 
-//        DecimalFormat rating_decimal_format = new DecimalFormat("0.0");
-//        String formatted_rate = rating_decimal_format.format(rating);
+    public double getDeliveryFee() {return deliveryFee;}
+    public void setDeliveryFee(double deliveryFee) {this.deliveryFee = deliveryFee;}
 
-        this.rating = rating;
-    }
+    public String getLogo() {return logo;}
+    public void setLogo(String logo) {this.logo = logo;}
 
-    public Double getDelivery_fee() {
-        return delivery_fee;
-    }
-    public void setDelivery_fee(Double delivery_fee) {
-//        DecimalFormat delivery_fee_decimal_format = new DecimalFormat("00.00");
-//        String formatted_delivery_fee = delivery_fee_decimal_format.format(delivery_fee);
-        this.delivery_fee = delivery_fee;
-    }
-
-    public String getLogo() {
-        return logo;
-    }
-    public void setLogo(String logo) {
-        this.logo = logo;
-    }
-
-    public String getThumbnail() {
-        return thumbnail;
-    }
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
-    }
-
-    /** Parcelable **/
-    public static final Creator<RestaurantModel> CREATOR = new Creator<RestaurantModel>() {
-        @Override
-        public RestaurantModel createFromParcel(Parcel in) {
-            return new RestaurantModel(in);
-        }
-
-        @Override
-        public RestaurantModel[] newArray(int size) {
-            return new RestaurantModel[size];
-        }
-    };
+    public String getThumbnail() {return thumbnail;}
+    public void setThumbnail(String thumbnail) {this.thumbnail = thumbnail;}
 
     @Override
-    public int describeContents() {
-        return 0;
-    }
+    public int describeContents() {return 0;}
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
+    public void writeToParcel(Parcel parcel, int i)
+    {
         parcel.writeString(key);
         parcel.writeString(name);
         parcel.writeString(description);
@@ -214,17 +149,7 @@ public class RestaurantModel implements Parcelable {
         parcel.writeString(menuId);
         parcel.writeString(logo);
         parcel.writeString(thumbnail);
-        if (rating == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeDouble(rating);
-        }
-        if (delivery_fee == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeDouble(delivery_fee);
-        }
+        parcel.writeDouble(rating);
+        parcel.writeDouble(deliveryFee);
     }
 }

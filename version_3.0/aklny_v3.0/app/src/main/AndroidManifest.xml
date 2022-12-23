@@ -43,14 +43,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".viewModels.admin.ActivityAddMenu"
+            android:name=".ui.admin.ActivityAddMenu"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".viewModels.admin.ActivityAddRestaurant"
+            android:name=".ui.admin.ActivityAddRestaurant"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

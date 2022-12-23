@@ -2,7 +2,6 @@ package com.example.aklny_v30.ui.s6_restaurant_screen;
 
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,36 +17,42 @@ import com.example.aklny_v30.models.menu_model.MenuModel;
 import com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
 import java.util.List;
 
-public class MenuRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class RVAdapterListOfMenus extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private static final int HEADER = 1;
     private static final int MENU = 2;
 
-    private List<String> headerFields;
+    private HashMap<String, String> headerFields;
     private List<MenuModel> menus;
     private RecyclerViewOnClickListener onClickListener;
 
-    public MenuRecyclerView(List<MenuModel> menus, RecyclerViewOnClickListener onClickListener) {
+    public RVAdapterListOfMenus(List<MenuModel> menus, RecyclerViewOnClickListener onClickListener)
+    {
         this.menus = menus;
         this.onClickListener = onClickListener;
     }
 
-    public void setMenusList(List<MenuModel> menuModels) {
+    public void setMenusList(List<MenuModel> menuModels)
+    {
         menus = menuModels;
         addHeader();
         notifyDataSetChanged();
     }
 
-    public void addHeader(){
+    public void addHeader()
+    {
         menus.add(0, null);
     }
-    public void setHeader(List<String> headerFields){
+    public void setHeader(HashMap<String, String> headerFields)
+    {
         this.headerFields = headerFields;
     }
 
     @Override
-    public int getItemViewType(int position) {
+    public int getItemViewType(int position)
+    {
         if (position == 0)
         {
             return HEADER;
@@ -60,14 +65,14 @@ public class MenuRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    {
         Context context = parent.getContext();
         RecyclerView.ViewHolder viewHolder;
 
-        switch (viewType){
+        switch (viewType)
+        {
             case HEADER:
-
                 HeaderRestaurantScreenBinding binderHeader;
                 binderHeader = HeaderRestaurantScreenBinding.inflate(
                         LayoutInflater.from(context), parent, false);
@@ -85,9 +90,11 @@ public class MenuRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position)
+    {
         int viewType = getItemViewType(position);
-        switch (viewType){
+        switch (viewType)
+        {
             case HEADER:
                 binderHeader((HeaderViewHolder) holder, position);
                 break;
@@ -97,33 +104,39 @@ public class MenuRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
     }
 
-    private void binderHeader(HeaderViewHolder holder, int position) {
-        Picasso.get().load(headerFields.get(0))
+    private void binderHeader(HeaderViewHolder holder, int position)
+    {
+        Picasso.get().load(headerFields.get("Thumbnail"))
                 .placeholder(R.drawable.icon_thumbnail_placeholder)
                 .error(R.drawable.icon_failed_to_load_thumbnail)
                 .into(holder.binder.restaurantThumbnail);
-        holder.binder.restaurantName.setText(headerFields.get(1));
-        holder.binder.restaurantDescription.setText(headerFields.get(2));
-        holder.binder.restaurantAddress.setText(headerFields.get(3));
-        holder.binder.restaurantPhoneNumber.setText(headerFields.get(4));
-        holder.binder.restaurantDeliveryFee.setText(headerFields.get(5));
-        holder.binder.restaurantRating.setText(headerFields.get(6));
+        holder.binder.restaurantName.setText(headerFields.get("Name"));
+        holder.binder.restaurantDescription.setText(headerFields.get("Description"));
+        holder.binder.restaurantAddress.setText(headerFields.get("Address"));
+        holder.binder.restaurantPhoneNumber.setText(headerFields.get("PhoneNumber"));
+        holder.binder.restaurantDeliveryFee.setText(headerFields.get("DeliveryFee"));
+        holder.binder.restaurantRating.setText(headerFields.get("Rating"));
 
-        holder.binder.btnAddMenu.setOnClickListener(new View.OnClickListener() {
+        holder.binder.btnAddMenu.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
-                onClickListener.onRecyclerViewClick(0);
+            public void onClick(View view)
+            {
+                onClickListener.onRecyclerViewClick(-1);
             }
         });
     }
 
-    private void binderMenu(MenuViewHolder holder, int position) {
-        MenuItemsRecyclerView innerAdapter = new MenuItemsRecyclerView(menus.get(position).getMenuItems(), onClickListener);
+    private void binderMenu(MenuViewHolder holder, int position)
+    {
+        RVAdapterListOfMenuItems innerAdapter = new RVAdapterListOfMenuItems(menus.get(position).getMenuItems(), onClickListener);
         holder.binder.menuTitle.setText(menus.get(position).getTitle());
         holder.binder.menuItemsList.setAdapter(innerAdapter);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(holder.binder.getRoot().getContext()){
+        LinearLayoutManager layoutManager = new LinearLayoutManager(holder.binder.getRoot().getContext())
+        {
             @Override
-            public boolean canScrollVertically() {
+            public boolean canScrollVertically()
+            {
                 return false;
             }
         };
@@ -132,7 +145,8 @@ public class MenuRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     @Override
-    public int getItemCount() {
+    public int getItemCount()
+    {
         try
         {
             return menus.size();
@@ -143,19 +157,23 @@ public class MenuRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
     }
 
-    class HeaderViewHolder extends RecyclerView.ViewHolder{
+    class HeaderViewHolder extends RecyclerView.ViewHolder
+    {
         private HeaderRestaurantScreenBinding binder;
 
-        public HeaderViewHolder(@NonNull HeaderRestaurantScreenBinding binder, RecyclerViewOnClickListener onClickListener) {
+        public HeaderViewHolder(@NonNull HeaderRestaurantScreenBinding binder, RecyclerViewOnClickListener onClickListener)
+        {
             super(binder.getRoot());
             this.binder = binder;
         }
     }
 
-    class MenuViewHolder extends RecyclerView.ViewHolder{
+    class MenuViewHolder extends RecyclerView.ViewHolder
+    {
         private RvItemMenuBinding binder;
 
-        public MenuViewHolder(@NonNull RvItemMenuBinding binder, RecyclerViewOnClickListener onClickListener) {
+        public MenuViewHolder(@NonNull RvItemMenuBinding binder, RecyclerViewOnClickListener onClickListener)
+        {
             super(binder.getRoot());
             this.binder = binder;
         }

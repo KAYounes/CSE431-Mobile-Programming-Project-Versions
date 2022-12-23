@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.aklny_v30.API.Constants;
 import com.example.aklny_v30.databinding.ActivityHomeScreenBinding;
 import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
 import com.example.aklny_v30.ui.s6_restaurant_screen.RestaurantScreenActivity;
@@ -575,7 +576,7 @@ public class HomeScreenActivity extends AppCompatActivity implements RecyclerVie
     public void onRecyclerViewClick(int position) {
         Toast.makeText(this, "Clicked " + recyclerViewAdapter.getItem(position).getName(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(HomeScreenActivity.this, RestaurantScreenActivity.class);
-        intent.putExtra("RESTAURANT", recyclerViewAdapter.getItem(position));
+        intent.putExtra(Constants.INTENT_KEY_RESTAURANT_OBJ, recyclerViewAdapter.getItem(position));
         startActivity(intent);
     }
 

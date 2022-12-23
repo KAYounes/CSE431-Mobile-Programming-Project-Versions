@@ -33,11 +33,11 @@ public class CartScreenActivity extends AppCompatActivity implements RecyclerVie
         binder = ActivityCartScreenBinding.inflate(getLayoutInflater());
         setContentView(binder.getRoot());
         viewModel = new ViewModelProvider(this).get(CartScreenViewModel.class);
-        RestaurantModel restaurant = getIntent().getParcelableExtra(Constants.RESTAURANT_INTENT_KEY);
+        RestaurantModel restaurant = getIntent().getParcelableExtra(Constants.INTENT_KEY_RESTAURANT_OBJ);
 
         footerFields = new ArrayList<>();
         footerFields.add("0.0");
-        footerFields.add(Double.toString(restaurant.getDelivery_fee()));
+        footerFields.add(Double.toString(restaurant.getDeliveryFee()));
         footerFields.add("0.0");
 
         viewModel.getCart().observe(this, new Observer<List<CartItemModel>>() {
@@ -46,9 +46,9 @@ public class CartScreenActivity extends AppCompatActivity implements RecyclerVie
                 footerFields = new ArrayList<>();
                 viewModel.getCartSubtotal();
                 footerFields.add(Double.toString(viewModel.getCartSubtotal()));
-                footerFields.add(Double.toString(restaurant.getDelivery_fee()));
+                footerFields.add(Double.toString(restaurant.getDeliveryFee()));
 
-                total = restaurant.getDelivery_fee() + viewModel.getCartSubtotal();
+                total = restaurant.getDeliveryFee() + viewModel.getCartSubtotal();
                 footerFields.add(Double.toString(total));
 
                 recyclerViewAdapter.setFooter(footerFields);
@@ -64,7 +64,7 @@ public class CartScreenActivity extends AppCompatActivity implements RecyclerVie
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CartScreenActivity.this, OrderConfirmationScreenActivity.class);
-                intent.putExtra(Constants.TOTAL_PRICE, total);
+                intent.putExtra(Constants.INTENT_KEY_TOTAL_PRICE, total);
                 startActivity(intent);
             }
         });

@@ -18,33 +18,30 @@ import com.example.aklny_v30.models.menu_model.MenuModel;
 import com.example.aklny_v30.databinding.ActivityRestaurantScreenBinding;
 import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
 import com.example.aklny_v30.ui.s7_cart_screen.CartScreenActivity;
-import com.example.aklny_v30.viewModels.admin.ActivityAddMenu;
+import com.example.aklny_v30.ui.admin.ActivityAddMenu;
 import com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener;
 import com.example.aklny_v30.viewModels.RestaurantScreenViewModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class RestaurantScreenActivity extends AppCompatActivity implements RecyclerViewOnClickListener {
     ActivityRestaurantScreenBinding binder;
-    List<MenuItemModel> menuItems;
-    List<MenuModel> menus;
     RestaurantScreenViewModel viewModel;
     RestaurantModel restaurant;
-    MenuRecyclerView menuAdapter;
+    RVAdapterListOfMenus menuAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binder = ActivityRestaurantScreenBinding.inflate(getLayoutInflater());
         setContentView(binder.getRoot());
+        //
+
         viewModel = new ViewModelProvider(this).get(RestaurantScreenViewModel.class);
-        menuItems = new ArrayList<>();
-        menus = new ArrayList<>();
-
-
         viewModel.deleteCart();
-        Log.d("PRINT", "onCreate Restaurant Screen");
+        //
 
         viewModel.getCart().observe(this, new Observer<List<CartItemModel>>() {
             @Override
@@ -54,7 +51,7 @@ public class RestaurantScreenActivity extends AppCompatActivity implements Recyc
             }
         });
 
-        restaurant = getIntent().getParcelableExtra("RESTAURANT");
+        restaurant = getIntent().getParcelableExtra(Constants.INTENT_KEY_RESTAURANT_OBJ);
         viewModel.listenToMenuNodeChanges(restaurant.getMenuId());
         viewModel.getFetchedMenus().observe(this, new Observer<List<MenuModel>>() {
             @Override
@@ -64,18 +61,28 @@ public class RestaurantScreenActivity extends AppCompatActivity implements Recyc
             }
         });
 
-        List<String> headerFields = new ArrayList<>();
-        headerFields.add(restaurant.getThumbnail());
-        headerFields.add(restaurant.getName());
-        headerFields.add(restaurant.getDescription());
-        headerFields.add(restaurant.getAddress());
-        headerFields.add(restaurant.getPhoneNumber());
-        headerFields.add(restaurant.getDelivery_fee().toString());
-        headerFields.add(restaurant.getRating().toString());
+//        List<String> headerFields = new ArrayList<>();
+//        headerFields.add(restaurant.getThumbnail());
+//        headerFields.add(restaurant.getName());
+//        headerFields.add(restaurant.getDescription());
+//        headerFields.add(restaurant.getAddress());
+//        headerFields.add(restaurant.getPhoneNumber());
+//        headerFields.add(Double.toString(restaurant.getDelivery_fee()));
+//        headerFields.add(Double.toString(restaurant.getRating()));
 
-        menuAdapter = new MenuRecyclerView(menus, RestaurantScreenActivity.this);
+        HashMap<String, String> headerFields = new HashMap<>();
+        headerFields.put("Name", restaurant.getName());
+        headerFields.put("Description", restaurant.getDescription());
+        headerFields.put("Address", restaurant.getAddress());
+        headerFields.put("PhoneNumber", restaurant.getPhoneNumber());
+        headerFields.put("Thumbnail", restaurant.getThumbnail());
+        headerFields.put("DeliveryFee", Double.toString(restaurant.getDeliveryFee()));
+        headerFields.put("Rating", Double.toString(restaurant.getRating()));
+
+        menuAdapter = new RVAdapterListOfMenus(new ArrayList<>(), RestaurantScreenActivity.this);
         menuAdapter.setHeader(headerFields);
         menuAdapter.addHeader();
+
         binder.menusList.setAdapter(menuAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseContext()){
             @Override
@@ -90,7 +97,7 @@ public class RestaurantScreenActivity extends AppCompatActivity implements Recyc
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(RestaurantScreenActivity.this, CartScreenActivity.class);
-                intent.putExtra(Constants.RESTAURANT_INTENT_KEY, restaurant);
+                intent.putExtra(Constants.INTENT_KEY_RESTAURANT_OBJ, restaurant);
                 startActivity(intent);
             }
         });
@@ -108,9 +115,9 @@ public class RestaurantScreenActivity extends AppCompatActivity implements Recyc
     @Override
     public void onRecyclerViewClick(int position) {
         Intent addMenuIntent = new Intent(RestaurantScreenActivity.this, ActivityAddMenu.class);
-        addMenuIntent.putExtra("menu key", restaurant.getMenuId());
+        addMenuIntent.putExtra(Constants.INTENT_KEY_MENU_KEY, restaurant.getMenuId());
         startActivity(addMenuIntent);
-        finish();
+//        finish();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.aklny_v30.viewModels.admin;
+package com.example.aklny_v30.ui.admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.aklny_v30.API.Constants;
 import com.example.aklny_v30.models.menu_model.MenuItemModel;
 import com.example.aklny_v30.models.menu_model.MenuModel;
 import com.example.aklny_v30.R;
@@ -27,40 +28,57 @@ public class ActivityAddMenu extends AppCompatActivity {
     ActivityAddMenuBinding binder;
     RestaurantRepo restaurantRepo;
     FbMenuRepo fbMenuRepo;
-    String menuName;
+
+    String menuTitle;
     String itemName;
     String itemDescription;
     Double itemPrice;
     String itemThumbnailUrl;
-    List<MenuItemModel> menuItems;
+
+    String generatedMenuKey;
     MenuModel menu;
-    String menuKey;
+    List<MenuItemModel> listOfMenuItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binder = ActivityAddMenuBinding.inflate(getLayoutInflater());
         setContentView(binder.getRoot());
+        //
+
         restaurantRepo = new RestaurantRepo();
         fbMenuRepo = new FbMenuRepo();
-        menuKey = getIntent().getStringExtra("menu key");
-        menuItems = new ArrayList<>();
+        //
+
+        generatedMenuKey = getIntent().getStringExtra(Constants.INTENT_KEY_MENU_KEY);
+        binder.menuKey.setText(generatedMenuKey);
+        listOfMenuItems = new ArrayList<>();
 
         binder.btnAddItem.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                itemName = binder.itemName.getText().toString();
-                itemDescription = binder.itemDescription.getText().toString();
-                itemPrice = Double.parseDouble(binder.itemPrice.getText().toString());
-                itemThumbnailUrl = binder.itemThumbnailUrl.getText().toString();
+                try
+                {
+                    itemName = binder.itemName.getText().toString();
+                    itemDescription = binder.itemDescription.getText().toString();
+                    itemPrice = Double.parseDouble(binder.itemPrice.getText().toString());
+                    itemThumbnailUrl = binder.itemThumbnailUrl.getText().toString();
+                }
+                catch (Exception exception)
+                {
+                    displayValidationMessage("Price field is empty");
+                }
 
                 if(validateMenuItem())
                 {
-                    Toast.makeText(ActivityAddMenu.this, "Added", Toast.LENGTH_SHORT).show();
                     MenuItemModel menuItem = new MenuItemModel(itemName, itemDescription, itemPrice, itemThumbnailUrl);
-                    menuItems.add(menuItem);
+                    displayValidationMessage("Added " + menuItem.toString());
+                    //
+
+                    // Clear edit texts
+                    listOfMenuItems.add(menuItem);
                     binder.itemName.setText("");
                     binder.itemDescription.setText("");
                     binder.itemPrice.setText("");
@@ -68,12 +86,14 @@ public class ActivityAddMenu extends AppCompatActivity {
                 }
             }
         });
+        //
+
 
         binder.btnAddMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                menuName = binder.menuName.getText().toString();
+                menuTitle = binder.menuTitle.getText().toString();
 
                 if(validateMenu())
                 {
@@ -81,11 +101,10 @@ public class ActivityAddMenu extends AppCompatActivity {
                     dialog.setContentView(R.layout.dialog_logging_in);
                     dialog.setCancelable(false);
                     dialog.show();
-                    String menuId;
-                    menu = new MenuModel(menuName, menuItems);
+                    //
 
-
-                    fbMenuRepo.addMenuKeyToFB(menuKey, menu)
+                    menu = new MenuModel(menuTitle, listOfMenuItems);
+                    fbMenuRepo.addMenuModelToFB(generatedMenuKey, menu)
                             .addOnSuccessListener(new OnSuccessListener<Void>()
                             {
                                 @Override
@@ -93,18 +112,19 @@ public class ActivityAddMenu extends AppCompatActivity {
                                 {
 
                                 Toast.makeText(ActivityAddMenu.this, "Added Successfully", Toast.LENGTH_SHORT).show();
-                                displayValidationMessage("Restaurant Added");
-                                menuItems = new ArrayList<>();
-                                binder.menuName.setText("");
-                                dialog.dismiss();
+                                displayValidationMessage("Menu Added");
+                                //
 
+                                listOfMenuItems = new ArrayList<>();
+                                binder.menuTitle.setText("");
+                                dialog.dismiss();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     Toast.makeText(ActivityAddMenu.this, "Failed to add menu", Toast.LENGTH_SHORT).show();
-                                    Log.d("PRINT", e.getLocalizedMessage());
+                                    Log.d("PRINT", "Add Menu> onFailure > " + e.getMessage());
                                     displayValidationMessage(e.getLocalizedMessage());
                                     dialog.dismiss();
                                 }
@@ -116,39 +136,34 @@ public class ActivityAddMenu extends AppCompatActivity {
     }
 
     private boolean validateMenu(){
-        if(!menuName.matches("^[a-zA-z ]{3,60}$")) {
-//            Toast.makeText(this, "name", Toast.LENGTH_SHORT).show();
+        if(!menuTitle.matches(Constants.PATTERN_MENU_TITLE)) {
             displayValidationMessage("Menu name error, please check again.");
             return false;
         }
 
-        if(menuItems.size() == 0){
+        if(listOfMenuItems.size() == 0){
             return false;
         }
 
         return true;
     }
     private boolean validateMenuItem() {
-        if(!itemName.matches("^[a-zA-z ]{3,30}$")) {
-//            Toast.makeText(this, itemName, Toast.LENGTH_SHORT).show();
+        if(!itemName.matches(Constants.PATTERN_RESTAURANT_NAME)) {
             displayValidationMessage("Item name error, please check again.");
             return false;
         }
 
-        if(!itemDescription.matches("^[a-zA-z0-9 ,.!-]{3,100}$")) {
-            Toast.makeText(this, itemDescription, Toast.LENGTH_SHORT).show();
+        if(!itemDescription.matches(Constants.PATTERN_RESTAURANT_DESCRIPTION)) {
             displayValidationMessage("Description error, please check again.");
             return false;
         }
 
-        if((itemPrice < 0.0) && (itemPrice > 1000.0)) {
-//            Toast.makeText(this, "rating", Toast.LENGTH_SHORT).show();
+        if((itemPrice < 0.0) || (itemPrice > 1000.0)) {
             displayValidationMessage("Price error, please check again.");
             return false;
         }
 
         if(itemThumbnailUrl.isEmpty()) {
-//            Toast.makeText(this, "logo", Toast.LENGTH_SHORT).show();
             displayValidationMessage("Thumbnail Url error, please check again.");
             return false;
         }
@@ -162,7 +177,7 @@ public class ActivityAddMenu extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(ActivityAddMenu.this, HomeScreenActivity.class));
+//        startActivity(new Intent(ActivityAddMenu.this, HomeScreenActivity.class));
         finish();
     }
 }
