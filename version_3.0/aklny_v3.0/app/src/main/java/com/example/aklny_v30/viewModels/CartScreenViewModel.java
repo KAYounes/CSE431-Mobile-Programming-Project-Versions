@@ -8,41 +8,18 @@ import androidx.lifecycle.LiveData;
 
 import com.example.aklny_v30.models.cart.CartItemModel;
 import com.example.aklny_v30.models.menu_model.MenuItemModel;
-import com.example.aklny_v30.models.menu_model.MenuModel;
 import com.example.aklny_v30.repos.CartRepo;
-import com.example.aklny_v30.repos.firebase.FbMenuRepo;
 
 import java.util.List;
 
-public class RestaurantScreenViewModel extends AndroidViewModel {
-    private FbMenuRepo fbMenuRepo;
+public class CartScreenViewModel extends AndroidViewModel {
     private CartRepo cartRepo;
-    private LiveData<List<MenuModel>> menuList;
     private LiveData<List<CartItemModel>> cart;
 
-
-
-    public RestaurantScreenViewModel(Application application) {
+    public CartScreenViewModel(Application application) {
         super(application);
-        fbMenuRepo = new FbMenuRepo();
-        menuList = fbMenuRepo.getMenusLive();
         cartRepo = new CartRepo(application);
         cart = cartRepo.getCart();
-    }
-
-//    public void addMenu(String key, MenuModel menu){
-//        fbMenuRepo.addMenuKeyToFB(key, menu);
-//    }
-
-
-    public LiveData<List<MenuModel>> getFetchedMenus() {
-        Log.d("menu", "getFetchedMenus");
-        return menuList;
-    }
-
-    public void listenToMenuNodeChanges(String menuKey){
-        Log.d("menu", "listenToDatabase");
-        fbMenuRepo.attachPersistentListener(menuKey);
     }
 
     public void addItemToCart(MenuItemModel menuItemModel){
@@ -70,6 +47,22 @@ public class RestaurantScreenViewModel extends AndroidViewModel {
         }
 
         return subtotal;
+    }
+
+    public void removeItem(String key){
+        cartRepo.removeItem(key);
+    }
+
+    public void updateItem(CartItemModel item){
+        if(item.getQuantity() == 0){
+            cartRepo.removeItem(item.getKey());
+            return;
+        }
+        cartRepo.updateItem(item);
+    }
+
+    public double getTotal(){
+        return 0.0;
     }
 
 

@@ -20,10 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RestaurantRepo {
+    public String recentRestaurantKey;
     FirebaseDatabase databaseInstance = FirebaseDatabase.getInstance("https://aklny-v3-default-rtdb.firebaseio.com/");
     public DatabaseReference restaurantsRef = databaseInstance.getReference("restaurants");
     private MutableLiveData<List<RestaurantModel>> fetched = new MutableLiveData<>();
-    public String recentRestaurantKey;
 
     public LiveData<List<RestaurantModel>> getFetched() {
         return fetched;
@@ -42,11 +42,6 @@ public class RestaurantRepo {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 try {
-//                    Log.d("PRINT", "getChildrenCount > " + snapshot.getChildrenCount());
-//                    Log.d("PRINT", "getKey > " + snapshot.getKey());
-//                    Log.d("PRINT", "toString > " + snapshot.toString());
-//                    Log.d("PRINT", "getValue().toString() > " + snapshot.getChildren());
-//                    Log.d("PRINT", "getValue().toString() > " + ((Map<String, Object>) snapshot.getValue()).toString());
                     List<RestaurantModel> fetchedRestaurants = new ArrayList<>();
                     String restaurantKey;
                     RestaurantModel restaurant;
@@ -66,7 +61,10 @@ public class RestaurantRepo {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("PRINT", "RestaurantRepo > attachPersistentListener > onCancelled > "
+                        + error.getMessage());
+            }
         });
     }
 }

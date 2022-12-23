@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.aklny_v30.R;
 import com.example.aklny_v30.databinding.ActivityAddRestaurantBinding;
-import com.example.aklny_v30.repos.FbMenuRepo;
+import com.example.aklny_v30.repos.firebase.FbMenuRepo;
 import com.example.aklny_v30.repos.RestaurantRepo;
 import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
 import com.example.aklny_v30.ui.s5_home_screen.HomeScreenActivity;
@@ -65,7 +65,8 @@ public class ActivityAddRestaurant extends AppCompatActivity {
                                     thumbnail, rating, delivery_fee);
 
                     String menuId;
-                    fbMenuRepo.getNewMenuKey(newRestaurant.getName())
+                    String menuKey = fbMenuRepo.generateKey();
+                    fbMenuRepo.addMenuToFB(newRestaurant.getName())
                             .addOnSuccessListener(new OnSuccessListener<Void>()
                             {
                                 @Override

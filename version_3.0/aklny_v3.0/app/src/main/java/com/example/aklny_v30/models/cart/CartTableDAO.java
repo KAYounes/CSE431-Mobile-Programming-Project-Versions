@@ -1,11 +1,12 @@
-package com.example.aklny_v30.models;
+package com.example.aklny_v30.models.cart;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
+
+import com.example.aklny_v30.models.cart.CartItemModel;
 
 import java.util.List;
 
@@ -30,8 +31,8 @@ public interface CartTableDAO {
     @Insert
     void addItem(CartItemModel item);
 
-    @Delete
-    void removeItem(CartItemModel cartItemModel);
+    @Query("DELETE FROM cart WHERE `key`=:key")
+    void removeItem(String key);
 
     @Update
     void updateItem(CartItemModel item);

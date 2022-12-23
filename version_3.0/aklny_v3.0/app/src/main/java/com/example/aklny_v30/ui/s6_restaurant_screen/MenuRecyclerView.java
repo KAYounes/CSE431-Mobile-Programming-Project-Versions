@@ -61,15 +61,12 @@ public class MenuRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHold
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.d("OUTER ADAPTER", "onCreateViewHolder");
-        Log.d("OUTER ADAPTER", "viewType > " + viewType);
 
         Context context = parent.getContext();
         RecyclerView.ViewHolder viewHolder;
 
         switch (viewType){
             case HEADER:
-                Log.d("OUTER ADAPTER", "viewType > HEADER");
 
                 HeaderRestaurantScreenBinding binderHeader;
                 binderHeader = HeaderRestaurantScreenBinding.inflate(
@@ -77,7 +74,6 @@ public class MenuRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHold
                 viewHolder = new HeaderViewHolder(binderHeader, onClickListener);
                 return viewHolder;
             case MENU:
-                Log.d("OUTER ADAPTER", "viewType > MENU");
                 RvItemMenuBinding binderMenu;
                 binderMenu = RvItemMenuBinding.inflate(
                         LayoutInflater.from(context), parent, false);
@@ -91,14 +87,11 @@ public class MenuRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         int viewType = getItemViewType(position);
-        Log.d("OUTER ADAPTER", "onBindViewHolder > viewType > " + viewType);
         switch (viewType){
             case HEADER:
-                Log.d("OUTER ADAPTER", "onBindViewHolder > viewType > HEADER");
                 binderHeader((HeaderViewHolder) holder, position);
                 break;
             case MENU:
-                Log.d("OUTER ADAPTER", "onBindViewHolder > viewType > MENU");
                 binderMenu((MenuViewHolder) holder, position);
                 break;
         }

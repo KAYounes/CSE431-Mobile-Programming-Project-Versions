@@ -10,8 +10,8 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.aklny_v30.models.CartItemModel;
-import com.example.aklny_v30.models.CartTableDAO;
+import com.example.aklny_v30.models.cart.CartItemModel;
+import com.example.aklny_v30.models.cart.CartTableDAO;
 import com.example.aklny_v30.models.user_model.UserModel;
 import com.example.aklny_v30.models.user_model.UsersTableDAO;
 

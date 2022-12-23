@@ -1,4 +1,4 @@
-package com.example.aklny_v30.models;
+package com.example.aklny_v30.models.cart;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
@@ -43,6 +43,11 @@ public class CartItemModel {
 
     public CartItemModel incrementQuantityAndReturn(){
         quantity++;
+        return this;
+    }
+
+    public CartItemModel decrementQuantityAndReturn(){
+        quantity--;
         return this;
     }
 

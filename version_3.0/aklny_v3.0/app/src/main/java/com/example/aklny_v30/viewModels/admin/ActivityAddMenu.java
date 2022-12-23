@@ -14,7 +14,7 @@ import com.example.aklny_v30.models.menu_model.MenuItemModel;
 import com.example.aklny_v30.models.menu_model.MenuModel;
 import com.example.aklny_v30.R;
 import com.example.aklny_v30.databinding.ActivityAddMenuBinding;
-import com.example.aklny_v30.repos.FbMenuRepo;
+import com.example.aklny_v30.repos.firebase.FbMenuRepo;
 import com.example.aklny_v30.repos.RestaurantRepo;
 import com.example.aklny_v30.ui.s5_home_screen.HomeScreenActivity;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -85,7 +85,7 @@ public class ActivityAddMenu extends AppCompatActivity {
                     menu = new MenuModel(menuName, menuItems);
 
 
-                    fbMenuRepo.addMenuToFbase2(menuKey, menu)
+                    fbMenuRepo.addMenuKeyToFB(menuKey, menu)
                             .addOnSuccessListener(new OnSuccessListener<Void>()
                             {
                                 @Override

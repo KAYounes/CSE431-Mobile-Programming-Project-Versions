@@ -1,4 +1,4 @@
-package com.example.aklny_v30.repos;
+package com.example.aklny_v30.repos.firebase;
 
 import com.example.aklny_v30.models.user_model.UserModel;
 import com.google.android.gms.tasks.Task;

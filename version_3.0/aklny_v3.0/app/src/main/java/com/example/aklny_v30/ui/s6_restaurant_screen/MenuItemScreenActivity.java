@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.example.aklny_v30.R;
 import com.example.aklny_v30.databinding.ActivityMenuItemScreenBinding;
-import com.example.aklny_v30.models.CartItemModel;
+import com.example.aklny_v30.models.cart.CartItemModel;
 import com.example.aklny_v30.models.menu_model.MenuItemModel;
 import com.example.aklny_v30.viewModels.RestaurantScreenViewModel;
 import com.squareup.picasso.Picasso;
@@ -44,11 +44,6 @@ public class MenuItemScreenActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<CartItemModel> cart) {
                 binder.cartItemCount.setText(String.format("%d", viewModel.getCartItemsCount()));
-
-//                double subtotal = 0;
-//                for(CartItemModel cartItem: cart){
-//                    subtotal += cartItem.getPrice() * cartItem.getQuantity();
-//                }
                 binder.cartSubtotal.setText(Double.toString(viewModel.getCartSubtotal()));
             }
         });

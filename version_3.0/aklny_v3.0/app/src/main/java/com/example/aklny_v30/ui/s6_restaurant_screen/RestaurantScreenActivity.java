@@ -8,13 +8,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
-import com.example.aklny_v30.models.CartItemModel;
+import com.example.aklny_v30.API.Constants;
+import com.example.aklny_v30.models.cart.CartItemModel;
 import com.example.aklny_v30.models.menu_model.MenuItemModel;
 import com.example.aklny_v30.models.menu_model.MenuModel;
 import com.example.aklny_v30.databinding.ActivityRestaurantScreenBinding;
 import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
+import com.example.aklny_v30.ui.s7_cart_screen.CartScreenActivity;
 import com.example.aklny_v30.viewModels.admin.ActivityAddMenu;
 import com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener;
 import com.example.aklny_v30.viewModels.RestaurantScreenViewModel;
@@ -47,11 +50,6 @@ public class RestaurantScreenActivity extends AppCompatActivity implements Recyc
             @Override
             public void onChanged(List<CartItemModel> cart) {
                 binder.cartItemCount.setText(String.format("%d", viewModel.getCartItemsCount()));
-
-//                double subtotal = 0;
-//                for(CartItemModel cartItem: cart){
-//                    subtotal += cartItem.getPrice() * cartItem.getQuantity();
-//                }
                 binder.cartSubtotal.setText(Double.toString(viewModel.getCartSubtotal()));
             }
         });
@@ -87,6 +85,15 @@ public class RestaurantScreenActivity extends AppCompatActivity implements Recyc
         };
         layoutManager.setReverseLayout(false);
         binder.menusList.setLayoutManager(layoutManager);
+
+        binder.cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RestaurantScreenActivity.this, CartScreenActivity.class);
+                intent.putExtra(Constants.RESTAURANT_INTENT_KEY, restaurant);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -107,11 +114,17 @@ public class RestaurantScreenActivity extends AppCompatActivity implements Recyc
     }
 
     @Override
-    public void onRecyclerViewClickPayload(MenuItemModel payload) {
-        Toast.makeText(this, payload.getKey(), Toast.LENGTH_SHORT).show();
+    public void onRecyclerViewClickPayload(Object payload) {
+        MenuItemModel item = (MenuItemModel) payload;
+        Toast.makeText(this, item.getKey(), Toast.LENGTH_SHORT).show();
         Intent goToItemScreen = new Intent(RestaurantScreenActivity.this, MenuItemScreenActivity.class);
-        goToItemScreen.putExtra("item", payload);
+        goToItemScreen.putExtra("item", item);
         startActivity(goToItemScreen);
+
+    }
+
+    @Override
+    public void onRecyclerViewClickPayload(String tag, Object payload) {
 
     }
 }

@@ -1,11 +1,9 @@
 package com.example.aklny_v30.viewModels;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.aklny_v30.models.CartItemModel;
+import com.example.aklny_v30.models.cart.CartItemModel;
 import com.example.aklny_v30.repos.RestaurantRepo;
 import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
 

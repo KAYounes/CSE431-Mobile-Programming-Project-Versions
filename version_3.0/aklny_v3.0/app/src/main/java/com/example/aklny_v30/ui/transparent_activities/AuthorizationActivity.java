@@ -12,7 +12,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.aklny_v30.R;
-import com.example.aklny_v30.repos.FbUserRepo;
+import com.example.aklny_v30.repos.firebase.FbUserRepo;
 import com.example.aklny_v30.models.user_model.UserModel;
 import com.example.aklny_v30.repos.UsersRepos;
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;

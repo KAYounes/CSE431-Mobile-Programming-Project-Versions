@@ -6,8 +6,8 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.aklny_v30.models.CartItemModel;
-import com.example.aklny_v30.models.CartTableDAO;
+import com.example.aklny_v30.models.cart.CartItemModel;
+import com.example.aklny_v30.models.cart.CartTableDAO;
 import com.example.aklny_v30.models.databases.RootDatabase;
 
 import java.util.List;
@@ -33,11 +33,11 @@ public class CartRepo {
         Log.d("PRINT", "CartRepo > addItem > item > " + cartItem.toString());
         new insertAsyncTask(dao).execute(cartItem);
     }
-    public void removeItem(){
-        new removeItemAsyncTask(dao).execute();
+    public void removeItem(String key){
+        new removeItemAsyncTask(dao).execute(key);
     }
-    public void updateItem(){
-        new updateAsyncTask(dao).execute();
+    public void updateItem(CartItemModel item){
+        new updateAsyncTask(dao).execute(item);
     }
 
     private class insertAsyncTask extends AsyncTask<CartItemModel, Void, CartItemModel>
@@ -128,7 +128,7 @@ public class CartRepo {
         }
     }
 
-    private static class removeItemAsyncTask extends AsyncTask<CartItemModel, Void, Void>
+    private static class removeItemAsyncTask extends AsyncTask<String, Void, Void>
     {
         private CartTableDAO asyncTaskDAO;
 
@@ -138,12 +138,12 @@ public class CartRepo {
         }
 
         @Override
-        protected Void doInBackground(CartItemModel... item)
+        protected Void doInBackground(String... keys)
         {
 
             try
             {
-                asyncTaskDAO.removeItem(item[0]);
+                asyncTaskDAO.removeItem(keys[0]);
             }
             catch (Exception e)
             {
