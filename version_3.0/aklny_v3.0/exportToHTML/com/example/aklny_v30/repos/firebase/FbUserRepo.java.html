@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>FbUserRepo.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.ln { color: #606366; font-weight: normal; font-style: normal; }
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+FbUserRepo.java</font>
+</center></td></tr></table>
+<pre><a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">com.example.aklny_v30.repos.firebase</span><span class="s0">;</span>
+<a name="l2"><span class="ln">2    </span></a>
+<a name="l3"><span class="ln">3    </span></a><span class="s0">import <a href="../../../../../com/example/aklny_v30/models/user_model/UserModel.java.html">com.example.aklny_v30.models.user_model.UserModel</a>;</span>
+<a name="l4"><span class="ln">4    </span></a><span class="s0">import </span><span class="s1">com.google.android.gms.tasks.Task</span><span class="s0">;</span>
+<a name="l5"><span class="ln">5    </span></a><span class="s0">import </span><span class="s1">com.google.firebase.database.DataSnapshot</span><span class="s0">;</span>
+<a name="l6"><span class="ln">6    </span></a><span class="s0">import </span><span class="s1">com.google.firebase.database.DatabaseReference</span><span class="s0">;</span>
+<a name="l7"><span class="ln">7    </span></a><span class="s0">import </span><span class="s1">com.google.firebase.database.FirebaseDatabase</span><span class="s0">;</span>
+<a name="l8"><span class="ln">8    </span></a>
+<a name="l9"><span class="ln">9    </span></a><span class="s0">public class </span><span class="s1">FbUserRepo {</span>
+<a name="l10"><span class="ln">10   </span></a>    <span class="s1">FirebaseDatabase databaseInstance = FirebaseDatabase.getInstance(</span><span class="s2">&quot;https://aklny-v3-default-rtdb.firebaseio.com/&quot;</span><span class="s1">)</span><span class="s0">;</span>
+<a name="l11"><span class="ln">11   </span></a>    <span class="s0">public </span><span class="s1">DatabaseReference usersRef = databaseInstance.getReference(</span><span class="s2">&quot;users&quot;</span><span class="s1">)</span><span class="s0">;</span>
+<a name="l12"><span class="ln">12   </span></a>    <span class="s0">private <a href="../../../../../com/example/aklny_v30/models/user_model/UserModel.java.html">UserModel</a> </span><span class="s1">user</span><span class="s0">;</span>
+<a name="l13"><span class="ln">13   </span></a>
+<a name="l14"><span class="ln">14   </span></a>    <span class="s0">public </span><span class="s1">Task&lt;DataSnapshot&gt; getUser(String uid)</span>
+<a name="l15"><span class="ln">15   </span></a>    <span class="s1">{</span>
+<a name="l16"><span class="ln">16   </span></a>        <span class="s0">return </span><span class="s1">usersRef.child(uid).get()</span><span class="s0">;</span>
+<a name="l17"><span class="ln">17   </span></a>    <span class="s1">}</span>
+<a name="l18"><span class="ln">18   </span></a>
+<a name="l19"><span class="ln">19   </span></a>    <span class="s0">public </span><span class="s1">Task&lt;DataSnapshot&gt; userExists(String uid)</span>
+<a name="l20"><span class="ln">20   </span></a>    <span class="s1">{</span>
+<a name="l21"><span class="ln">21   </span></a>        <span class="s0">return </span><span class="s1">usersRef.child(uid).get()</span><span class="s0">;</span>
+<a name="l22"><span class="ln">22   </span></a>    <span class="s1">}</span>
+<a name="l23"><span class="ln">23   </span></a>
+<a name="l24"><span class="ln">24   </span></a>    <span class="s0">public </span><span class="s1">Task&lt;Void&gt; addUser(<a href="../../../../../com/example/aklny_v30/models/user_model/UserModel.java.html">UserModel</a> newUser) {</span>
+<a name="l25"><span class="ln">25   </span></a>        <span class="s0">return </span><span class="s1">usersRef.child(newUser.getAuth_uid()).setValue(newUser)</span><span class="s0">;</span>
+<a name="l26"><span class="ln">26   </span></a>    <span class="s1">}</span>
+<a name="l27"><span class="ln">27   </span></a><span class="s1">}</span>
+<a name="l28"><span class="ln">28   </span></a></pre>
+</body>
+</html>

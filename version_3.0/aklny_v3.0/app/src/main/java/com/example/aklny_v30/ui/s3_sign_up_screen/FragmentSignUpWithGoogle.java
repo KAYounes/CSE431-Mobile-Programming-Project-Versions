@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.example.aklny_v30.ui.transparent_activities.AuthorizationActivity;
 import com.example.aklny_v30.databinding.FragmentSignUpWithGoogleBinding;
-import com.example.aklny_v30.ui.s5_home_screen.HomeScreenActivity;
+import com.example.aklny_v30.ui.s5_home_screen.Activity_HomeScreen;
 
 public class FragmentSignUpWithGoogle extends Fragment {
     private FragmentSignUpWithGoogleBinding binder;
@@ -56,7 +56,7 @@ public class FragmentSignUpWithGoogle extends Fragment {
             String result = data.getStringExtra(AuthorizationActivity.RESULT_KEY);
             if(result.equals(AuthorizationActivity.AUTHENTICATION_SUCCESS)){
                 Toast.makeText(requireActivity(), "Account Created", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(requireActivity(), HomeScreenActivity.class));
+                startActivity(new Intent(requireActivity(), Activity_HomeScreen.class));
                 requireActivity().finish();
                 return;
             }

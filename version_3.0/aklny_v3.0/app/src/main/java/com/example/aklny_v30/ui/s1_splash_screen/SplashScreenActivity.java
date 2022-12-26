@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import com.example.aklny_v30.R;
 import com.example.aklny_v30.ui.s2_landing_screen.LandingScreenActivity;
-import com.example.aklny_v30.ui.s5_home_screen.HomeScreenActivity;
+import com.example.aklny_v30.ui.s5_home_screen.Activity_HomeScreen;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -37,7 +37,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 // User is logged in, start home screen activity.
                 firebaseAuth.signOut();
                 Toast.makeText(this, "You Are Already Logged In", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(SplashScreenActivity.this, HomeScreenActivity.class));
+                startActivity(new Intent(SplashScreenActivity.this, Activity_HomeScreen.class));
             }
             else
             {

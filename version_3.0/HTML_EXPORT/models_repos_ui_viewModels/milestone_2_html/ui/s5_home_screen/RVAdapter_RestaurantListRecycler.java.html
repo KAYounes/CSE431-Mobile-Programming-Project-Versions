@@ -1,0 +1,179 @@
+<html>
+<head>
+<title>RVAdapter_RestaurantListRecycler.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #6a8759;}
+.ln { color: #606366; font-weight: normal; font-style: normal; }
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+RVAdapter_RestaurantListRecycler.java</font>
+</center></td></tr></table>
+<pre><a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">com.example.aklny_v30.ui.s5_home_screen</span><span class="s0">;</span>
+<a name="l2"><span class="ln">2    </span></a>
+<a name="l3"><span class="ln">3    </span></a><span class="s0">import </span><span class="s1">android.content.Context</span><span class="s0">;</span>
+<a name="l4"><span class="ln">4    </span></a><span class="s0">import </span><span class="s1">android.util.Log</span><span class="s0">;</span>
+<a name="l5"><span class="ln">5    </span></a><span class="s0">import </span><span class="s1">android.view.LayoutInflater</span><span class="s0">;</span>
+<a name="l6"><span class="ln">6    </span></a><span class="s0">import </span><span class="s1">android.view.View</span><span class="s0">;</span>
+<a name="l7"><span class="ln">7    </span></a><span class="s0">import </span><span class="s1">android.view.ViewGroup</span><span class="s0">;</span>
+<a name="l8"><span class="ln">8    </span></a>
+<a name="l9"><span class="ln">9    </span></a><span class="s0">import </span><span class="s1">androidx.annotation.NonNull</span><span class="s0">;</span>
+<a name="l10"><span class="ln">10   </span></a><span class="s0">import </span><span class="s1">androidx.recyclerview.widget.DiffUtil</span><span class="s0">;</span>
+<a name="l11"><span class="ln">11   </span></a><span class="s0">import </span><span class="s1">androidx.recyclerview.widget.RecyclerView</span><span class="s0">;</span>
+<a name="l12"><span class="ln">12   </span></a>
+<a name="l13"><span class="ln">13   </span></a><span class="s0">import </span><span class="s1">com.example.aklny_v30.R</span><span class="s0">;</span>
+<a name="l14"><span class="ln">14   </span></a><span class="s0">import </span><span class="s1">com.example.aklny_v30.databinding.RvItemRestaurantCardLargeBinding</span><span class="s0">;</span>
+<a name="l15"><span class="ln">15   </span></a><span class="s0">import <a href="../../../../../com/example/aklny_v30/models/restaurant_model/RestaurantModel.java.html">com.example.aklny_v30.models.restaurant_model.RestaurantModel</a>;</span>
+<a name="l16"><span class="ln">16   </span></a><span class="s0">import <a href="../../../../../com/example/aklny_v30/ui/ui_utilities/RecyclerViewOnClickListener.java.html">com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener</a>;</span>
+<a name="l17"><span class="ln">17   </span></a><span class="s0">import </span><span class="s1">com.squareup.picasso.Picasso</span><span class="s0">;</span>
+<a name="l18"><span class="ln">18   </span></a>
+<a name="l19"><span class="ln">19   </span></a><span class="s0">import </span><span class="s1">java.text.DecimalFormat</span><span class="s0">;</span>
+<a name="l20"><span class="ln">20   </span></a><span class="s0">import </span><span class="s1">java.util.List</span><span class="s0">;</span>
+<a name="l21"><span class="ln">21   </span></a>
+<a name="l22"><span class="ln">22   </span></a><span class="s0">public class </span><span class="s1">RVAdapter_RestaurantListRecycler </span><span class="s0">extends </span><span class="s1">RecyclerView.Adapter&lt;RVAdapter_RestaurantListRecycler.CardViewHolder&gt; {</span>
+<a name="l23"><span class="ln">23   </span></a>    <span class="s0">private </span><span class="s1">cardType cardDisplayType = cardType.SMALL_CARD</span><span class="s0">;</span>
+<a name="l24"><span class="ln">24   </span></a>    <span class="s0">private </span><span class="s1">List&lt;RestaurantModel&gt; restaurants</span><span class="s0">;</span>
+<a name="l25"><span class="ln">25   </span></a>    <span class="s0">private <a href="../../../../../com/example/aklny_v30/ui/ui_utilities/RecyclerViewOnClickListener.java.html">RecyclerViewOnClickListener</a> </span><span class="s1">onClickListener</span><span class="s0">;</span>
+<a name="l26"><span class="ln">26   </span></a>    <span class="s0">private boolean </span><span class="s1">rendered = </span><span class="s0">false;</span>
+<a name="l27"><span class="ln">27   </span></a>
+<a name="l28"><span class="ln">28   </span></a>
+<a name="l29"><span class="ln">29   </span></a>    <span class="s0">public <a href="../../../../../com/example/aklny_v30/models/restaurant_model/RestaurantModel.java.html">RestaurantModel</a> </span><span class="s1">getItem(</span><span class="s0">int </span><span class="s1">position){</span>
+<a name="l30"><span class="ln">30   </span></a>        <span class="s0">return </span><span class="s1">restaurants.get(position)</span><span class="s0">;</span>
+<a name="l31"><span class="ln">31   </span></a>    <span class="s1">}</span>
+<a name="l32"><span class="ln">32   </span></a>
+<a name="l33"><span class="ln">33   </span></a>    <span class="s0">public </span><span class="s1">RVAdapter_RestaurantListRecycler(List&lt;RestaurantModel&gt; restaurants</span><span class="s0">, <a href="../../../../../com/example/aklny_v30/ui/ui_utilities/RecyclerViewOnClickListener.java.html">RecyclerViewOnClickListener</a> </span><span class="s1">onClickListener) {</span>
+<a name="l34"><span class="ln">34   </span></a>        <span class="s0">this</span><span class="s1">.restaurants = restaurants</span><span class="s0">;</span>
+<a name="l35"><span class="ln">35   </span></a>        <span class="s0">this</span><span class="s1">.onClickListener = onClickListener</span><span class="s0">;</span>
+<a name="l36"><span class="ln">36   </span></a>    <span class="s1">}</span>
+<a name="l37"><span class="ln">37   </span></a>
+<a name="l38"><span class="ln">38   </span></a>    <span class="s0">public void </span><span class="s1">setNewList(List&lt;RestaurantModel&gt; restaurants){</span>
+<a name="l39"><span class="ln">39   </span></a>        <span class="s0">this</span><span class="s1">.restaurants = restaurants</span><span class="s0">;</span>
+<a name="l40"><span class="ln">40   </span></a>        <span class="s1">notifyDataSetChanged()</span><span class="s0">;</span>
+<a name="l41"><span class="ln">41   </span></a>    <span class="s1">}</span>
+<a name="l42"><span class="ln">42   </span></a>
+<a name="l43"><span class="ln">43   </span></a>    <span class="s0">public void </span><span class="s1">toggleCardTypeDisplay()</span>
+<a name="l44"><span class="ln">44   </span></a>    <span class="s1">{</span>
+<a name="l45"><span class="ln">45   </span></a>        <span class="s0">if</span><span class="s1">(cardDisplayType == cardType.SMALL_CARD)</span>
+<a name="l46"><span class="ln">46   </span></a>        <span class="s1">{</span>
+<a name="l47"><span class="ln">47   </span></a>            <span class="s1">cardDisplayType = cardType.LARGE_CARD</span><span class="s0">;</span>
+<a name="l48"><span class="ln">48   </span></a>        <span class="s1">}</span>
+<a name="l49"><span class="ln">49   </span></a>        <span class="s0">else</span>
+<a name="l50"><span class="ln">50   </span></a>        <span class="s1">{</span>
+<a name="l51"><span class="ln">51   </span></a>            <span class="s1">cardDisplayType = cardType.SMALL_CARD</span><span class="s0">;</span>
+<a name="l52"><span class="ln">52   </span></a>        <span class="s1">}</span>
+<a name="l53"><span class="ln">53   </span></a><span class="s2">//        Log.d(&quot;PRINT&quot;, &quot;&gt; &quot; + cardDisplayType);</span>
+<a name="l54"><span class="ln">54   </span></a>        <span class="s1">notifyDataSetChanged()</span><span class="s0">;</span>
+<a name="l55"><span class="ln">55   </span></a>    <span class="s1">}</span>
+<a name="l56"><span class="ln">56   </span></a>
+<a name="l57"><span class="ln">57   </span></a>    <span class="s1">@NonNull</span>
+<a name="l58"><span class="ln">58   </span></a>    <span class="s1">@Override</span>
+<a name="l59"><span class="ln">59   </span></a>    <span class="s0">public </span><span class="s1">CardViewHolder onCreateViewHolder(@NonNull ViewGroup parent</span><span class="s0">, int </span><span class="s1">viewType)</span>
+<a name="l60"><span class="ln">60   </span></a>    <span class="s1">{</span>
+<a name="l61"><span class="ln">61   </span></a>        <span class="s1">Log.d(</span><span class="s3">&quot;ADAPTER&quot;</span><span class="s0">, </span><span class="s3">&quot;onCreateViewHolder&quot;</span><span class="s1">)</span><span class="s0">;</span>
+<a name="l62"><span class="ln">62   </span></a>
+<a name="l63"><span class="ln">63   </span></a>        <span class="s1">Context context = parent.getContext()</span><span class="s0">;</span>
+<a name="l64"><span class="ln">64   </span></a>        <span class="s1">CardViewHolder viewHolder</span><span class="s0">;</span>
+<a name="l65"><span class="ln">65   </span></a>        <span class="s1">RvItemRestaurantCardLargeBinding binder</span><span class="s0">;</span>
+<a name="l66"><span class="ln">66   </span></a>
+<a name="l67"><span class="ln">67   </span></a>        <span class="s1">binder = RvItemRestaurantCardLargeBinding.inflate(</span>
+<a name="l68"><span class="ln">68   </span></a>                <span class="s1">LayoutInflater.from(context)</span><span class="s0">, </span><span class="s1">parent</span><span class="s0">, false</span><span class="s1">)</span><span class="s0">;</span>
+<a name="l69"><span class="ln">69   </span></a>        <span class="s1">viewHolder = </span><span class="s0">new </span><span class="s1">CardViewHolder(binder</span><span class="s0">, </span><span class="s1">onClickListener)</span><span class="s0">;</span>
+<a name="l70"><span class="ln">70   </span></a>        <span class="s0">return </span><span class="s1">viewHolder</span><span class="s0">;</span>
+<a name="l71"><span class="ln">71   </span></a>    <span class="s1">}</span>
+<a name="l72"><span class="ln">72   </span></a>
+<a name="l73"><span class="ln">73   </span></a>    <span class="s1">@Override</span>
+<a name="l74"><span class="ln">74   </span></a>    <span class="s0">public void </span><span class="s1">onBindViewHolder(@NonNull CardViewHolder holder</span><span class="s0">, int </span><span class="s1">position)</span>
+<a name="l75"><span class="ln">75   </span></a>    <span class="s1">{</span>
+<a name="l76"><span class="ln">76   </span></a>        <span class="s1">Log.d(</span><span class="s3">&quot;ADAPTER&quot;</span><span class="s0">, </span><span class="s3">&quot;onBindViewHolder&quot;</span><span class="s1">)</span><span class="s0">;</span>
+<a name="l77"><span class="ln">77   </span></a><span class="s2">//        if(rendered == false)</span>
+<a name="l78"><span class="ln">78   </span></a><span class="s2">//        {</span>
+<a name="l79"><span class="ln">79   </span></a><span class="s2">//        }</span>
+<a name="l80"><span class="ln">80   </span></a><span class="s2">//        rendered = true;</span>
+<a name="l81"><span class="ln">81   </span></a>        <span class="s1">bindToCard(holder</span><span class="s0">, </span><span class="s1">position)</span><span class="s0">;</span>
+<a name="l82"><span class="ln">82   </span></a>
+<a name="l83"><span class="ln">83   </span></a>        <span class="s0">switch </span><span class="s1">(cardDisplayType){</span>
+<a name="l84"><span class="ln">84   </span></a>            <span class="s0">case </span><span class="s1">SMALL_CARD:</span>
+<a name="l85"><span class="ln">85   </span></a>                <span class="s1">holder.binder.restaurantThumbnail.setVisibility(View.GONE)</span><span class="s0">;</span>
+<a name="l86"><span class="ln">86   </span></a>                <span class="s0">break;</span>
+<a name="l87"><span class="ln">87   </span></a>            <span class="s0">case </span><span class="s1">LARGE_CARD:</span>
+<a name="l88"><span class="ln">88   </span></a>                <span class="s1">holder.binder.restaurantThumbnail.setVisibility(View.VISIBLE)</span><span class="s0">;</span>
+<a name="l89"><span class="ln">89   </span></a>                <span class="s0">break;</span>
+<a name="l90"><span class="ln">90   </span></a>        <span class="s1">}</span>
+<a name="l91"><span class="ln">91   </span></a>    <span class="s1">}</span>
+<a name="l92"><span class="ln">92   </span></a>
+<a name="l93"><span class="ln">93   </span></a>    <span class="s0">private void </span><span class="s1">bindToCard(CardViewHolder holder</span><span class="s0">, int </span><span class="s1">position)</span>
+<a name="l94"><span class="ln">94   </span></a>    <span class="s1">{</span>
+<a name="l95"><span class="ln">95   </span></a>        <span class="s1">Log.d(</span><span class="s3">&quot;ADAPTER&quot;</span><span class="s0">, </span><span class="s3">&quot;bindToCardLarge&quot;</span><span class="s1">)</span><span class="s0">;</span>
+<a name="l96"><span class="ln">96   </span></a>
+<a name="l97"><span class="ln">97   </span></a>        <a href="../../../../../com/example/aklny_v30/models/restaurant_model/RestaurantModel.java.html">RestaurantModel</a> <span class="s1">restaurant = restaurants.get(position)</span><span class="s0">;</span>
+<a name="l98"><span class="ln">98   </span></a>
+<a name="l99"><span class="ln">99   </span></a>        <span class="s1">Picasso.get().load(restaurant.getThumbnail())</span>
+<a name="l100"><span class="ln">100  </span></a>                <span class="s1">.placeholder(R.drawable.icon_logo_placeholder_100dp)</span>
+<a name="l101"><span class="ln">101  </span></a>                <span class="s1">.error(R.drawable.icon_failed_to_load_logo_100dp)</span>
+<a name="l102"><span class="ln">102  </span></a>                <span class="s1">.into(holder.binder.restaurantThumbnail)</span><span class="s0">;</span>
+<a name="l103"><span class="ln">103  </span></a>        <span class="s1">Picasso.get().load(restaurant.getLogo())</span>
+<a name="l104"><span class="ln">104  </span></a>                <span class="s1">.placeholder(R.drawable.icon_thumbnail_placeholder)</span>
+<a name="l105"><span class="ln">105  </span></a>                <span class="s1">.error(R.drawable.icon_failed_to_load_thumbnail)</span>
+<a name="l106"><span class="ln">106  </span></a>                <span class="s1">.into(holder.binder.restaurantLogo)</span><span class="s0">;</span>
+<a name="l107"><span class="ln">107  </span></a><span class="s2">//</span>
+<a name="l108"><span class="ln">108  </span></a><span class="s2">//        holder.binder.restaurantThumbnail.setImageDrawable(holder.binder.getRoot().getResources().getDrawable(R.drawable.food_image___1_));</span>
+<a name="l109"><span class="ln">109  </span></a><span class="s2">//        holder.binder.restaurantLogo.setImageDrawable(holder.binder.getRoot().getResources().getDrawable(R.drawable.logo_1));</span>
+<a name="l110"><span class="ln">110  </span></a>
+<a name="l111"><span class="ln">111  </span></a>        <span class="s1">holder.binder.restaurantName.setText(restaurant.getName())</span><span class="s0">;</span>
+<a name="l112"><span class="ln">112  </span></a>        <span class="s1">holder.binder.restaurantDescription.setText(restaurant.getDescription())</span><span class="s0">;</span>
+<a name="l113"><span class="ln">113  </span></a>
+<a name="l114"><span class="ln">114  </span></a>        <span class="s1">DecimalFormat rating_decimal_format = </span><span class="s0">new </span><span class="s1">DecimalFormat(</span><span class="s3">&quot;0.0&quot;</span><span class="s1">)</span><span class="s0">;</span>
+<a name="l115"><span class="ln">115  </span></a>        <span class="s1">String formatted_rate = rating_decimal_format.format(restaurant.getRating())</span><span class="s0">;</span>
+<a name="l116"><span class="ln">116  </span></a>        <span class="s1">holder.binder.restaurantRating.setText(formatted_rate)</span><span class="s0">;</span>
+<a name="l117"><span class="ln">117  </span></a>
+<a name="l118"><span class="ln">118  </span></a>        <span class="s1">DecimalFormat delivery_fee_decimal_format = </span><span class="s0">new </span><span class="s1">DecimalFormat(</span><span class="s3">&quot;00.00&quot;</span><span class="s1">)</span><span class="s0">;</span>
+<a name="l119"><span class="ln">119  </span></a>        <span class="s1">String formatted_delivery_fee = delivery_fee_decimal_format.format(restaurant.getDeliveryFee())</span><span class="s0">;</span>
+<a name="l120"><span class="ln">120  </span></a>        <span class="s1">holder.binder.restaurantDeliveryFee.setText(formatted_delivery_fee)</span><span class="s0">;</span>
+<a name="l121"><span class="ln">121  </span></a>
+<a name="l122"><span class="ln">122  </span></a>        <span class="s1">holder.binder.getRoot().setOnClickListener(</span><span class="s0">new </span><span class="s1">View.OnClickListener() {</span>
+<a name="l123"><span class="ln">123  </span></a>            <span class="s1">@Override</span>
+<a name="l124"><span class="ln">124  </span></a>            <span class="s0">public void </span><span class="s1">onClick(View view) {</span>
+<a name="l125"><span class="ln">125  </span></a>                <span class="s0">if</span><span class="s1">(onClickListener != </span><span class="s0">null</span><span class="s1">){</span>
+<a name="l126"><span class="ln">126  </span></a>                    <span class="s1">onClickListener.onRecyclerViewClick(position)</span><span class="s0">;</span>
+<a name="l127"><span class="ln">127  </span></a>                <span class="s1">}</span>
+<a name="l128"><span class="ln">128  </span></a>            <span class="s1">}</span>
+<a name="l129"><span class="ln">129  </span></a>        <span class="s1">})</span><span class="s0">;</span>
+<a name="l130"><span class="ln">130  </span></a>
+<a name="l131"><span class="ln">131  </span></a>    <span class="s1">}</span>
+<a name="l132"><span class="ln">132  </span></a>
+<a name="l133"><span class="ln">133  </span></a>    <span class="s1">@Override</span>
+<a name="l134"><span class="ln">134  </span></a>    <span class="s0">public int </span><span class="s1">getItemCount()</span>
+<a name="l135"><span class="ln">135  </span></a>    <span class="s1">{</span>
+<a name="l136"><span class="ln">136  </span></a>        <span class="s0">return </span><span class="s1">restaurants.size()</span><span class="s0">;</span>
+<a name="l137"><span class="ln">137  </span></a>    <span class="s1">}</span>
+<a name="l138"><span class="ln">138  </span></a>
+<a name="l139"><span class="ln">139  </span></a>    <span class="s0">public void </span><span class="s1">setData(List&lt;RestaurantModel&gt; newList){</span>
+<a name="l140"><span class="ln">140  </span></a>        <a href="DiffUtil_RestaurantList.java.html">DiffUtil_RestaurantList</a> <span class="s1">diffUtil = </span><span class="s0">new <a href="DiffUtil_RestaurantList.java.html">DiffUtil_RestaurantList</a></span><span class="s1">(restaurants</span><span class="s0">, </span><span class="s1">newList)</span><span class="s0">;</span>
+<a name="l141"><span class="ln">141  </span></a>        <span class="s1">DiffUtil.DiffResult diffUtilResult = DiffUtil.calculateDiff(diffUtil)</span><span class="s0">;</span>
+<a name="l142"><span class="ln">142  </span></a>        <span class="s1">restaurants = newList</span><span class="s0">;</span>
+<a name="l143"><span class="ln">143  </span></a>        <span class="s1">diffUtilResult.dispatchUpdatesTo(RVAdapter_RestaurantListRecycler.</span><span class="s0">this</span><span class="s1">)</span><span class="s0">;</span>
+<a name="l144"><span class="ln">144  </span></a>    <span class="s1">}</span>
+<a name="l145"><span class="ln">145  </span></a>
+<a name="l146"><span class="ln">146  </span></a><span class="s0">public static enum </span><span class="s1">cardType{SMALL_CARD</span><span class="s0">, </span><span class="s1">LARGE_CARD}</span>
+<a name="l147"><span class="ln">147  </span></a>
+<a name="l148"><span class="ln">148  </span></a>    <span class="s0">public static class </span><span class="s1">CardViewHolder </span><span class="s0">extends </span><span class="s1">RecyclerView.ViewHolder</span>
+<a name="l149"><span class="ln">149  </span></a>    <span class="s1">{</span>
+<a name="l150"><span class="ln">150  </span></a>        <span class="s0">private </span><span class="s1">RvItemRestaurantCardLargeBinding binder</span><span class="s0">;</span>
+<a name="l151"><span class="ln">151  </span></a>        <span class="s0">public </span><span class="s1">CardViewHolder(@NonNull RvItemRestaurantCardLargeBinding binder</span><span class="s0">, <a href="../../../../../com/example/aklny_v30/ui/ui_utilities/RecyclerViewOnClickListener.java.html">RecyclerViewOnClickListener</a> </span><span class="s1">onClickListener)</span>
+<a name="l152"><span class="ln">152  </span></a>        <span class="s1">{</span>
+<a name="l153"><span class="ln">153  </span></a>            <span class="s0">super</span><span class="s1">(binder.getRoot())</span><span class="s0">;</span>
+<a name="l154"><span class="ln">154  </span></a>            <span class="s0">this</span><span class="s1">.binder = binder</span><span class="s0">;</span>
+<a name="l155"><span class="ln">155  </span></a>        <span class="s1">}</span>
+<a name="l156"><span class="ln">156  </span></a>
+<a name="l157"><span class="ln">157  </span></a>    <span class="s1">}</span>
+<a name="l158"><span class="ln">158  </span></a><span class="s1">}</span>
+<a name="l159"><span class="ln">159  </span></a></pre>
+</body>
+</html>

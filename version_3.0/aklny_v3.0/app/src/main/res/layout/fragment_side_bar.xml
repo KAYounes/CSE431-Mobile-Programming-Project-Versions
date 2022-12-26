@@ -9,7 +9,7 @@
     android:focusable="true"
     android:paddingHorizontal="8dp"
     android:paddingVertical="@dimen/statusBar_escape_margin"
-    tools:context=".ui.s5_home_screen.FragmentSideBar">
+    tools:context=".ui.s5_home_screen.Fragment_SideBar">
 
     <ImageView
         android:id="@+id/btn_close_sidebar"

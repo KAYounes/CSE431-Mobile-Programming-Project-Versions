@@ -37,7 +37,10 @@
             android:id="@+id/card_body"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:padding="8dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:paddingRight="8dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/item_thumbnail"
             app:layout_constraintRight_toRightOf="parent"
@@ -54,34 +57,38 @@
             <TextView
                 android:id="@+id/item_description"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Beef, Chicken, Sandwiches,  Burgers, Fresh, Grilled, Fried, Crunchy, Crepe, Waffles"
-                android:textColor="#FBAB57"
+                android:textColor="@color/_off_black_base"
                 android:textSize="8sp"
-                app:layout_constraintBottom_toTopOf="@id/btn_decrement_count"
+                android:minLines="3"
+                android:maxLines="3"
+
                 app:layout_constraintTop_toBottomOf="@id/item_name"/>
 
             <ImageView
                 android:id="@+id/btn_decrement_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
                 android:src="@drawable/icon_minus_24dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:paddingRight="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"/>
 
             <TextView
+
                 android:id="@+id/item_counter"
-                android:layout_width="48dp"
-                android:layout_height="24dp"
-                android:layout_marginLeft="@dimen/word_spacing"
+                android:layout_width="24sp"
+                android:maxLines="1"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
                 android:gravity="center"
-                android:paddingHorizontal="12dp"
                 android:text="20"
                 android:textColor="@color/_off_black_base"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@id/btn_decrement_count"
                 app:layout_constraintLeft_toRightOf="@id/btn_decrement_count"
                 app:layout_constraintRight_toLeftOf="@id/btn_increment_count"
@@ -91,9 +98,10 @@
                 android:id="@+id/btn_increment_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/word_spacing"
-                android:padding="8dp"
                 android:src="@drawable/icon_add_24dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:paddingLeft="12dp"
                 app:layout_constraintBottom_toBottomOf="@id/btn_decrement_count"
                 app:layout_constraintLeft_toRightOf="@id/item_counter"
                 app:layout_constraintTop_toTopOf="@id/btn_decrement_count"/>
@@ -101,16 +109,14 @@
             <TextView
                 android:id="@+id/btn_remove_item"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginLeft="@dimen/word_spacing"
-                android:background="@drawable/bg_cart_count"
-                android:backgroundTint="@color/_secondary_base"
                 android:fontFamily="@font/poppins_semibold"
                 android:gravity="center"
-                android:paddingVertical="4dp"
                 android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
                 android:text="Remove"
-                android:textColor="@color/_off_black_base"
+                android:textColor="@color/_secondary_base"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="@id/btn_decrement_count"
                 app:layout_constraintRight_toRightOf="parent"
@@ -123,49 +129,67 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FEC674"
-        android:paddingVertical="8dp"
-        android:paddingHorizontal="12dp">
+        android:background="@color/_primary_base"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="8dp">
         <TextView
             android:id="@+id/item_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
             android:text="1"
+            android:visibility="invisible"
             android:textColor="@color/_off_black_base"
             android:textSize="10sp"
-            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="@dimen/word_spacing"
+            app:layout_constraintLeft_toRightOf="@id/text_multiplication"
             app:layout_constraintTop_toTopOf="parent"/>
         <TextView
-            android:id="@+id/text_X_egp"
+            android:visibility="invisible"
+            android:id="@+id/text_egp_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/word_spacing"
             android:fontFamily="@font/poppins_medium"
-            android:text="X EGP"
+            android:text="EGP"
+            android:textColor="@color/_off_black_base"
+            android:textSize="8sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/item_price"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/item_price"
+            app:layout_constraintTop_toTopOf="@id/item_price"
+            app:layout_constraintBottom_toBottomOf="@id/item_price"/>
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/text_multiplication"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/word_spacing"
+            android:fontFamily="@font/poppins_medium"
+            android:text="x"
             android:textColor="@color/_off_black_base"
             android:textSize="10sp"
-            app:layout_constraintLeft_toRightOf="@id/item_count"
-            app:layout_constraintRight_toLeftOf="@id/item_price"
-            app:layout_constraintTop_toTopOf="@id/item_count"/>
+            app:layout_constraintLeft_toRightOf="@id/item_price"
+            app:layout_constraintTop_toTopOf="@id/item_price"/>
         <TextView
+            android:visibility="invisible"
             android:id="@+id/item_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/word_spacing"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/poppins_semibold"
             android:text="15.00"
             android:textColor="@color/_off_black_base"
             android:textSize="10sp"
-            app:layout_constraintLeft_toRightOf="@id/text_X_egp"
-            app:layout_constraintTop_toTopOf="@id/item_count"/>
+            app:layout_constraintLeft_toRightOf="@id/text_egp_left"
+            app:layout_constraintTop_toTopOf="@id/item_price"/>
         <TextView
             android:id="@+id/text_equal_egp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/word_spacing"
             android:fontFamily="@font/poppins_semibold"
-            android:text="= EGP"
+            android:text="EGP"
             android:textColor="@color/_off_black_base"
             android:textSize="10sp"
             app:layout_constraintRight_toLeftOf="@id/item_subtotal"
@@ -179,7 +203,7 @@
             android:textColor="@color/_off_black_base"
             android:textSize="10sp"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/item_count"/>
+            app:layout_constraintTop_toTopOf="@id/item_price"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 

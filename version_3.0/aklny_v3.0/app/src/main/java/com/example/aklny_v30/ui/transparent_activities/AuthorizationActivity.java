@@ -12,9 +12,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.aklny_v30.R;
+import com.example.aklny_v30.repos.UsersRepo;
 import com.example.aklny_v30.repos.firebase.FbUserRepo;
 import com.example.aklny_v30.models.user_model.UserModel;
-import com.example.aklny_v30.repos.UsersRepos;
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.identity.BeginSignInResult;
 import com.google.android.gms.auth.api.identity.Identity;
@@ -40,7 +40,7 @@ public class AuthorizationActivity extends AppCompatActivity {
     private BeginSignInRequest signUpRequest;
     private FirebaseAuth mAuth;
     private FbUserRepo fbUserRepo;
-    private UsersRepos usersRepos;
+    private UsersRepo usersRepo;
     static public final int AUTHENTICATION_REQUEST_CODE = 1000;  // Can be any integer unique to the Activity.
 
     int action;
@@ -68,7 +68,7 @@ public class AuthorizationActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         oneTapClient = Identity.getSignInClient(this);
         fbUserRepo = new FbUserRepo();
-        usersRepos = new UsersRepos(getApplication());
+        usersRepo = new UsersRepo(getApplication());
 
 
         Intent authorizationIntent = getIntent();
@@ -184,7 +184,6 @@ public class AuthorizationActivity extends AppCompatActivity {
                         {
                             // Sign in success
                             Log.d(TAG, "signInWithCredential:success");
-
                             checkUserIsInFirebaseDatabase();
 
                         } else
@@ -292,7 +291,7 @@ public class AuthorizationActivity extends AppCompatActivity {
                                             Log.d(TAG, "addUserToFirebaseDatabase: complete");
                                             addUserToRoomDatabase(newUser);
 
-                                            usersRepos.getUser(mAuth.getUid()).observe(AuthorizationActivity.this, new Observer<UserModel>() {
+                                            usersRepo.getUser(mAuth.getUid()).observe(AuthorizationActivity.this, new Observer<UserModel>() {
                                                 @Override
                                                 public void onChanged(UserModel userModel) {
                                                     try
@@ -339,6 +338,7 @@ public class AuthorizationActivity extends AppCompatActivity {
                         Log.d(TAG, "checkUserIsInFirebaseDatabase > User Found > " + task.getResult().getValue());
                         if(action == SIGN_UP_WITH_GOOGLE)
                         {
+                            mAuth.getCurrentUser().delete();
                             returnResult(RESULT_KEY, AUTHENTICATION_FAILED);
                         }
                         else if (action == SIGN_IN_WITH_GOOGLE)
@@ -359,6 +359,7 @@ public class AuthorizationActivity extends AppCompatActivity {
                         }
                         else if (action == SIGN_IN_WITH_GOOGLE)
                         {
+                            mAuth.getCurrentUser().delete();
                             returnResult(RESULT_KEY, AUTHENTICATION_FAILED);
                         }
                     }
@@ -381,7 +382,7 @@ public class AuthorizationActivity extends AppCompatActivity {
                         Log.d(TAG, "addUserToFirebaseDatabase: complete");
                         addUserToRoomDatabase(newUser);
 
-                        usersRepos.getUser(mAuth.getUid())
+                        usersRepo.getUser(mAuth.getUid())
                                 .observe(AuthorizationActivity.this, new Observer<UserModel>() {
                             @Override
                             public void onChanged(UserModel userModel) {
@@ -414,7 +415,7 @@ public class AuthorizationActivity extends AppCompatActivity {
 
     private void addUserToRoomDatabase(UserModel newUser)
     {
-        usersRepos.addUser(newUser);
+        usersRepo.addUser(newUser);
     }
 
 

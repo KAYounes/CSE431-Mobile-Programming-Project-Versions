@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.aklny_v30.ui.transparent_activities.AuthorizationActivity;
 import com.example.aklny_v30.databinding.ActivityLoginScreenBinding;
-import com.example.aklny_v30.ui.s5_home_screen.HomeScreenActivity;
+import com.example.aklny_v30.ui.s5_home_screen.Activity_HomeScreen;
 
 public class LoginScreenActivity extends AppCompatActivity {
     ActivityLoginScreenBinding binder;
@@ -53,7 +53,11 @@ public class LoginScreenActivity extends AppCompatActivity {
             String result = data.getStringExtra(AuthorizationActivity.RESULT_KEY);
             if(result.equals(AuthorizationActivity.AUTHENTICATION_SUCCESS)){
                 Toast.makeText(LoginScreenActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(LoginScreenActivity.this, HomeScreenActivity.class));
+                startActivity(new Intent(LoginScreenActivity.this, Activity_HomeScreen.class));
+
+                Intent broadcastIntent = new Intent();
+                broadcastIntent.setAction("com.package.ACTION_LOGOUT");
+                sendBroadcast(broadcastIntent);
                 LoginScreenActivity.this.finish();
             }
 

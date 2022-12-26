@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF3E2"
-    tools:context=".ui.s7_cart_screen.CartScreenActivity">
+    tools:context=".ui.s7_cart_screen.Activity_CartScreen">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cart_items"

@@ -2,8 +2,265 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.s8_order_confirmation_screen.OrderConfirmationScreenActivity">
+    android:background="#FFF3E2"
+    android:paddingTop="@dimen/statusBar_escape_margin"
+    tools:context=".ui.s8_order_confirmation_screen.Activity_PlaceOrderScreen">
+
+    <TextView
+        android:id="@+id/text_checkout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_extrabold"
+        android:gravity="center"
+        android:text="CHECKOUT"
+        android:textColor="@color/_off_black_base"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_oneStepAway"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
+        android:text="One Step Away from Delicious Food"
+        android:textColor="@color/_off_black_base"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@+id/text_checkout"
+        tools:layout_editor_absoluteX="16dp" />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/icon_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+
+        app:cardBackgroundColor="#FEC674"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="3dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toTopOf="@id/card_deliveryTime"
+        app:layout_constraintTop_toBottomOf="@+id/text_oneStepAway"
+        tools:layout_editor_absoluteX="16dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_group_delivery" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_deliveryTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="3dp"
+        app:layout_constraintBottom_toTopOf="@id/card_gateRadioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/icon_group"
+        tools:layout_editor_absoluteX="16dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/_primary_base"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="16dp"
+                android:text="Your food will arrive on"
+                android:textColor="@color/_off_black_base"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/value_deliveryTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/_secondary_base"
+                android:fontFamily="@font/poppins_extrabold"
+                android:gravity="center"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="4dp"
+                android:text="12:00"
+                android:textColor="@color/_off_black_base"
+                android:textSize="12sp" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_gateRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:cardBackgroundColor="#FFECD1"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="3dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toTopOf="@+id/materialCardView4"
+        app:layout_constraintTop_toBottomOf="@+id/card_deliveryTime"
+        tools:layout_editor_absoluteX="16dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center"
+                android:text="Choose Your Preferred Gate"
+                android:textColor="@color/_off_black_base"
+                android:textSize="12sp" />
+
+            <RadioGroup
+                android:id="@+id/gateRadioGroup"
+                android:layout_width="match_parent"
+                android:clickable="true"
+                android:focusable="true"
+                android:addStatesFromChildren="true"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/gate3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/selector_radio_buttons"
+                    android:button="@null"
+                    android:checked="false"
+                    android:clickable="true"
+                    android:contentDescription="Content Description"
+                    android:focusable="true"
+                    android:fontFamily="@font/poppins_bold"
+                    android:hapticFeedbackEnabled="true"
+                    android:paddingHorizontal="8dp"
+                    android:text="Gate 3"
+                    android:textColor="@drawable/selector_radio_button_text"
+                    android:textSize="12sp" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/gate4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_radio_buttons"
+                    android:button="@null"
+                    android:checked="false"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/poppins_bold"
+                    android:paddingHorizontal="8dp"
+                    android:text="Gate 4"
+                    android:textColor="@drawable/selector_radio_button_text"
+                    android:textSize="12sp" />
+            </RadioGroup>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="24dp"
+        app:cardBackgroundColor="#FFECD1"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="3dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        tools:layout_editor_absoluteX="16dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center_vertical"
+                android:paddingLeft="12dp"
+                android:text="Amount Due"
+                android:textColor="@color/_off_black_base"
+                android:textSize="10sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#FEC674"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center_vertical"
+                android:paddingVertical="4dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="@dimen/word_spacing"
+                android:text="egp"
+                android:textColor="@color/_off_black_base"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/value_totalAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#FEC674"
+                android:fontFamily="@font/poppins_bold"
+                android:paddingVertical="12dp"
+                android:paddingRight="12dp"
+                android:text="125.45"
+                android:textColor="@color/_off_black_base"
+                android:textSize="12sp" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFECD1"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="16dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="16dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/selector_btn_go_back"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingHorizontal="12dp"
+            android:src="@drawable/icon_left_arrow" />
+        <TextView
+            android:id="@+id/btn_placeOrder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_btn_confirm_order"
+            android:clickable="true"
+            android:drawableRight="@drawable/icon_right_arrow"
+            android:enabled="false"
+            android:focusable="true"
+            android:fontFamily="@font/poppins_bold"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:text="CONFIRM"
+            android:textColor="@color/_off_black_base"
+            android:textSize="16sp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="8dp">
+    android:layout_marginVertical="4dp">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/restaurant_thumbnail"
@@ -21,43 +21,47 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="106dp"
+        android:layout_height="wrap_content"
+
         app:layout_constraintTop_toBottomOf="@id/restaurant_thumbnail">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/restaurant_logo"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginVertical="6dp"
             android:adjustViewBounds="true"
             android:elevation="3dp"
-            android:padding="8dp"
             android:scaleType="centerCrop"
             android:src="@drawable/logo_3"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/card_body"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/card_body"
             app:shapeAppearanceOverlay="@style/imageRoundCorners" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/card_body"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
             app:cardBackgroundColor="#FFECD1"
             app:cardCornerRadius="5dp"
             app:cardElevation="3dp"
-            app:cardUseCompatPadding="false"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/restaurant_logo"
-            app:layout_constraintRight_toRightOf="parent">
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/card_body"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:padding="8dp">
                 <TextView
                     android:id="@+id/restaurant_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
                     android:fontFamily="@font/poppins_extrabold"
                     android:text="Texas Buffalo Burger"
                     android:textColor="@color/_off_black_base"
@@ -66,21 +70,29 @@
                 <TextView
                     android:id="@+id/restaurant_description"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
                     android:fontFamily="@font/poppins_medium"
+                    android:maxLines="2"
+                    android:minLines="2"
                     android:text="Beef, Chicken, Sandwiches,  Burgers, Fresh, Grilled, Fried, Crunchy, Crepe, Waffles"
-                    android:textColor="#FBAB57"
+                    android:textColor="@color/_off_black_base"
                     android:textSize="8sp"
                     app:layout_constraintBottom_toTopOf="@id/restaurant_delivery_fee"
                     app:layout_constraintTop_toBottomOf="@id/restaurant_name"/>
+
                 <ImageView
                     android:id="@+id/image_rating_icon"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
                     android:src="@drawable/icon_star_8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="5dp"
+                    app:layout_constraintBottom_toBottomOf="@id/restaurant_rating"
                     app:layout_constraintLeft_toLeftOf="@id/restaurant_description"
-                    app:layout_constraintTop_toTopOf="@id/restaurant_rating"/>
+                    app:layout_constraintTop_toTopOf="@id/restaurant_rating" />
+
                 <TextView
                     android:id="@+id/restaurant_rating"
                     android:layout_width="wrap_content"
@@ -89,42 +101,51 @@
                     android:fontFamily="@font/poppins_bold"
                     android:text="4.5"
                     android:textColor="@color/_off_black_base"
-                    android:textSize="8sp"
-
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/image_rating_icon"/>
+                    android:textSize="10sp"
+                    app:layout_constraintBaseline_toBaselineOf="@id/restaurant_delivery_fee"
+                    app:layout_constraintBaseline_toBottomOf="@id/image_rating_icon"
+                    app:layout_constraintBottom_toBottomOf="@id/restaurant_delivery_fee"
+                    app:layout_constraintLeft_toRightOf="@id/image_rating_icon"
+                    app:layout_constraintTop_toTopOf="@id/restaurant_delivery_fee" />
                 <TextView
                     android:id="@+id/text_delivery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/word_spacing"
-                    android:fontFamily="@font/poppins_bold"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Delivery:"
                     android:textColor="@color/_off_black_base"
                     android:textSize="8sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintRight_toLeftOf="@id/text_egp"/>
+                    app:layout_constraintBaseline_toBaselineOf="@id/restaurant_delivery_fee"
+                    app:layout_constraintBottom_toBottomOf="@id/restaurant_delivery_fee"
+                    app:layout_constraintRight_toLeftOf="@id/text_egp"
+                    app:layout_constraintTop_toTopOf="@id/restaurant_delivery_fee"/>
                 <TextView
                     android:id="@+id/text_egp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/word_spacing"
-                    android:fontFamily="@font/poppins_bold"
+                    android:fontFamily="@font/poppins_semibold"
                     android:text="EGP"
                     android:textColor="@color/_off_black_base"
                     android:textSize="8sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintRight_toLeftOf="@id/restaurant_delivery_fee"/>
+                    app:layout_constraintBaseline_toBaselineOf="@id/restaurant_delivery_fee"
+                    app:layout_constraintBottom_toBottomOf="@id/restaurant_delivery_fee"
+                    app:layout_constraintRight_toLeftOf="@id/restaurant_delivery_fee"
+                    app:layout_constraintTop_toTopOf="@id/restaurant_delivery_fee"/>
+
                 <TextView
                     android:id="@+id/restaurant_delivery_fee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="15.00"
                     android:textColor="@color/_off_black_base"
-                    android:textSize="8sp"
+                    android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"/>
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/restaurant_description" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

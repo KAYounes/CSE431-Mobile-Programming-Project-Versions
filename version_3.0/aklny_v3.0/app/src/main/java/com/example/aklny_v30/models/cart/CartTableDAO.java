@@ -17,7 +17,7 @@ public interface CartTableDAO {
     LiveData<List<CartItemModel>> getCart();
 
     @Query("DELETE FROM cart")
-    void deleteCart();
+    void emptyTheCart();
 
     @Query("SELECT * FROM cart WHERE `key`=:key")
     CartItemModel getCartItem(String key);

@@ -15,7 +15,7 @@
         android:theme="@style/Theme.AKLNY_V30"
         tools:targetApi="31">
         <activity
-            android:name=".OrderConfirmationScreenActivity"
+            android:name=".ui.s8_order_confirmation_screen.Activity_PlaceOrderScreen"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -29,14 +29,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.s7_cart_screen.CartScreenActivity"
+            android:name=".ui.s7_cart_screen.Activity_CartScreen"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.s6_restaurant_screen.MenuItemScreenActivity"
+            android:name=".ui.s6_restaurant_screen.Activity_MenuItemScreen"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -55,18 +55,17 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity> <!-- UI Activities -->
+        </activity>
+
+<!-- UI Activities -->
         <!-- Splash Screen Activity -->
         <activity
             android:name=".ui.s1_splash_screen.SplashScreenActivity"
             android:exported="true">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
 
             <meta-data
                 android:name="android.app.lib_name"
@@ -94,20 +93,19 @@
                 android:value="" />
         </activity> <!-- Home Screen Activity -->
         <activity
-            android:name=".ui.s5_home_screen.HomeScreenActivity"
+            android:name=".ui.s5_home_screen.Activity_HomeScreen"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--<intent-filter>-->
+            <!--    <action android:name="android.intent.action.MAIN" />-->
+            <!--    <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
 
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity> <!-- Restaurant Screen Activity -->
         <activity
-            android:name=".ui.s6_restaurant_screen.RestaurantScreenActivity"
+            android:name=".ui.s6_restaurant_screen.Activity_RestaurantScreen"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

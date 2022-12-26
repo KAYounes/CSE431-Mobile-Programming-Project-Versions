@@ -12,15 +12,15 @@ public class MyViewModel extends AndroidViewModel {
         super(application);
     }
 
-    private repo repo;
+    private ApiRepo ApiRepo;
     private LiveData<ResponsesModel> response;
     public void init(){
-        repo = new repo();
-        response = repo.getMyResponse();
+        ApiRepo = new ApiRepo();
+        response = ApiRepo.getMyResponse();
     }
 
     public void getTimeZone(){
-        repo.getTimeZone();
+        ApiRepo.getTimeZone();
     }
 
     public LiveData<ResponsesModel> getTimeZoneResponse(){

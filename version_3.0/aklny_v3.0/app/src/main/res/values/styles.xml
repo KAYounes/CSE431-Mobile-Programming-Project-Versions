@@ -109,4 +109,14 @@
         <item name="android:textSize">14sp</item>
         <item name="fontFamily">@font/poppins_bold</item>
     </style>
+
+    <style name="scrolBar">
+        <item name="android:scrollbarSize">10dp</item>
+        <item name="android:smoothScrollbar">true</item>
+        <item name="android:scrollbarAlwaysDrawVerticalTrack">true</item>
+        <item name="android:scrollbarStyle">insideOverlay</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:fadeScrollbars">true</item>
+        <item name="android:scrollbarThumbVertical">@drawable/scrollbar_custom</item>
+    </style>
 </resources>

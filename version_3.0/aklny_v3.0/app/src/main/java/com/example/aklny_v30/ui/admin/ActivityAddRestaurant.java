@@ -16,7 +16,7 @@ import com.example.aklny_v30.databinding.ActivityAddRestaurantBinding;
 import com.example.aklny_v30.repos.firebase.FbMenuRepo;
 import com.example.aklny_v30.repos.RestaurantRepo;
 import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
-import com.example.aklny_v30.ui.s5_home_screen.HomeScreenActivity;
+import com.example.aklny_v30.ui.s5_home_screen.Activity_HomeScreen;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
@@ -176,6 +176,6 @@ public class ActivityAddRestaurant extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        startActivity(new Intent(ActivityAddRestaurant.this, HomeScreenActivity.class));
+        startActivity(new Intent(ActivityAddRestaurant.this, Activity_HomeScreen.class));
     }
 }

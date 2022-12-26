@@ -26,7 +26,7 @@ public class CartRepo {
     public LiveData<List<CartItemModel>> getCart(){
         return cart;
     }
-    public void deleteCart(){
+    public void emptyTheCart(){
         new deleteAsyncTask(dao).execute();
     }
     public void addItem(CartItemModel cartItem){
@@ -38,6 +38,11 @@ public class CartRepo {
     }
     public void updateItem(CartItemModel item){
         new updateAsyncTask(dao).execute(item);
+    }
+    public CartItemModel getCartItem(String key){
+
+//        new getAsyncTask(dao).execute(key);
+        return dao.getCartItem(key);
     }
 
     private class insertAsyncTask extends AsyncTask<CartItemModel, Void, CartItemModel>
@@ -75,6 +80,39 @@ public class CartRepo {
 //            user.setValue(newUser);
 //        }
     }
+
+//    private class getAsyncTask extends AsyncTask<String, Void,CartItemModel>
+//    {
+//        private CartTableDAO asyncTaskDAO;
+//
+//        getAsyncTask(CartTableDAO doa)
+//        {
+//            asyncTaskDAO = doa;
+//        }
+//
+//        @Override
+//        protected CartItemModel doInBackground(final String... keys)
+//        {
+//
+//            try
+//            {
+//                asyncTaskDAO.getCartItem(keys[0]);
+//            }
+//            catch (Exception e)
+//            {
+//                Log.e("PRINT", "CartRepo > getAsyncTask > " + e.getMessage());
+//            }
+//
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(CartItemModel newUser) {
+//            super.onPostExecute(newUser);
+//            Log.d("PRINT", "User >> " + newUser.toString());
+//            user.setValue(newUser);
+//        }
+//    }
 
     private static class updateAsyncTask extends AsyncTask<CartItemModel, Void, Void>
     {
@@ -117,7 +155,7 @@ public class CartRepo {
 
             try
             {
-                asyncTaskDAO.deleteCart();
+                asyncTaskDAO.emptyTheCart();
             }
             catch (Exception e)
             {

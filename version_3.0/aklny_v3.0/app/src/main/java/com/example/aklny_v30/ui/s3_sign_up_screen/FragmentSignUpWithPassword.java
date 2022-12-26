@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.example.aklny_v30.ui.transparent_activities.AuthorizationActivity;
 import com.example.aklny_v30.databinding.FragmentSignUpWithPasswordBinding;
-import com.example.aklny_v30.ui.s5_home_screen.HomeScreenActivity;
+import com.example.aklny_v30.ui.s5_home_screen.Activity_HomeScreen;
 
 public class FragmentSignUpWithPassword extends Fragment {
     private FragmentSignUpWithPasswordBinding binder;
@@ -55,7 +55,11 @@ public class FragmentSignUpWithPassword extends Fragment {
             String result = data.getStringExtra(AuthorizationActivity.RESULT_KEY);
             if(result.equals(AuthorizationActivity.AUTHENTICATION_SUCCESS)){
                 Toast.makeText(requireActivity(), "Account Created", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(requireActivity(), HomeScreenActivity.class));
+                startActivity(new Intent(requireActivity(), Activity_HomeScreen.class));
+
+                Intent broadcastIntent = new Intent();
+                broadcastIntent.setAction("com.package.ACTION_LOGOUT");
+                requireActivity().sendBroadcast(broadcastIntent);
                 requireActivity().finish();
             }
 

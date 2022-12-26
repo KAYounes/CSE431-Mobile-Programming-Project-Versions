@@ -98,12 +98,6 @@ public class FbMenuRepo {
                         + error.getMessage());}
         });
     }
-
-    public Task<Void> addMenuToFB(String menuTitle)
-    {
-        recentMenuAddedId = menusRef.push().getKey();
-        return menusRef.child(recentMenuAddedId).setValue(menuTitle);
-    }
     public String generateKey()
     {
         return menusRef.push().getKey();

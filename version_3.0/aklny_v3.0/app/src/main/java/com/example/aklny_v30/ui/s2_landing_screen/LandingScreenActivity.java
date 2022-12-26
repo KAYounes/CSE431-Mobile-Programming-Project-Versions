@@ -3,8 +3,10 @@ package com.example.aklny_v30.ui.s2_landing_screen;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -14,7 +16,7 @@ import android.widget.Toast;
 
 import com.example.aklny_v30.databinding.ActivityLandingScreenBinding;
 import com.example.aklny_v30.models.user_model.UserModel;
-import com.example.aklny_v30.repos.UsersRepos;
+import com.example.aklny_v30.repos.UsersRepo;
 import com.example.aklny_v30.ui.s4_sign_in_screen.LoginScreenActivity;
 import com.example.aklny_v30.ui.s3_sign_up_screen.SignUpScreenActivity;
 
@@ -22,6 +24,7 @@ import java.util.List;
 
 public class LandingScreenActivity extends AppCompatActivity {
     private ActivityLandingScreenBinding binder;
+    BroadcastReceiver receiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +33,18 @@ public class LandingScreenActivity extends AppCompatActivity {
         View view = binder.getRoot();
         setContentView(view);
 
-        UsersRepos usersRepos = new UsersRepos(getApplication());
-        usersRepos.getUsers().observe(this, new Observer<List<UserModel>>() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.package.ACTION_LOGOUT");
+        registerReceiver(receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Log.d("onReceive","Logout in progress");
+                finish();
+            }
+        }, intentFilter);
+
+        UsersRepo usersRepo = new UsersRepo(getApplication());
+        usersRepo.getUsers().observe(this, new Observer<List<UserModel>>() {
             @Override
             public void onChanged(List<UserModel> userModels) {
                 Log.d("USERS", "\nUpdate ----------------------\n");
@@ -72,6 +85,12 @@ public class LandingScreenActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(receiver);
     }
 
     private boolean isNetworkAvailable(){

@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +16,6 @@ import com.example.aklny_v30.R;
 import com.example.aklny_v30.databinding.ActivityAddMenuBinding;
 import com.example.aklny_v30.repos.firebase.FbMenuRepo;
 import com.example.aklny_v30.repos.RestaurantRepo;
-import com.example.aklny_v30.ui.s5_home_screen.HomeScreenActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
@@ -94,6 +92,10 @@ public class ActivityAddMenu extends AppCompatActivity {
             public void onClick(View view)
             {
                 menuTitle = binder.menuTitle.getText().toString();
+                Log.i("PRINT", "generatedMenuKey" + generatedMenuKey + " " + (generatedMenuKey == null));
+                if(generatedMenuKey == null){
+                    generatedMenuKey = binder.menuKey.getText().toString();
+                }
 
                 if(validateMenu())
                 {
@@ -136,12 +138,24 @@ public class ActivityAddMenu extends AppCompatActivity {
     }
 
     private boolean validateMenu(){
+        if(generatedMenuKey.isEmpty()){
+            displayValidationMessage("Menu key empty, please check again.");
+            return false;
+        }
+
+        Log.i("PRINT", "length " + generatedMenuKey.length() + " " +  "-NJwKs10ABmOCm9E51oW".length());
+        if(generatedMenuKey.length() != "-NJwKs10ABmOCm9E51oW".length()){
+            displayValidationMessage("Menu key error, please check again.");
+            return false;
+        }
+
         if(!menuTitle.matches(Constants.PATTERN_MENU_TITLE)) {
             displayValidationMessage("Menu name error, please check again.");
             return false;
         }
 
         if(listOfMenuItems.size() == 0){
+            displayValidationMessage("No items were added, please check again.");
             return false;
         }
 
@@ -177,7 +191,7 @@ public class ActivityAddMenu extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-//        startActivity(new Intent(ActivityAddMenu.this, HomeScreenActivity.class));
+//        startActivity(new Intent(ActivityAddMenu.this, Activity_HomeScreen.class));
         finish();
     }
 }

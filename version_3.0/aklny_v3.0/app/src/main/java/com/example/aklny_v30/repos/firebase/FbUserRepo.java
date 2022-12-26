@@ -16,10 +16,10 @@ public class FbUserRepo {
         return usersRef.child(uid).get();
     }
 
-    public Task<DataSnapshot> userExists(String uid)
-    {
-        return usersRef.child(uid).get();
-    }
+//    public Task<DataSnapshot> userExists(String uid)
+//    {
+//        return usersRef.child(uid).get();
+//    }
 
     public Task<Void> addUser(UserModel newUser) {
         return usersRef.child(newUser.getAuth_uid()).setValue(newUser);

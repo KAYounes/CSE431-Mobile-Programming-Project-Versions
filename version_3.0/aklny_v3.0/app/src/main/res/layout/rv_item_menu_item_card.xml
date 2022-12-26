@@ -3,8 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="106dp"
+    android:layout_height="wrap_content"
     app:cardBackgroundColor="#FFECD1"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="3dp"
     app:cardUseCompatPadding="true">
 
     <!--<androidx.cardview.widget.CardView-->
@@ -20,47 +22,55 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/item_thumbnail"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:adjustViewBounds="true"
         android:elevation="3dp"
         android:padding="12dp"
         android:scaleType="centerCrop"
         android:src="@drawable/icon_logo_placeholder_100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/card_body"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/card_body"
         app:shapeAppearanceOverlay="@style/imageRoundCorners" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/card_body"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/item_thumbnail"
             app:layout_constraintRight_toRightOf="parent">
             <TextView
                 android:id="@+id/item_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_extrabold"
+                android:fontFamily="@font/poppins_bold"
                 android:text="Texas Buffalo Burger"
+                android:maxLines="1"
+                android:minLines="1"
                 android:textColor="@color/_off_black_base"
                 android:textSize="12sp"
+                android:ellipsize="end"
                 app:layout_constraintTop_toTopOf="parent"/>
             <TextView
                 android:id="@+id/item_description"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
+                android:ellipsize="end"
                 android:text="Beef, Chicken, Sandwiches,  Burgers, Fresh, Grilled, Fried, Crunchy, Crepe, Waffles"
-                android:textColor="#FBAB57"
-                android:textSize="8sp"
+                android:textColor="@color/_off_black_base"
+                android:textSize="10sp"
+                android:maxLines="3"
+                android:minLines="3"
                 app:layout_constraintBottom_toTopOf="@id/item_price"
                 app:layout_constraintTop_toBottomOf="@id/item_name"/>
             <TextView
@@ -68,11 +78,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/word_spacing"
-                android:fontFamily="@font/poppins_bold"
+                android:fontFamily="@font/poppins_medium"
                 android:text="EGP"
                 android:textColor="@color/_off_black_base"
-                android:textSize="8sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="10sp"
+                app:layout_constraintBaseline_toBaselineOf="@id/item_price"
+                app:layout_constraintTop_toTopOf="@id/item_price"
+                app:layout_constraintBottom_toBottomOf="@id/item_price"
                 app:layout_constraintRight_toLeftOf="@id/item_price"/>
             <TextView
                 android:id="@+id/item_price"
@@ -81,7 +93,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="150.00"
                 android:textColor="@color/_off_black_base"
-                android:textSize="8sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>

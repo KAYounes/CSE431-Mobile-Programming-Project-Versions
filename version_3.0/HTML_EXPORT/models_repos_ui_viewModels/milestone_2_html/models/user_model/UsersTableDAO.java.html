@@ -1,0 +1,98 @@
+<html>
+<head>
+<title>UsersTableDAO.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #808080;}
+.ln { color: #606366; font-weight: normal; font-style: normal; }
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+UsersTableDAO.java</font>
+</center></td></tr></table>
+<pre><a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">com.example.aklny_v30.models.user_model</span><span class="s0">;</span>
+<a name="l2"><span class="ln">2    </span></a>
+<a name="l3"><span class="ln">3    </span></a><span class="s0">import </span><span class="s1">androidx.lifecycle.LiveData</span><span class="s0">;</span>
+<a name="l4"><span class="ln">4    </span></a><span class="s0">import </span><span class="s1">androidx.room.Dao</span><span class="s0">;</span>
+<a name="l5"><span class="ln">5    </span></a><span class="s0">import </span><span class="s1">androidx.room.Insert</span><span class="s0">;</span>
+<a name="l6"><span class="ln">6    </span></a><span class="s0">import </span><span class="s1">androidx.room.Query</span><span class="s0">;</span>
+<a name="l7"><span class="ln">7    </span></a><span class="s0">import </span><span class="s1">androidx.room.Update</span><span class="s0">;</span>
+<a name="l8"><span class="ln">8    </span></a>
+<a name="l9"><span class="ln">9    </span></a><span class="s0">import </span><span class="s1">java.util.List</span><span class="s0">;</span>
+<a name="l10"><span class="ln">10   </span></a>
+<a name="l11"><span class="ln">11   </span></a><span class="s1">@Dao</span>
+<a name="l12"><span class="ln">12   </span></a><span class="s0">public interface </span><span class="s1">UsersTableDAO {</span>
+<a name="l13"><span class="ln">13   </span></a>
+<a name="l14"><span class="ln">14   </span></a>    <span class="s1">@Query(</span><span class="s2">&quot;SELECT * FROM users WHERE uid=:uid&quot;</span><span class="s1">)</span>
+<a name="l15"><span class="ln">15   </span></a>    <span class="s1">LiveData&lt;UserModel&gt; getUser(String uid)</span><span class="s0">;</span>
+<a name="l16"><span class="ln">16   </span></a>
+<a name="l17"><span class="ln">17   </span></a>    <span class="s1">@Query(</span><span class="s2">&quot;SELECT * FROM users&quot;</span><span class="s1">)</span>
+<a name="l18"><span class="ln">18   </span></a>    <span class="s1">LiveData&lt;List&lt;UserModel&gt;&gt; getAllUsers()</span><span class="s0">;</span>
+<a name="l19"><span class="ln">19   </span></a>
+<a name="l20"><span class="ln">20   </span></a>    <span class="s1">@Query(</span><span class="s2">&quot;DELETE FROM users WHERE(uid=:uid)&quot;</span><span class="s1">)</span>
+<a name="l21"><span class="ln">21   </span></a>    <span class="s0">void </span><span class="s1">deleteUser(String uid)</span><span class="s0">;</span>
+<a name="l22"><span class="ln">22   </span></a>
+<a name="l23"><span class="ln">23   </span></a>    <span class="s1">@Query(</span><span class="s2">&quot;DELETE FROM users&quot;</span><span class="s1">)</span>
+<a name="l24"><span class="ln">24   </span></a>    <span class="s0">void </span><span class="s1">deleteAll()</span><span class="s0">;</span>
+<a name="l25"><span class="ln">25   </span></a>
+<a name="l26"><span class="ln">26   </span></a>    <span class="s1">@Insert</span>
+<a name="l27"><span class="ln">27   </span></a>    <span class="s0">void </span><span class="s1">addUser(<a href="UserModel.java.html">UserModel</a> user)</span><span class="s0">;</span>
+<a name="l28"><span class="ln">28   </span></a>
+<a name="l29"><span class="ln">29   </span></a>    <span class="s1">@Update</span>
+<a name="l30"><span class="ln">30   </span></a>    <span class="s0">void </span><span class="s1">updateUser(<a href="UserModel.java.html">UserModel</a> user)</span><span class="s0">;</span>
+<a name="l31"><span class="ln">31   </span></a>
+<a name="l32"><span class="ln">32   </span></a><span class="s3">//// Read</span>
+<a name="l33"><span class="ln">33   </span></a><span class="s3">//    @Query(&quot;SELECT uid FROM users WHERE uid=:uid&quot;)</span>
+<a name="l34"><span class="ln">34   </span></a><span class="s3">//    String getUID(String uid);</span>
+<a name="l35"><span class="ln">35   </span></a><span class="s3">//</span>
+<a name="l36"><span class="ln">36   </span></a><span class="s3">//    @Query(&quot;SELECT first_name FROM users&quot;)</span>
+<a name="l37"><span class="ln">37   </span></a><span class="s3">//    String getFirstName(String uid);</span>
+<a name="l38"><span class="ln">38   </span></a><span class="s3">//</span>
+<a name="l39"><span class="ln">39   </span></a><span class="s3">//    @Query(&quot;SELECT last_name FROM users&quot;)</span>
+<a name="l40"><span class="ln">40   </span></a><span class="s3">//    String getLastName(String uid);</span>
+<a name="l41"><span class="ln">41   </span></a><span class="s3">//</span>
+<a name="l42"><span class="ln">42   </span></a><span class="s3">//    @Query(&quot;SELECT phone_number FROM users&quot;)</span>
+<a name="l43"><span class="ln">43   </span></a><span class="s3">//    String getPhoneNumber(String uid);</span>
+<a name="l44"><span class="ln">44   </span></a><span class="s3">//</span>
+<a name="l45"><span class="ln">45   </span></a><span class="s3">//    @Query(&quot;SELECT email_address FROM users&quot;)</span>
+<a name="l46"><span class="ln">46   </span></a><span class="s3">//    String getEmail(String uid);</span>
+<a name="l47"><span class="ln">47   </span></a><span class="s3">//</span>
+<a name="l48"><span class="ln">48   </span></a><span class="s3">//    @Query(&quot;SELECT current_order FROM users&quot;)</span>
+<a name="l49"><span class="ln">49   </span></a><span class="s3">//    String getCurrentOrder(String uid);</span>
+<a name="l50"><span class="ln">50   </span></a><span class="s3">//</span>
+<a name="l51"><span class="ln">51   </span></a><span class="s3">//    @Query(&quot;SELECT photo_url FROM users&quot;)</span>
+<a name="l52"><span class="ln">52   </span></a><span class="s3">//    String getPhotoURL(String uid);</span>
+<a name="l53"><span class="ln">53   </span></a><span class="s3">//</span>
+<a name="l54"><span class="ln">54   </span></a><span class="s3">//</span>
+<a name="l55"><span class="ln">55   </span></a><span class="s3">//// Update</span>
+<a name="l56"><span class="ln">56   </span></a><span class="s3">//    @Query(&quot;UPDATE users SET uid=:auth_uid WHERE uid=:uid&quot;)</span>
+<a name="l57"><span class="ln">57   </span></a><span class="s3">//    void updateUID(String uid, String auth_uid);</span>
+<a name="l58"><span class="ln">58   </span></a><span class="s3">//</span>
+<a name="l59"><span class="ln">59   </span></a><span class="s3">//    @Query(&quot;UPDATE users SET first_name=:firstName WHERE uid=:uid&quot;)</span>
+<a name="l60"><span class="ln">60   </span></a><span class="s3">//    void updateFirstName(String uid, String firstName);</span>
+<a name="l61"><span class="ln">61   </span></a><span class="s3">//</span>
+<a name="l62"><span class="ln">62   </span></a><span class="s3">//    @Query(&quot;UPDATE users SET last_name=:lastName WHERE uid=:uid&quot;)</span>
+<a name="l63"><span class="ln">63   </span></a><span class="s3">//    void updateLastName(String uid, String lastName);</span>
+<a name="l64"><span class="ln">64   </span></a><span class="s3">//</span>
+<a name="l65"><span class="ln">65   </span></a><span class="s3">//    @Query(&quot;UPDATE users SET phone_number=:phoneNumber WHERE uid=:uid&quot;)</span>
+<a name="l66"><span class="ln">66   </span></a><span class="s3">//    void updatePhoneNumber(String uid, String phoneNumber);</span>
+<a name="l67"><span class="ln">67   </span></a><span class="s3">//</span>
+<a name="l68"><span class="ln">68   </span></a><span class="s3">//    @Query(&quot;UPDATE users SET email_address=:email WHERE uid=:uid&quot;)</span>
+<a name="l69"><span class="ln">69   </span></a><span class="s3">//    void updateEmail(String uid, String email);</span>
+<a name="l70"><span class="ln">70   </span></a><span class="s3">//</span>
+<a name="l71"><span class="ln">71   </span></a><span class="s3">//    @Query(&quot;UPDATE users SET current_order=:currentOrder WHERE uid=:uid&quot;)</span>
+<a name="l72"><span class="ln">72   </span></a><span class="s3">//    void updateCurrentOrder(String uid, String currentOrder);</span>
+<a name="l73"><span class="ln">73   </span></a><span class="s3">//</span>
+<a name="l74"><span class="ln">74   </span></a><span class="s3">//    @Query(&quot;UPDATE users SET photo_url=:photoURL WHERE uid=:uid&quot;)</span>
+<a name="l75"><span class="ln">75   </span></a><span class="s3">//    void updatePhotoURL(String uid, String photoURL);</span>
+<a name="l76"><span class="ln">76   </span></a>
+<a name="l77"><span class="ln">77   </span></a><span class="s1">}</span>
+<a name="l78"><span class="ln">78   </span></a></pre>
+</body>
+</html>
