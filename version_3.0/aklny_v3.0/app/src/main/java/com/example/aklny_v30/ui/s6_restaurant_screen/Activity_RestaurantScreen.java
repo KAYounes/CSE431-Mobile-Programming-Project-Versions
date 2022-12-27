@@ -107,7 +107,7 @@ public class Activity_RestaurantScreen extends AppCompatActivity implements Recy
     protected void onDestroy() {
         super.onDestroy();
         viewModel.emptyTheCart();
-        Log.d("PRINT", "onDestroy Restaurant Screen");
+//        Log.d("PRINT", "onDestroy Restaurant Screen");
     }
 
 

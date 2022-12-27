@@ -71,7 +71,7 @@ public class Activity_MenuItemScreen extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                Log.d("PRINT", "binder.btnAddToCart.setOnClickListener > Btn Clicked");
+//                Log.d("PRINT", "binder.btnAddToCart.setOnClickListener > Btn Clicked");
                 viewModel.addItemToCart(menuItem);
             }
         });

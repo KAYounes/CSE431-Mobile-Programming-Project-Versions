@@ -77,6 +77,6 @@ public class VModel_RestaurantScreen extends AndroidViewModel
     @Override
     protected void onCleared() {
         super.onCleared();
-        Log.d("PRINT", "VIEWMODEL CLEARED");
+//        Log.d("PRINT", "VIEWMODEL CLEARED");
     }
 }

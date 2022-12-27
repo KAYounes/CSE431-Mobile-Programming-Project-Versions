@@ -62,7 +62,7 @@ public class UsersRepo
 
             try
             {
-                Log.d("PRINT", "insertAsyncTask > uid > " + params[0].getAuth_uid());
+//                Log.d("PRINT", "insertAsyncTask > uid > " + params[0].getAuth_uid());
                 asyncTaskDAO.addUser(params[0]);
                 return params[0];
             }
@@ -77,7 +77,7 @@ public class UsersRepo
         @Override
         protected void onPostExecute(UserModel newUser) {
             super.onPostExecute(newUser);
-            Log.d("PRINT", "User >> " + newUser.toString());
+//            Log.d("PRINT", "User >> " + newUser.toString());
             user.setValue(newUser);
         }
     }

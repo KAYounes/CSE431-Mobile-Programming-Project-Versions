@@ -36,6 +36,7 @@ public class Activity_PlaceOrderScreen extends AppCompatActivity {
     OrderModel order;
     List<CartItemModel> cart;
     String currentTime;
+    String currentDate;
     String deliveryGate;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
@@ -64,7 +65,8 @@ public class Activity_PlaceOrderScreen extends AppCompatActivity {
         viewModel.getTimeZoneResponse().observe(this, new Observer<ResponsesModel>() {
             @Override
             public void onChanged(ResponsesModel responsesModel) {
-                currentTime = responsesModel.getDateTime();
+                currentTime = responsesModel.getHour() + ":" + responsesModel.getMinute();
+                currentDate = responsesModel.getDay() + "/" + responsesModel.getMonth() + "/" + responsesModel.getYear();
             }
         });
     ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,6 +105,8 @@ public class Activity_PlaceOrderScreen extends AppCompatActivity {
                 order.setTimeOfDelivery("12:00");
                 order.setCart(cart);
                 order.setTimeOfOrder(currentTime);
+                order.setDateOfOrder(currentDate);
+
                 Log.d("PRINT", "Order > " + order.toString());
                 Dialog dialog = new Dialog(Activity_PlaceOrderScreen.this);
                 dialog.setContentView(R.layout.dialog_logging_in);

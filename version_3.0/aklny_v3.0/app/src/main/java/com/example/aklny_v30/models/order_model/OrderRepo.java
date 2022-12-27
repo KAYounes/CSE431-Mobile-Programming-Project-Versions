@@ -25,10 +25,15 @@ public class OrderRepo {
     private FirebaseDatabase databaseInstance = FirebaseDatabase.getInstance(Constants.FIREBASE_BASE_URL);
     private DatabaseReference orderRef = databaseInstance.getReference(Constants.FIREBASE_ORDER_NODE);
     private MutableLiveData<List<OrderModel>> ordersLive = new MutableLiveData<>();
+    private MutableLiveData<OrderModel> orderLive = new MutableLiveData<>();
 
     public LiveData<List<OrderModel>> getOrdersLive()
     {
         return ordersLive;
+    }
+    public LiveData<OrderModel> getOrderLive()
+    {
+        return orderLive;
     }
 
 //    public Task<Void> addOrderModelToFB(String menuKey, OrderModel newMenu){
@@ -48,6 +53,7 @@ public class OrderRepo {
 
 
     public void attachPersistentListener(String userKey){
+        Log.d("PRINT", "userKey > " + userKey);
         orderRef.child(userKey).addValueEventListener(new ValueEventListener()
         {
             @Override
@@ -60,12 +66,52 @@ public class OrderRepo {
                     CartItemModel cartItem;
 
                     for(DataSnapshot data: snapshot.getChildren()){
-                        order = new OrderModel();
-                        cart = new ArrayList<>();
-                        Log.d("PRINT", "data > " + data.toString());
+//                        order = new OrderModel();
+//                        cart = new ArrayList<>();
+//                        Log.d("PRINT", "data > " + data.toString());
+
+                        Log.d("PRINT", "data.getValue(OrderModel.class) > " + data.getValue(OrderModel.class).toString());
+                        fetchedOrders.add(data.getValue(OrderModel.class));
                     }
 
-//                    ordersLive.postValue(fetchedOrders);
+                    ordersLive.postValue(fetchedOrders);
+                }
+                catch (Exception e){
+                    Log.e("PRINT", "OrderRepo > attachPersistentListener > onDataChange > Exception > "
+                            + e.getLocalizedMessage());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+                Log.e("PRINT", "FbMenuRepo > attachPersistentListener > onCancelled > "
+                        + error.getMessage());}
+        });
+    }
+    public void watchOrder(String userKey, String orderKey){
+        Log.d("PRINT", "userKey > " + userKey);
+        orderRef.child(userKey).child(orderKey).addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                try {
+//                    List<OrderModel> fetchedOrders = new ArrayList<>();
+//                    List<CartItemModel> cart;
+//                    OrderModel order;
+//                    CartItemModel cartItem;
+//
+//                    for(DataSnapshot data: snapshot.getChildren()){
+////                        order = new OrderModel();
+////                        cart = new ArrayList<>();
+////                        Log.d("PRINT", "data > " + data.toString());
+//
+//                        Log.d("PRINT", "data.getValue(OrderModel.class) > " + data.getValue(OrderModel.class).toString());
+//                        fetchedOrders.add(data.getValue(OrderModel.class));
+//                    }
+
+                    orderLive.postValue(snapshot.getValue(OrderModel.class));
                 }
                 catch (Exception e){
                     Log.e("PRINT", "OrderRepo > attachPersistentListener > onDataChange > Exception > "

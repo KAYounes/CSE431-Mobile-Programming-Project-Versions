@@ -151,10 +151,10 @@ public class RVAdapter_CartItemsList extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public int getItemViewType(int position) {
-        Log.d("PRINT", "count, " + getItemCount());
+//        Log.d("PRINT", "count, " + getItemCount());
 
         if(getItemCount() == 1){
-            Log.d("PRINT", "EMPTY_CART");
+//            Log.d("PRINT", "EMPTY_CART");
             return EMPTY_CART;
         }
 

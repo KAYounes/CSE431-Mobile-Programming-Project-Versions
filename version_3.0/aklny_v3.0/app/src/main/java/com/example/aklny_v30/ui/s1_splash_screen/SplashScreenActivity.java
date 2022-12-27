@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.aklny_v30.R;
@@ -30,12 +31,21 @@ public class SplashScreenActivity extends AppCompatActivity {
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
         Handler handler = new Handler();
+        try
+        {
+            Log.d("PRINT", "user > " + user.getUid());
+            Log.d("PRINT", "user > " + user.getUid());
+
+        }
+        catch (Exception exception)
+        {
+            Log.d("PRINT", "user > null");
+        }
 
         handler.postDelayed(() -> {
             if(user != null)
             {
                 // User is logged in, start home screen activity.
-                firebaseAuth.signOut();
                 Toast.makeText(this, "You Are Already Logged In", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(SplashScreenActivity.this, Activity_HomeScreen.class));
             }
@@ -43,11 +53,11 @@ public class SplashScreenActivity extends AppCompatActivity {
             {
                 // User is not logged in, start landing screen activity.
                 Toast.makeText(this, "You Are Not Logged In", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(SplashScreenActivity.this, LandingScreenActivity.class));
+                    startActivity(new Intent(SplashScreenActivity.this, LandingScreenActivity.class));
             }
 
             finish();
-        }, 500);
+        }, 2000);
 
 
     }

@@ -48,7 +48,7 @@ public class RestaurantRepo {
                         restaurantKey = data.getKey();
                         restaurant = data.getValue(RestaurantModel.class);
                         restaurant.setKey(restaurantKey);
-                        Log.w("PRINT", "restaurant > " + restaurant.getDeliveryFee());
+//                        Log.w("PRINT", "restaurant > " + restaurant.getDeliveryFee());
                         fetchedRestaurants.add(restaurant);
                     }
 

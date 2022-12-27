@@ -23,7 +23,7 @@ public class TestActivity extends AppCompatActivity {
         binder.btnSignUpWithGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("PRINT", "binder.btnSignUpWithPassword > clicked");
+//                Log.d("PRINT", "binder.btnSignUpWithPassword > clicked");
                 Intent signUpWithPasswordIntent = new Intent(TestActivity.this, AuthorizationActivity.class);
                 signUpWithPasswordIntent.putExtra("ACTION", 10);
                 signUpWithPasswordIntent.putExtra("FIRSTNAME", "John");
@@ -36,7 +36,7 @@ public class TestActivity extends AppCompatActivity {
         binder.btnSignUpWithPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("PRINT", "binder.btnSignUpWithPassword > clicked");
+//                Log.d("PRINT", "binder.btnSignUpWithPassword > clicked");
                 Intent signUpWithPasswordIntent = new Intent(TestActivity.this, AuthorizationActivity.class);
                 signUpWithPasswordIntent.putExtra("ACTION", 20);
                 signUpWithPasswordIntent.putExtra("FIRSTNAME", "John");
@@ -51,7 +51,7 @@ public class TestActivity extends AppCompatActivity {
         binder.btnSignInWithGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("PRINT", "binder.btnSignUpWithPassword > clicked");
+//                Log.d("PRINT", "binder.btnSignUpWithPassword > clicked");
                 Intent signUpWithPasswordIntent = new Intent(TestActivity.this, AuthorizationActivity.class);
                 signUpWithPasswordIntent.putExtra("ACTION", 30);
                 startActivityForResult(signUpWithPasswordIntent, AuthorizationActivity.AUTHENTICATION_REQUEST_CODE);
@@ -61,7 +61,7 @@ public class TestActivity extends AppCompatActivity {
         binder.btnSignInWithPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("PRINT", "binder.btnSignUpWithPassword > clicked");
+//                Log.d("PRINT", "binder.btnSignUpWithPassword > clicked");
                 Intent signUpWithPasswordIntent = new Intent(TestActivity.this, AuthorizationActivity.class);
                 signUpWithPasswordIntent.putExtra("ACTION", 40);
                 signUpWithPasswordIntent.putExtra("EMAIL", binder.inputEmail.getText().toString());
@@ -77,7 +77,7 @@ public class TestActivity extends AppCompatActivity {
 
 
 
-        Log.d("PRINT", "onActivityResult > "
-                + requestCode + " - " + resultCode + " - " + data.getStringExtra("state"));
+//        Log.d("PRINT", "onActivityResult > "
+//                + requestCode + " - " + resultCode + " - " + data.getStringExtra("state"));
     }
 }

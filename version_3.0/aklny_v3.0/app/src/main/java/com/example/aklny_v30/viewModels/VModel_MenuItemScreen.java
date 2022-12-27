@@ -36,7 +36,7 @@ public class VModel_MenuItemScreen extends AndroidViewModel
 
     public void addItemToCart(MenuItemModel menuItemModel)
     {
-        Log.d("PRINT", "ViewModel > addItemToCart > item > " + menuItemModel.toString());
+//        Log.d("PRINT", "ViewModel > addItemToCart > item > " + menuItemModel.toString());
         CartItemModel cartItem = new CartItemModel(menuItemModel);
         cartRepo.addItem(cartItem);
     }

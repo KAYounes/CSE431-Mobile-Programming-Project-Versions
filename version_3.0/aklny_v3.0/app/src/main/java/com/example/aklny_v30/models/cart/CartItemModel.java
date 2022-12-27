@@ -7,6 +7,8 @@ import androidx.room.PrimaryKey;
 
 import com.example.aklny_v30.models.menu_model.MenuItemModel;
 
+import java.text.DecimalFormat;
+
 @Entity(tableName = "Cart")
 public class CartItemModel {
     @PrimaryKey
@@ -49,6 +51,10 @@ public class CartItemModel {
     public CartItemModel decrementQuantityAndReturn(){
         quantity--;
         return this;
+    }
+
+    public String getTotal(){
+        return new DecimalFormat("00.00").format(quantity * price);
     }
 
     public String getKey() {return key;}

@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF3E2"
+    android:paddingHorizontal="16dp"
+    android:paddingTop="@dimen/statusBar_escape_margin"
+    tools:context=".ui.s10_order_screen.Activity_OrderScreen">
+
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
+        android:text="Your Order From"
+        android:textColor="@color/_off_black_base"
+        android:textSize="16dp"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/restaurantName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
+        android:text="Food Corner"
+        android:textColor="@color/_off_black_base"
+        android:textSize="14dp"
+        app:layout_constraintTop_toBottomOf="@+id/restaurantLogo"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/restaurantLogo"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/logo_3"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_title"
+        app:shapeAppearanceOverlay="@style/imageRoundCorners" />
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/orderDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/restaurantName"
+        tools:layout_editor_absoluteX="16dp">
+
+        <TextView
+            android:id="@+id/dateTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="12/12/2022 - 12:12"
+            android:textColor="@color/_off_black_base"
+            android:textSize="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/restaurantLogo"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <TextView
+            android:id="@+id/gate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="Gate 3"
+            android:textColor="@color/_off_black_base"
+            android:textSize="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/restaurantLogo"
+            tools:layout_editor_absoluteX="16dp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/orderStatusCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="#FFECD1"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintTop_toBottomOf="@+id/orderDetails"
+        tools:layout_editor_absoluteX="16dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/statusIcon"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/icon_timer"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/statusMessage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_extrabold"
+                android:gravity="center"
+                android:maxLines="2"
+                android:minLines="2"
+                android:text="Waiting for the restaurant to confirm Your order"
+                android:textColor="@color/_off_black_base"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/statusIcon"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/orderItemsList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingHorizontal="6dp"
+        app:layout_constraintBottom_toTopOf="@id/paymentSummary"
+        app:layout_constraintTop_toBottomOf="@id/orderStatusCard"
+        tools:listitem="@layout/rv_item_order_item_card"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/paymentSummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#FFECD1"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="3dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+            <TextView
+                android:id="@+id/text_payment_summary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:text="Payment Summary"
+                android:textColor="@color/_off_black_base"
+                android:textSize="12sp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_subtotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center"
+                android:text="Subtotal"
+                android:textColor="@color/_off_black_base"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_payment_summary" />
+
+            <TextView
+                android:id="@+id/text_delviery_fee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center"
+                android:text="Delivery Fees"
+                android:textColor="@color/_off_black_base"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_subtotal" />
+
+            <TextView
+                android:id="@+id/text_total_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:text="Total Amount"
+                android:textColor="@color/_off_black_base"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_delviery_fee" />
+
+            <TextView
+                android:id="@+id/text_egp_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/word_spacing"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="EGP"
+                android:textColor="@color/_off_black_base"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/orderSubtotal"
+                app:layout_constraintRight_toLeftOf="@+id/orderSubtotal"
+                app:layout_constraintTop_toTopOf="@+id/orderSubtotal" />
+
+            <TextView
+                android:id="@+id/text_egp_middle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/word_spacing"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="EGP"
+                android:textColor="@color/_off_black_base"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/deliveryFee"
+                app:layout_constraintRight_toLeftOf="@+id/deliveryFee"
+                app:layout_constraintTop_toTopOf="@+id/deliveryFee" />
+
+            <TextView
+                android:id="@+id/text_egp_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/word_spacing"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="EGP"
+                android:textColor="@color/_off_black_base"
+                android:textSize="10sp"
+                app:layout_constraintBaseline_toBaselineOf="@id/total"
+                app:layout_constraintBottom_toBottomOf="@+id/total"
+                app:layout_constraintRight_toLeftOf="@+id/total"
+                app:layout_constraintTop_toTopOf="@+id/total" />
+
+            <TextView
+                android:id="@+id/orderSubtotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="100.00"
+                android:textColor="@color/_off_black_base"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/text_subtotal"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/text_subtotal" />
+
+            <TextView
+                android:id="@+id/deliveryFee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="100.00"
+                android:textColor="@color/_off_black_base"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/text_delviery_fee"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/text_delviery_fee" />
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:text="100.00"
+                android:textColor="@color/_off_black_base"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/text_total_amount"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/text_total_amount" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

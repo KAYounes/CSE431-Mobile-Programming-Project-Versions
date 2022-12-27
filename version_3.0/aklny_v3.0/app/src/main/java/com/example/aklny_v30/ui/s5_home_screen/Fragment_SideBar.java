@@ -13,6 +13,7 @@ import com.example.aklny_v30.databinding.FragmentSideBarBinding;
 import com.example.aklny_v30.ui.admin.ActivityAddMenu;
 import com.example.aklny_v30.ui.admin.ActivityAddRestaurant;
 import com.example.aklny_v30.ui.s2_landing_screen.LandingScreenActivity;
+import com.example.aklny_v30.ui.s9_previous_orders.Activity_PreviousOrdersScreen;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Fragment_SideBar extends Fragment {
@@ -39,6 +40,8 @@ public class Fragment_SideBar extends Fragment {
             @Override
             public void onClick(View view) {
 //                Toast.makeText(requireActivity(), "Orders", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(requireActivity(), Activity_PreviousOrdersScreen.class));
+                requireActivity().finish();
             }
         });
 

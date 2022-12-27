@@ -47,10 +47,10 @@ public class FragmentSignUpWithGoogle extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Log.d("PRINT", "onActivityResult > "
-                + requestCode
-                + " - " + resultCode
-                + " - " + data.getStringExtra(AuthorizationActivity.RESULT_KEY));
+//        Log.d("PRINT", "onActivityResult > "
+//                + requestCode
+//                + " - " + resultCode
+//                + " - " + data.getStringExtra(AuthorizationActivity.RESULT_KEY));
 
         if(requestCode == AuthorizationActivity.AUTHENTICATION_REQUEST_CODE){
             String result = data.getStringExtra(AuthorizationActivity.RESULT_KEY);

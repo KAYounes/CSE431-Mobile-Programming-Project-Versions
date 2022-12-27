@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 
 import com.example.aklny_v30.models.cart.CartItemModel;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class OrderModel {
+    public enum OrderStatus {NOT_CONFIRMED, PREPARING, DELIVERING, DELIVERED}
     private String
             orderKey,
             restaurantName,
@@ -14,8 +16,11 @@ public class OrderModel {
             subTotal,
             deliveryFee,
             timeOfOrder,
+            dateOfOrder,
             timeOfDelivery,
             deliveryGate;
+
+    private OrderStatus orderStatus = OrderStatus.NOT_CONFIRMED;
 
     private List<CartItemModel> cart;
 
@@ -33,8 +38,15 @@ public class OrderModel {
                 + " | " + subTotal
                 + " | " + deliveryFee
                 + " | " + timeOfOrder
+                + " | " + dateOfOrder
                 + " | " + timeOfDelivery
                 + " | " + deliveryGate;
+    }
+
+    public String getTotal(){
+        double subtotal = Double.parseDouble(this.subTotal);
+        double deliveryFee = Double.parseDouble(this.deliveryFee);
+        return new DecimalFormat("00.00").format(subtotal+deliveryFee);
     }
 
     /** Getters and Setters **/
@@ -56,11 +68,17 @@ public class OrderModel {
     public String getTimeOfOrder() {return timeOfOrder;}
     public void setTimeOfOrder(String timeOfOrder) {this.timeOfOrder = timeOfOrder;}
 
+    public String getDateOfOrder() {return dateOfOrder;}
+    public void setDateOfOrder(String dateOfOrder) {this.dateOfOrder = dateOfOrder;}
+
     public String getTimeOfDelivery() {return timeOfDelivery;}
     public void setTimeOfDelivery(String timeOfDelivery) {this.timeOfDelivery = timeOfDelivery;}
 
     public String getDeliveryGate() {return deliveryGate;}
     public void setDeliveryGate(String deliveryGate) {this.deliveryGate = deliveryGate;}
+
+    public OrderStatus getOrderStatus() {return orderStatus;}
+    public void setOrderStatus(OrderStatus orderStatus) {this.orderStatus = orderStatus;}
 
     public List<CartItemModel> getCart() {return cart;}
     public void setCart(List<CartItemModel> cart) {this.cart = cart;}

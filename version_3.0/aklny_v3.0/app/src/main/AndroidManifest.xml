@@ -15,6 +15,20 @@
         android:theme="@style/Theme.AKLNY_V30"
         tools:targetApi="31">
         <activity
+            android:name=".ui.s10_order_screen.Activity_OrderScreen"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.s9_previous_orders.Activity_PreviousOrdersScreen"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.s8_order_confirmation_screen.Activity_PlaceOrderScreen"
             android:exported="false">
             <meta-data
@@ -55,17 +69,16 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-
-<!-- UI Activities -->
+        </activity> <!-- UI Activities -->
         <!-- Splash Screen Activity -->
         <activity
             android:name=".ui.s1_splash_screen.SplashScreenActivity"
             android:exported="true">
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
             <meta-data
                 android:name="android.app.lib_name"
@@ -95,10 +108,11 @@
         <activity
             android:name=".ui.s5_home_screen.Activity_HomeScreen"
             android:exported="true">
-            <!--<intent-filter>-->
-            <!--    <action android:name="android.intent.action.MAIN" />-->
-            <!--    <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
 
             <meta-data
                 android:name="android.app.lib_name"

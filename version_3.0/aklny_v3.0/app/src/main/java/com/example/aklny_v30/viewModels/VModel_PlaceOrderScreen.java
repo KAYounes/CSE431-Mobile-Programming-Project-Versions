@@ -26,7 +26,6 @@ public class VModel_PlaceOrderScreen extends AndroidViewModel {
     private ApiRepo apiRepo;
     private LiveData<ResponsesModel> response;
     private OrderRepo orderRepo;
-    private UsersRepo userRepo;
     private FirebaseAuth firebaseAuth;
 
     public VModel_PlaceOrderScreen(@NonNull Application application) {
@@ -36,7 +35,6 @@ public class VModel_PlaceOrderScreen extends AndroidViewModel {
         cartRepo = new CartRepo(application);
         cart = cartRepo.getCart();
         orderRepo = new OrderRepo();
-        userRepo = new UsersRepo(application);
         firebaseAuth = FirebaseAuth.getInstance();
     }
 

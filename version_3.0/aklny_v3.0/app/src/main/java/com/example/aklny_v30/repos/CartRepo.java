@@ -30,7 +30,7 @@ public class CartRepo {
         new deleteAsyncTask(dao).execute();
     }
     public void addItem(CartItemModel cartItem){
-        Log.d("PRINT", "CartRepo > addItem > item > " + cartItem.toString());
+//        Log.d("PRINT", "CartRepo > addItem > item > " + cartItem.toString());
         new insertAsyncTask(dao).execute(cartItem);
     }
     public void removeItem(String key){

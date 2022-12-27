@@ -138,7 +138,7 @@ public class AuthorizationActivity extends AppCompatActivity {
                     if (idToken !=  null) {
                         // Got an ID token from Google. Use it to authenticate
                         // with Firebase.
-                        Log.d("PRINT", "Got ID token.");
+//                        Log.d("PRINT", "Got ID token.");
                         AuthCredential firebaseCredential = GoogleAuthProvider.getCredential(idToken, null);
                         signInWithCredentials(firebaseCredential);
                     }

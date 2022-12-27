@@ -13,6 +13,7 @@ public class Constants {
     public static final String INTENT_KEY_RESTAURANT_OBJ = "RESTAURANT";
     public static final String INTENT_KEY_PAYMENT = "PAYMENT";
     public static final String INTENT_KEY_MENU_KEY = "MENU_KEY";
+    public static final String INTENT_KEY_ORDER_KEY =  "ORDER_KEY";
 
 
     /** Firebase APIs **/
