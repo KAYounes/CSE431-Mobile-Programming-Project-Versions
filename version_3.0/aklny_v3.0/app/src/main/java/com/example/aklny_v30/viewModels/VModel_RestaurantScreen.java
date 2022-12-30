@@ -31,13 +31,13 @@ public class VModel_RestaurantScreen extends AndroidViewModel
 
     public LiveData<List<MenuModel>> getFetchedMenus()
     {
-        Log.d("menu", "getFetchedMenus");
+//        Log.d("menu", "getFetchedMenus");
         return menuList;
     }
 
     public void listenToMenuNodeChanges(String menuKey)
     {
-        Log.d("menu", "listenToDatabase");
+//        Log.d("menu", "listenToDatabase");
         fbMenuRepo.attachPersistentListener(menuKey);
     }
 

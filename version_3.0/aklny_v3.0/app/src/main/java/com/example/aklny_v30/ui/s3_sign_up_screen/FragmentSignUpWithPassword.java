@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.aklny_v30.ui.s4_sign_in_screen.LoginScreenActivity;
 import com.example.aklny_v30.ui.transparent_activities.AuthorizationActivity;
 import com.example.aklny_v30.databinding.FragmentSignUpWithPasswordBinding;
 import com.example.aklny_v30.ui.s5_home_screen.Activity_HomeScreen;
@@ -30,6 +31,14 @@ public class FragmentSignUpWithPassword extends Fragment {
             @Override
             public void onClick(View view) {
                 signUp();
+            }
+        });
+
+        binder.btnAlreadyHaveAnAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(requireActivity(), LoginScreenActivity.class));
+                requireActivity().finish();
             }
         });
 
@@ -62,8 +71,12 @@ public class FragmentSignUpWithPassword extends Fragment {
                 requireActivity().sendBroadcast(broadcastIntent);
                 requireActivity().finish();
             }
+            else
+            {
+                Toast.makeText(requireActivity(), "Sign up failed", Toast.LENGTH_SHORT).show();
+            }
 
-            Toast.makeText(requireActivity(), data.getStringExtra(AuthorizationActivity.RESULT_KEY), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(requireActivity(), data.getStringExtra(AuthorizationActivity.RESULT_KEY), Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -135,7 +148,7 @@ public class FragmentSignUpWithPassword extends Fragment {
             return false;
         }
 
-        if(!email.matches("^[a-zA-Z0-9_!#$%&amp;'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&amp;'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")){
+        if(!email.matches("^[a-zA-Z0-9_!#$%&amp;'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&amp;'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)$")){
             helperMessage = "Email is not a valid email";
             return  false;
         }

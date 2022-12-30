@@ -42,7 +42,7 @@ public class RVAdapter_OrderItemsList extends RecyclerView.Adapter<RVAdapter_Ord
     @Override
     public void onBindViewHolder(@NonNull OrderItemViewHolder holder, int position) {
         CartItemModel item = items.get(position);
-        Log.d("PRINT", "item > " + item);
+//        Log.d("PRINT", "item > " + item);
         RvItemOrderItemCardBinding binder = holder.binder;
         binder.itemName.setText(item.getName());
         binder.itemQuantity.setText(Integer.toString(item.getQuantity()));

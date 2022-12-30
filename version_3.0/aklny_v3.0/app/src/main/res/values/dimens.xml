@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="statusBar_escape_margin">28dp</dimen>
+    <dimen name="statusBar_escape_margin">32dp</dimen>
     <dimen name="word_spacing">4dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 </resources>

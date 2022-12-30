@@ -1,5 +1,7 @@
 package com.example.aklny_v30.API;
 
+import androidx.annotation.NonNull;
+
 public class ResponsesModel {
         private int year;
         private int month;
@@ -15,6 +17,12 @@ public class ResponsesModel {
         private String dayOfWeek;
         private boolean dstActive;
 
+        @NonNull
+        @Override
+        public String toString() {
+                return "response: " + dateTime;
+        }
+
         public int getYear() {return year;}
         public void setYear(int year) {this.year = year;}
 
@@ -25,6 +33,28 @@ public class ResponsesModel {
         public void setDay(int day) {this.day = day;}
 
         public int getHour() {return hour;}
+        public String getDayString() {
+                if(day < 10){
+                        return "0" + day;
+                }
+                return  "" + day;
+        }public String getMonthString() {
+                if(month < 10){
+                        return "0" + month;
+                }
+                return  "" + month;
+        }public String getHourString() {
+                if(hour < 10){
+                        return "0" + hour;
+                }
+                return  "" + hour;
+        }
+        public String getMinuteString() {
+                if(minute < 10){
+                        return "0" + minute;
+                }
+                return  "" + minute;
+        }
         public void setHour(int hour) {this.hour = hour;}
 
         public int getMinute() {return minute;}

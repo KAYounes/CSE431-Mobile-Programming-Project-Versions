@@ -1,5 +1,6 @@
 package com.example.aklny_v30.ui.s2_landing_screen;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
@@ -19,6 +20,8 @@ import com.example.aklny_v30.models.user_model.UserModel;
 import com.example.aklny_v30.repos.UsersRepo;
 import com.example.aklny_v30.ui.s4_sign_in_screen.LoginScreenActivity;
 import com.example.aklny_v30.ui.s3_sign_up_screen.SignUpScreenActivity;
+import com.example.aklny_v30.ui.s5_home_screen.Activity_HomeScreen;
+import com.example.aklny_v30.ui.transparent_activities.AuthorizationActivity;
 
 import java.util.List;
 
@@ -38,7 +41,7 @@ public class LandingScreenActivity extends AppCompatActivity {
         registerReceiver(receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                Log.d("onReceive","Logout in progress");
+//                Log.d("onReceive","Logout in progress");
                 finish();
             }
         }, intentFilter);
@@ -51,6 +54,17 @@ public class LandingScreenActivity extends AppCompatActivity {
                 for (UserModel user: userModels) {
                     Log.d("USERS", "- " + user.toString());
                 }
+            }
+        });
+
+        binder.btnGoToHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent signUpWithPasswordIntent = new Intent(LandingScreenActivity.this, AuthorizationActivity.class);
+                signUpWithPasswordIntent.putExtra("ACTION", AuthorizationActivity.SIGN_IN_WITH_PASSWORD);
+                signUpWithPasswordIntent.putExtra("EMAIL", "safe@mail.com");
+                signUpWithPasswordIntent.putExtra("PASSWORD", "#Abc123#");
+                startActivityForResult(signUpWithPasswordIntent, AuthorizationActivity.AUTHENTICATION_REQUEST_CODE);
             }
         });
 
@@ -88,9 +102,36 @@ public class LandingScreenActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == AuthorizationActivity.AUTHENTICATION_REQUEST_CODE)
+        {
+            String result = data.getStringExtra(AuthorizationActivity.RESULT_KEY);
+            if(result.equals(AuthorizationActivity.AUTHENTICATION_SUCCESS))
+            {
+                Toast.makeText(LandingScreenActivity.this, "Welcome Back", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(LandingScreenActivity.this, Activity_HomeScreen.class));
+
+                Intent broadcastIntent = new Intent();
+                broadcastIntent.setAction("com.package.ACTION_LOGOUT");
+                sendBroadcast(broadcastIntent);
+                LandingScreenActivity.this.finish();
+            }
+            else
+            {
+                Toast.makeText(LandingScreenActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @Override
     protected void onDestroy() {
+        if (receiver != null) {
+            unregisterReceiver(receiver);
+            receiver = null;
+        }
         super.onDestroy();
-        unregisterReceiver(receiver);
     }
 
     private boolean isNetworkAvailable(){

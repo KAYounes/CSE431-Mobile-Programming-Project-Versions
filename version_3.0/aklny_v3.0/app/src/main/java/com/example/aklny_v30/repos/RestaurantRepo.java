@@ -66,4 +66,36 @@ public class RestaurantRepo {
             }
         });
     }
+
+    public void filterRestaurants(String filter) {
+        restaurantsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+                    List<RestaurantModel> fetchedRestaurants = new ArrayList<>();
+                    String restaurantKey;
+                    RestaurantModel restaurant;
+
+                    for(DataSnapshot data: snapshot.getChildren()){
+                        restaurantKey = data.getKey();
+                        restaurant = data.getValue(RestaurantModel.class);
+                        restaurant.setKey(restaurantKey);
+//                        Log.w("PRINT", "restaurant > " + restaurant.getDeliveryFee());
+                        fetchedRestaurants.add(restaurant);
+                    }
+
+                    fetched.postValue(fetchedRestaurants);}
+                catch (Exception e){
+                    Log.e("PRINT", "attachPersistentListener > onDataChange > Exception > "
+                            + e.getLocalizedMessage());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("PRINT", "RestaurantRepo > attachPersistentListener > onCancelled > "
+                        + error.getMessage());
+            }
+        });
+    }
 }

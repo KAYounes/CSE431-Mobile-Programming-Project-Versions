@@ -24,7 +24,7 @@ public class VModel_OrderScreen extends ViewModel {
     }
 
     public void watchOrder(String userKey, String orderKey){
-        Log.d("PRINT", "userKey > " + userKey);
+//        Log.d("PRINT", "userKey > " + userKey);
         orderRepo.watchOrder(userKey, orderKey);
     }
 }

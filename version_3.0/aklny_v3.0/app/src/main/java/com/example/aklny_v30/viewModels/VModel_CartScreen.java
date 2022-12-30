@@ -22,23 +22,23 @@ public class VModel_CartScreen extends AndroidViewModel {
         cart = cartRepo.getCart();
     }
 
-    public void addItemToCart(MenuItemModel menuItemModel){
-//        Log.d("PRINT", "ViewModel > addItemToCart > item > " + menuItemModel.toString());
-        CartItemModel cartItem = new CartItemModel(menuItemModel);
-        cartRepo.addItem(cartItem);
-    }
-
-    public void emptyTheCart(){
-        cartRepo.emptyTheCart();
-    }
-
-    public int getCartItemsCount(){
-        int count = 0;
-        for(CartItemModel cartItem: cart.getValue()){
-            count += cartItem.getQuantity();
-        }
-        return count;
-    }
+//    public void addItemToCart(MenuItemModel menuItemModel){
+////        Log.d("PRINT", "ViewModel > addItemToCart > item > " + menuItemModel.toString());
+//        CartItemModel cartItem = new CartItemModel(menuItemModel);
+//        cartRepo.addItem(cartItem);
+//    }
+//
+//    public void emptyTheCart(){
+//        cartRepo.emptyTheCart();
+//    }
+//
+//    public int getCartItemsCount(){
+//        int count = 0;
+//        for(CartItemModel cartItem: cart.getValue()){
+//            count += cartItem.getQuantity();
+//        }
+//        return count;
+//    }
 
     public double getCartSubtotal(){
         double subtotal = 0;
@@ -61,9 +61,9 @@ public class VModel_CartScreen extends AndroidViewModel {
         cartRepo.updateItem(item);
     }
 
-    public double getTotal(){
-        return 0.0;
-    }
+//    public double getTotal(){
+//        return 0.0;
+//    }
 
 
     public LiveData<List<CartItemModel>> getCart(){

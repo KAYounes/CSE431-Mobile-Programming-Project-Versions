@@ -7,7 +7,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.aklny_v30.models.databases.RootDatabase;
+import com.example.aklny_v30.databases.RootDatabase;
 import com.example.aklny_v30.models.user_model.UserModel;
 import com.example.aklny_v30.models.user_model.UsersTableDAO;
 
@@ -69,6 +69,7 @@ public class UsersRepo
             catch (Exception e)
             {
                 Log.e("PRINT", "Insert User error > " + e.getLocalizedMessage());
+                asyncTaskDAO.updateUser(params[0]);
             }
 
             return null;

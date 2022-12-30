@@ -92,7 +92,7 @@ public class ActivityAddMenu extends AppCompatActivity {
             public void onClick(View view)
             {
                 menuTitle = binder.menuTitle.getText().toString();
-                Log.i("PRINT", "generatedMenuKey" + generatedMenuKey + " " + (generatedMenuKey == null));
+//                Log.i("PRINT", "generatedMenuKey" + generatedMenuKey + " " + (generatedMenuKey == null));
                 if(generatedMenuKey == null){
                     generatedMenuKey = binder.menuKey.getText().toString();
                 }
@@ -126,7 +126,7 @@ public class ActivityAddMenu extends AppCompatActivity {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     Toast.makeText(ActivityAddMenu.this, "Failed to add menu", Toast.LENGTH_SHORT).show();
-                                    Log.d("PRINT", "Add Menu> onFailure > " + e.getMessage());
+//                                    Log.d("PRINT", "Add Menu> onFailure > " + e.getMessage());
                                     displayValidationMessage(e.getLocalizedMessage());
                                     dialog.dismiss();
                                 }

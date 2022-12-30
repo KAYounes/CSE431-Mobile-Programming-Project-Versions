@@ -1,5 +1,7 @@
 package com.example.aklny_v30.API;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -32,6 +34,7 @@ public class ApiRepo {
 
                     @Override
                     public void onFailure(Call<ResponsesModel> call, Throwable t) {
+                        Log.e("PRINT", "ERROR API > " + t.getMessage());
                         myResponse.setValue(null);
                     }
                 });

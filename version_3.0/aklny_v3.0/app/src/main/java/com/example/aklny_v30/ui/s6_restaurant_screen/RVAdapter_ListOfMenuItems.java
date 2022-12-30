@@ -51,7 +51,7 @@ public class RVAdapter_ListOfMenuItems extends RecyclerView.Adapter<RVAdapter_Li
         holder.binder.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("onCLick", "inner > onClick");
+//                Log.d("onCLick", "inner > onClick");
                 onClickListener.onRecyclerViewClickPayload(menuItem);
             }
         });

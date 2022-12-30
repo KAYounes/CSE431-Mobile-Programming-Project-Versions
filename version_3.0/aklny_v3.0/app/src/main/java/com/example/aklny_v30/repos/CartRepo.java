@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.aklny_v30.models.cart.CartItemModel;
 import com.example.aklny_v30.models.cart.CartTableDAO;
-import com.example.aklny_v30.models.databases.RootDatabase;
+import com.example.aklny_v30.databases.RootDatabase;
 
 import java.util.List;
 

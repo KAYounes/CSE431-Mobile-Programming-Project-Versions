@@ -24,9 +24,9 @@ public interface CartTableDAO {
 
     @Query("SELECT SUM(quantity) FROM cart")
     int getNumberOfItems();
-
-    @Query("SELECT price*quantity AS subtotal FROM cart")
-    double getSubtotal();
+//
+//    @Query("SELECT price*quantity AS subtotal FROM cart")
+//    double getSubtotal();
 
     @Insert
     void addItem(CartItemModel item);

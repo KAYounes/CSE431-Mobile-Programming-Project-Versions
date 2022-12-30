@@ -1,4 +1,4 @@
-package com.example.aklny_v30.models.databases;
+package com.example.aklny_v30.databases;
 
 
 import android.content.Context;

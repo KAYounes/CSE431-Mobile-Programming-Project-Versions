@@ -44,7 +44,7 @@ public class RCAdapter_PlacedOrdersList  extends RecyclerView.Adapter<RCAdapter_
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
         RvItemPreviousOrdersCardBinding binding = holder.binding;
         OrderModel order = orders.get(position);
-        Log.d("PRINT", "oder > " + order);
+//        Log.d("PRINT", "oder > " + order);
 
         Picasso.get().load(order.getRestaurantLogoURL())
                 .placeholder(R.drawable.icon_logo_placeholder_100dp)
@@ -53,6 +53,7 @@ public class RCAdapter_PlacedOrdersList  extends RecyclerView.Adapter<RCAdapter_
         binding.currentOrderLabel.setVisibility(View.VISIBLE);
 
         String status = "";
+        binding.textStatus.setTextColor(binding.getRoot().getResources().getColor(R.color._secondary_base));
         switch (order.getOrderStatus()){
             case NOT_CONFIRMED:
                 status = "Confirming";
@@ -65,12 +66,13 @@ public class RCAdapter_PlacedOrdersList  extends RecyclerView.Adapter<RCAdapter_
                 break;
             case DELIVERED:
                 status = "Order received";
+                binding.textStatus.setTextColor(binding.getRoot().getResources().getColor(R.color.green));
                 binding.currentOrderLabel.setVisibility(View.INVISIBLE);
                 break;
         }
 
         binding.restaurantName.setText(order.getRestaurantName());
-        binding.orderStatus.setText(order.getDateOfOrder() + " - " + order.getTimeOfOrder());
+        binding.orderDate.setText(order.getDateOfOrder() + " - " + order.getTimeOfOrder());
         binding.orderStatus.setText(status);
         binding.orderTotal.setText(order.getTotal());
 

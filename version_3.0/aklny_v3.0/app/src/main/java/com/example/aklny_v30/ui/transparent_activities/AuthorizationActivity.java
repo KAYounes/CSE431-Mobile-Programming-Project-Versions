@@ -71,6 +71,8 @@ public class AuthorizationActivity extends AppCompatActivity {
         usersRepo = new UsersRepo(getApplication());
 
 
+        Log.d(TAG, "onCreate");
+        System.out.println("onCreate");
         Intent authorizationIntent = getIntent();
         action = authorizationIntent.getIntExtra("ACTION", NO_ACTION);
 
@@ -126,6 +128,8 @@ public class AuthorizationActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
     {
+
+        Log.d(TAG, "onActivityResult");
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode)
@@ -261,8 +265,21 @@ public class AuthorizationActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            returnResult(RESULT_KEY, AUTHENTICATION_SUCCESS);
+                            fbUserRepo.getUser(mAuth.getUid())
+                                    .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                                        @Override
+                                        public void onSuccess(DataSnapshot dataSnapshot){
+                                            UserModel user = dataSnapshot.getValue(UserModel.class);
+                                            user.setAuth_uid(dataSnapshot.getKey());
+                                            addUserToRoomDatabase(user);
+                                            returnResult(RESULT_KEY, AUTHENTICATION_SUCCESS);
+                                        }})
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(AuthorizationActivity.this, "Failed To Login", Toast.LENGTH_SHORT).show();
+                                            returnResult(RESULT_KEY, AUTHENTICATION_FAILED);
+                                        }});
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -327,6 +344,7 @@ public class AuthorizationActivity extends AppCompatActivity {
 /**------------------------------------- Model Controllers -------------------------------------**/
     private void checkUserIsInFirebaseDatabase()
     {
+        Log.w("PRINT", "checkUserIsInFirebaseDatabase");
         fbUserRepo.getUser(mAuth.getUid())
                 .addOnCompleteListener(AuthorizationActivity.this, new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -338,14 +356,28 @@ public class AuthorizationActivity extends AppCompatActivity {
                         Log.d(TAG, "checkUserIsInFirebaseDatabase > User Found > " + task.getResult().getValue());
                         if(action == SIGN_UP_WITH_GOOGLE)
                         {
-                            mAuth.getCurrentUser().delete();
+//                            mAuth.getCurrentUser().delete();
                             returnResult(RESULT_KEY, AUTHENTICATION_FAILED);
                         }
                         else if (action == SIGN_IN_WITH_GOOGLE)
                         {
-                            returnResult(RESULT_KEY, AUTHENTICATION_SUCCESS);
+                            fbUserRepo.getUser(mAuth.getUid())
+                                    .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                                        @Override
+                                        public void onSuccess(DataSnapshot dataSnapshot) {
+        //                                    Log.d("PRINT", "User > " + dataSnapshot.getValue(UserModel.class));
+                                            UserModel user = dataSnapshot.getValue(UserModel.class);
+                                            user.setAuth_uid(dataSnapshot.getKey());
+                                            addUserToRoomDatabase(user);
+                                            returnResult(RESULT_KEY, AUTHENTICATION_SUCCESS);
+                                        }})
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(AuthorizationActivity.this, "Failed To Login", Toast.LENGTH_SHORT).show();
+                                            returnResult(RESULT_KEY, AUTHENTICATION_FAILED);
+                                        }});
                         }
-//                        returnResult(RESULT_KEY, USER_EXISTS);
                     }
                     else
                     {
@@ -355,6 +387,7 @@ public class AuthorizationActivity extends AppCompatActivity {
                         {
                             email = mAuth.getCurrentUser().getEmail();
                             UserModel newUser = new UserModel(mAuth.getUid(), firstName, lastName, phoneNumber, email);
+                            newUser.setPhotoURL(mAuth.getCurrentUser().getPhotoUrl().toString());
                             addUserToDatabases(newUser);
                         }
                         else if (action == SIGN_IN_WITH_GOOGLE)

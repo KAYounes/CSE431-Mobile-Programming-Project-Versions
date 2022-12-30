@@ -106,7 +106,7 @@
     </style>
     <style name="textInputEditLayoutYellow">
         <item name="android:textColor">@color/_off_black_base</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="fontFamily">@font/poppins_bold</item>
     </style>
 

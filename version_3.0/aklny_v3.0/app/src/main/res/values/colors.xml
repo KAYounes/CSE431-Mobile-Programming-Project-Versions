@@ -18,5 +18,6 @@
     <color name="_primary_shade_48"> #F5B200 </color>
     <color name="input_field_hintColor">#D59C0B</color>
     <color name="_off_white_shade_55">#73B761</color>
+    <color name="green">#0CB445</color>
     <!--<color name="mtrl_textinput_default_box_stroke_color" tools:override="true"> #F00 </color>-->
 </resources>

@@ -5,6 +5,10 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,12 +29,23 @@ public class Activity_OrderScreen extends AppCompatActivity {
     ActivityOrderScreenBinding binder;
     RVAdapter_OrderItemsList recyclerAdapter;
     VModel_OrderScreen viewModel;
+    BroadcastReceiver receiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binder = ActivityOrderScreenBinding.inflate(getLayoutInflater());
         setContentView(binder.getRoot());
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.package.ACTION_LOGOUT");
+        registerReceiver(receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+//                Log.d("onReceive","Logout in progress");
+                finish();
+            }
+        }, intentFilter);
     ///////////////////////////////////////////////////////////////////////////////////////////////////
         String userKey = FirebaseAuth.getInstance().getUid();
         String orderKey = getIntent().getStringExtra(Constants.INTENT_KEY_ORDER_KEY);
@@ -40,8 +55,8 @@ public class Activity_OrderScreen extends AppCompatActivity {
         viewModel.getOrder().observe(this, new Observer<OrderModel>() {
             @Override
             public void onChanged(OrderModel orderModel) {
-                Log.d("PRINT", "orderModel > " + orderModel);
-                Log.d("PRINT", "orderModel getCart > " + orderModel.getCart());
+//                Log.d("PRINT", "orderModel > " + orderModel);
+//                Log.d("PRINT", "orderModel getCart > " + orderModel.getCart());
                 recyclerAdapter.setData(orderModel.getCart());
                 updateStatus(orderModel.getOrderStatus());
 

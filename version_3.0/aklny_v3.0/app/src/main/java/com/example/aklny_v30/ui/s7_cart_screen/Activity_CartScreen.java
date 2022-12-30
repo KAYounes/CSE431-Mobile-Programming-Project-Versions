@@ -5,7 +5,10 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 
@@ -29,12 +32,23 @@ public class Activity_CartScreen extends AppCompatActivity implements RecyclerVi
     List<String> footerFields;
     double total;
     HashMap<String, String> payment;
-
+    BroadcastReceiver receiver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binder = ActivityCartScreenBinding.inflate(getLayoutInflater());
         setContentView(binder.getRoot());
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.package.ACTION_LOGOUT");
+        intentFilter.addAction("com.package.ACTION_ORDER_PLACED");
+        registerReceiver(receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+//                Log.d("onReceive","Logout in progress");
+                finish();
+            }
+        }, intentFilter);
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 /** Initialize **/
@@ -117,4 +131,13 @@ public class Activity_CartScreen extends AppCompatActivity implements RecyclerVi
                 break;
         }
     }
+
+//    @Override
+//    protected void onDestroy() {
+//        if (receiver != null) {
+//            unregisterReceiver(receiver);
+//            receiver = null;
+//        }
+//        super.onDestroy();
+//    }
 }

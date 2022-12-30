@@ -79,7 +79,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
 
     // Java RX
-    implementation "androidx.room:room-rxjava3:$room_version"
+//    implementation "androidx.room:room-rxjava3:$room_version"
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

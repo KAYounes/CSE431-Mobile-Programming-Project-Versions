@@ -24,8 +24,16 @@ public class Constants {
 
     /** Regex Patterns **/
     public static final String PATTERN_RESTAURANT_NAME = "^[a-zA-Z0-9 -]{3,30}$";
-    public static final String PATTERN_RESTAURANT_DESCRIPTION = "^[a-zA-Z0-9 ,_:;?'/.!-+]{3,200}$";
+    public static final String PATTERN_RESTAURANT_DESCRIPTION = "^[a-zA-Z0-9 ,_:;?'`/’'.!\\-()+]{3,500}$";
     public static final String PATTERN_RESTAURANT_PHONENUMBER = "^\\+201[0-9]{9}$";
     public static final String PATTERN_RESTAURANT_ADDRESS = "^.{10,90}$";
     public static final String PATTERN_MENU_TITLE = "^[a-zA-Z -_]{3,60}$";
+
+    /** Shared Preference Keys **/
+    public static final String SHARED_PREFERENCE_KEY_DEFAULT_GATE = "DEFAULT_KEY";
+    public static final String SHAREDPREFERENCE_PUT_KEY_GATE = "GATE_NUMBER";
+
+    /** Delivery Times **/
+    public static final int FIRST_PERIOD = 11;
+    public static final int SECOND_PERIOD = 13;
 }

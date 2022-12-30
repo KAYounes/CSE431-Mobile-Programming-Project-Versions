@@ -35,13 +35,13 @@
             android:padding="16dp">
             <TextView
                 android:id="@+id/btn_add_more"
-                android:clickable="true"
-                android:focusable="true"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="16dp"
                 android:layout_weight="1"
                 android:background="@drawable/selector_btn_add_more"
+                android:clickable="true"
+                android:focusable="true"
                 android:fontFamily="@font/poppins_extrabold"
                 android:gravity="center"
                 android:paddingVertical="12dp"
@@ -50,12 +50,12 @@
                 android:textSize="12sp"/>
             <TextView
                 android:id="@+id/btn_checkout"
-                android:clickable="true"
-                android:focusable="true"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/selector_btn_checkout"
+                android:clickable="true"
+                android:focusable="true"
                 android:fontFamily="@font/poppins_extrabold"
                 android:gravity="center"
                 android:paddingVertical="12dp"

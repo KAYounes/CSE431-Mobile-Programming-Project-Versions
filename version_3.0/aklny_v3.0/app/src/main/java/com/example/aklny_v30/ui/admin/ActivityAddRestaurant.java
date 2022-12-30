@@ -105,7 +105,7 @@ public class ActivityAddRestaurant extends AppCompatActivity {
                                 public void onFailure(@NonNull Exception e)
                                 {
                                     Toast.makeText(ActivityAddRestaurant.this, "Failed to add restaurant", Toast.LENGTH_SHORT).show();
-                                    Log.d("PRINT", "Add Restaurant > on Failure > " + e.getMessage());
+                                    Log.e("PRINT", "Add Restaurant > on Failure > " + e.getMessage());
                                     displayValidationMessage(e.getLocalizedMessage());
                                     dialog.dismiss();
                                 }

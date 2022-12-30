@@ -4,6 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,7 +24,7 @@ import java.util.List;
 public class Activity_MenuItemScreen extends AppCompatActivity {
     ActivityMenuItemScreenBinding binder;
     VModel_MenuItemScreen viewModel;
-
+    BroadcastReceiver receiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -29,6 +33,17 @@ public class Activity_MenuItemScreen extends AppCompatActivity {
         binder = ActivityMenuItemScreenBinding.inflate(getLayoutInflater());
         setContentView(binder.getRoot());
         viewModel = new ViewModelProvider(this).get(VModel_MenuItemScreen.class);
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.package.ACTION_LOGOUT");
+        intentFilter.addAction("com.package.ACTION_ORDER_PLACED");
+        registerReceiver(receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+//                Log.d("onReceive","Logout in progress");
+                finish();
+            }
+        }, intentFilter);
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -77,4 +92,13 @@ public class Activity_MenuItemScreen extends AppCompatActivity {
         });
 ///////////////////////////////////////////////////////////////////////////////////////////////////
     }
+
+//    @Override
+//    protected void onDestroy() {
+//        if (receiver != null) {
+//            unregisterReceiver(receiver);
+//            receiver = null;
+//        }
+//        super.onDestroy();
+//    }
 }

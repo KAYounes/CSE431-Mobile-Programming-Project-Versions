@@ -53,7 +53,7 @@ public class OrderRepo {
 
 
     public void attachPersistentListener(String userKey){
-        Log.d("PRINT", "userKey > " + userKey);
+//        Log.d("PRINT", "userKey > " + userKey);
         orderRef.child(userKey).addValueEventListener(new ValueEventListener()
         {
             @Override
@@ -70,7 +70,7 @@ public class OrderRepo {
 //                        cart = new ArrayList<>();
 //                        Log.d("PRINT", "data > " + data.toString());
 
-                        Log.d("PRINT", "data.getValue(OrderModel.class) > " + data.getValue(OrderModel.class).toString());
+//                        Log.d("PRINT", "data.getValue(OrderModel.class) > " + data.getValue(OrderModel.class).toString());
                         fetchedOrders.add(data.getValue(OrderModel.class));
                     }
 
@@ -90,7 +90,7 @@ public class OrderRepo {
         });
     }
     public void watchOrder(String userKey, String orderKey){
-        Log.d("PRINT", "userKey > " + userKey);
+//        Log.d("PRINT", "userKey > " + userKey);
         orderRef.child(userKey).child(orderKey).addValueEventListener(new ValueEventListener()
         {
             @Override

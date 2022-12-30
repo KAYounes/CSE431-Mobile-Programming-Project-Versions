@@ -5,48 +5,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF3E2"
-    android:paddingTop="@dimen/statusBar_escape_margin"
     tools:context=".ui.s9_previous_orders.Activity_PreviousOrdersScreen">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        android:gravity="center"
-        android:orientation="horizontal"
+        android:layout_marginHorizontal="6dp"
+        android:layout_marginTop="@dimen/statusBar_escape_margin"
         app:layout_constraintTop_toTopOf="parent">
-        <ImageView
-            android:id="@+id/btn_open_sidebar"
-            android:layout_width="0dp"
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:foregroundGravity="left"
-            android:paddingTop="18dp"
-            android:paddingRight="18dp"
-            android:paddingBottom="18dp"
-            android:src="@drawable/icon_menus_24dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/image_profile"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/image_profile_image_1"
-            app:layout_constraintBottom_toBottomOf="@id/btn_open_sidebar"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/btn_open_sidebar"
-            app:shapeAppearanceOverlay="@style/imageCircular"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:cardBackgroundColor="#FFECD1"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="3dp"
+            app:cardUseCompatPadding="true">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="12dp">
+                <ImageView
+                    android:id="@+id/btn_open_sidebar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:foregroundGravity="left"
+                    android:paddingTop="18dp"
+                    android:paddingRight="18dp"
+                    android:paddingBottom="18dp"
+                    android:src="@drawable/icon_menus_24dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/image_profile"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/icon_profile_placeholder"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_open_sidebar"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/btn_open_sidebar"
+                    app:shapeAppearanceOverlay="@style/imageCircular"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <TextView
         android:id="@+id/text_previousOrders"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_bold"
-        android:paddingVertical="8dp"
         android:gravity="center"
+        android:paddingVertical="8dp"
         android:text="Placed Orders"
         android:textColor="@color/_off_black_base"
         android:textSize="16sp"
@@ -60,4 +73,11 @@
         app:layout_constraintTop_toBottomOf="@id/text_previousOrders"
         tools:listitem="@layout/rv_item_previous_orders_card"/>
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/sidebar"
+        android:layout_width="170dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout="@layout/fragment_side_bar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

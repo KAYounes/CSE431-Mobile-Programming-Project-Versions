@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.aklny_v30.ui.s4_sign_in_screen.LoginScreenActivity;
 import com.example.aklny_v30.ui.transparent_activities.AuthorizationActivity;
 import com.example.aklny_v30.databinding.FragmentSignUpWithGoogleBinding;
 import com.example.aklny_v30.ui.s5_home_screen.Activity_HomeScreen;
@@ -32,6 +33,14 @@ public class FragmentSignUpWithGoogle extends Fragment {
            public void onClick(View view) {
                signIn();
            }
+        });
+
+        binder.btnAlreadyHaveAnAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(requireActivity(), LoginScreenActivity.class));
+                requireActivity().finish();
+            }
         });
 
         return binder.getRoot();
@@ -60,8 +69,12 @@ public class FragmentSignUpWithGoogle extends Fragment {
                 requireActivity().finish();
                 return;
             }
+            else
+            {
+                Toast.makeText(requireActivity(), "Sign up failed", Toast.LENGTH_SHORT).show();
+            }
 
-            Toast.makeText(requireActivity(), data.getStringExtra(AuthorizationActivity.RESULT_KEY), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(requireActivity(), data.getStringExtra(AuthorizationActivity.RESULT_KEY), Toast.LENGTH_SHORT).show();
         }
     }
 

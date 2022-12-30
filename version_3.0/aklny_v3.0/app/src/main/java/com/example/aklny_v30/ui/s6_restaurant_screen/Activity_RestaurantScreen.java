@@ -5,7 +5,10 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,12 +34,23 @@ public class Activity_RestaurantScreen extends AppCompatActivity implements Recy
     VModel_RestaurantScreen viewModel;
     RestaurantModel restaurant;
     RVAdapter_ListOfMenus menuAdapter;
-
+    BroadcastReceiver receiver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binder = ActivityRestaurantScreenBinding.inflate(getLayoutInflater());
         setContentView(binder.getRoot());
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.package.ACTION_LOGOUT");
+        intentFilter.addAction("com.package.ACTION_ORDER_PLACED");
+        registerReceiver(receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+//                Log.d("onReceive","Logout in progress");
+                finish();
+            }
+        }, intentFilter);
         //
 
         viewModel = new ViewModelProvider(this).get(VModel_RestaurantScreen.class);
@@ -56,7 +70,7 @@ public class Activity_RestaurantScreen extends AppCompatActivity implements Recy
         viewModel.getFetchedMenus().observe(this, new Observer<List<MenuModel>>() {
             @Override
             public void onChanged(List<MenuModel> menuModels) {
-                Log.d("menu", "onChanged");
+//                Log.d("menu", "onChanged");
                 menuAdapter.setMenusList(menuModels);
             }
         });
@@ -123,7 +137,7 @@ public class Activity_RestaurantScreen extends AppCompatActivity implements Recy
     @Override
     public void onRecyclerViewClickPayload(Object payload) {
         MenuItemModel item = (MenuItemModel) payload;
-        Toast.makeText(this, item.getKey(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, item.getKey(), Toast.LENGTH_SHORT).show();
         Intent goToItemScreen = new Intent(Activity_RestaurantScreen.this, Activity_MenuItemScreen.class);
         goToItemScreen.putExtra("item", item);
         startActivity(goToItemScreen);

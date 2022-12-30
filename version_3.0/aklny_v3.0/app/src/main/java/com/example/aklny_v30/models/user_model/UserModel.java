@@ -29,19 +29,39 @@ public class UserModel {
 //                + ", > " + email;
 //        return user;
 //    }
+//
+//    @NonNull
+//    @Override
+//    public String toString() {
+//        super.toString();
+//        String user= "";
+//        String tab = "\t", newLine="\n";
+//        user += "------------";
+//        user += newLine + auth_uid;
+//        user += newLine + tab + firstName + " " + lastName;
+//        user += newLine + tab + phoneNumber;
+//        user += newLine + tab + email;
+//        return user;
+//    }
 
     @NonNull
     @Override
     public String toString() {
-        super.toString();
-        String user= "";
-        String tab = "\t", newLine="\n";
-        user += "------------";
-        user += newLine + auth_uid;
-        user += newLine + tab + firstName + " " + lastName;
-        user += newLine + tab + phoneNumber;
-        user += newLine + tab + email;
-        return user;
+        return "User: " + auth_uid
+                + ", Email : " + email
+                + ", First name: " + firstName
+                + ", Last name: " + lastName
+                + ", Phone number: " + phoneNumber
+                + ", Photo URL: " + photoURL;
+    }
+
+
+    public String display() {
+        return "User: " + auth_uid
+                + "\n\tEmail\t\t\t\t     := " + email
+                + "\n\tFirst name\t\t   := " + firstName
+                + "\n\tLast name\t\t\t := " + lastName
+                + "\n\tPhone number\t := " + phoneNumber;
     }
 
     @PrimaryKey
@@ -65,8 +85,8 @@ public class UserModel {
     @ColumnInfo(name = "email_address")
     private String email;
 
-    @ColumnInfo(name = "current_order")
-    private String currentOrder;
+//    @ColumnInfo(name = "current_order")
+//    private String currentOrder;
 
     @ColumnInfo(name = "photo_url")
     private String photoURL;
@@ -121,13 +141,13 @@ public class UserModel {
         this.email = email;
     }
 
-    public String getCurrentOrder() {
-        return currentOrder;
-    }
-
-    public void setCurrentOrder(String currentOrder) {
-        this.currentOrder = currentOrder;
-    }
+//    public String getCurrentOrder() {
+//        return currentOrder;
+//    }
+//
+//    public void setCurrentOrder(String currentOrder) {
+//        this.currentOrder = currentOrder;
+//    }
 
     public String getPhotoURL() {
         return photoURL;

@@ -52,7 +52,7 @@ public class VModel_PlaceOrderScreen extends AndroidViewModel {
 
     public Task<Void> addOrder(OrderModel order){
         String userKey = firebaseAuth.getUid();
-        Log.d("PRINT", "userKey" + userKey);
+//        Log.d("PRINT", "userKey" + userKey);
         order.setOrderKey(orderRepo.generateKey(userKey));
         return orderRepo.addOrderModelToFB(userKey, order);
     }

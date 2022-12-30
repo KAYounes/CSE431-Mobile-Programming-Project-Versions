@@ -71,7 +71,7 @@ public class FbMenuRepo {
                         menu = new MenuModel();
                         menuItems = new ArrayList<>();
                         menu.setTitle(data.getKey());
-                        Log.d("menu", "menu title > " + menu.getTitle());
+//                        Log.d("menu", "menu title > " + menu.getTitle());
 
                         for(DataSnapshot item: data.getChildren()){
                             menuItem = item.getValue(MenuItemModel.class);
