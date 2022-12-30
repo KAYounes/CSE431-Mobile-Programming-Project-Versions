@@ -10,20 +10,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.aklny_v30.API.Constants;
+import com.example.aklny_v30.Constants;
 import com.example.aklny_v30.R;
 import com.example.aklny_v30.databinding.ActivityAddRestaurantBinding;
-import com.example.aklny_v30.repos.firebase.FbMenuRepo;
-import com.example.aklny_v30.repos.RestaurantRepo;
-import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
+import com.example.aklny_v30.repos.FBMenuRepo;
+import com.example.aklny_v30.repos.FBRestaurantRepo;
+import com.example.aklny_v30.models.RestaurantModel;
 import com.example.aklny_v30.ui.s5_home_screen.Activity_HomeScreen;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 public class ActivityAddRestaurant extends AppCompatActivity {
     ActivityAddRestaurantBinding binder;
-    RestaurantRepo restaurantRepo;
-    FbMenuRepo fbMenuRepo;
+    FBRestaurantRepo FBRestaurantRepo;
+    FBMenuRepo fbMenuRepo;
 
     String name;
     String description;
@@ -42,8 +42,8 @@ public class ActivityAddRestaurant extends AppCompatActivity {
         setContentView(binder.getRoot());
         //
 
-        restaurantRepo = new RestaurantRepo();
-        fbMenuRepo = new FbMenuRepo();
+        FBRestaurantRepo = new FBRestaurantRepo();
+        fbMenuRepo = new FBMenuRepo();
 
         binder.btnAddRestaurant.setOnClickListener(new View.OnClickListener()
         {
@@ -83,7 +83,7 @@ public class ActivityAddRestaurant extends AppCompatActivity {
 
                     String generatedMenuKey = fbMenuRepo.generateKey();
                     restaurant.setMenuId(generatedMenuKey);
-                    restaurantRepo.addNewRestaurantToFB(restaurant)
+                    FBRestaurantRepo.addNewRestaurantToFB(restaurant)
                             .addOnSuccessListener(new OnSuccessListener<Void>()
                             {
                                 @Override

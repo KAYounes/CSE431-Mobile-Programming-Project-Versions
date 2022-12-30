@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.aklny_v30.R;
 import com.example.aklny_v30.databinding.HeaderRestaurantScreenBinding;
 import com.example.aklny_v30.databinding.RvItemMenuBinding;
-import com.example.aklny_v30.models.menu_model.MenuModel;
+import com.example.aklny_v30.models.MenuModel;
 import com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener;
 import com.squareup.picasso.Picasso;
 
@@ -26,7 +26,7 @@ public class RVAdapter_ListOfMenus extends RecyclerView.Adapter<RecyclerView.Vie
 
     private HashMap<String, String> headerFields;
     private List<MenuModel> menus;
-    private RecyclerViewOnClickListener onClickListener;
+    private final RecyclerViewOnClickListener onClickListener;
 
     public RVAdapter_ListOfMenus(List<MenuModel> menus, RecyclerViewOnClickListener onClickListener)
     {
@@ -159,7 +159,7 @@ public class RVAdapter_ListOfMenus extends RecyclerView.Adapter<RecyclerView.Vie
 
     class HeaderViewHolder extends RecyclerView.ViewHolder
     {
-        private HeaderRestaurantScreenBinding binder;
+        private final HeaderRestaurantScreenBinding binder;
 
         public HeaderViewHolder(@NonNull HeaderRestaurantScreenBinding binder, RecyclerViewOnClickListener onClickListener)
         {
@@ -170,7 +170,7 @@ public class RVAdapter_ListOfMenus extends RecyclerView.Adapter<RecyclerView.Vie
 
     class MenuViewHolder extends RecyclerView.ViewHolder
     {
-        private RvItemMenuBinding binder;
+        private final RvItemMenuBinding binder;
 
         public MenuViewHolder(@NonNull RvItemMenuBinding binder, RecyclerViewOnClickListener onClickListener)
         {

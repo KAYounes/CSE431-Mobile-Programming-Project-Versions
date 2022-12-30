@@ -8,22 +8,21 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.aklny_v30.databases.RootDatabase;
-import com.example.aklny_v30.models.user_model.UserModel;
-import com.example.aklny_v30.models.user_model.UsersTableDAO;
+import com.example.aklny_v30.models.UserModel;
+import com.example.aklny_v30.DAOs.UsersTableDAO;
 
 import java.util.List;
 
 public class UsersRepo
 {
-    private UsersTableDAO dao;
-    private MutableLiveData<UserModel> user = new MutableLiveData<>();
-    private LiveData<List<UserModel>> users;
+    private final UsersTableDAO dao;
+    private final MutableLiveData<UserModel> user = new MutableLiveData<>();
+//    private final LiveData<List<UserModel>> users;
 
     public UsersRepo(Application application)
     {
         RootDatabase db = RootDatabase.getDatabase(application);
         dao = db.usersTableDAO();
-        users = dao.getAllUsers();
     }
 
     public void deleteAll(){
@@ -49,7 +48,7 @@ public class UsersRepo
 
     private class insertAsyncTask extends AsyncTask<UserModel, Void, UserModel>
     {
-        private UsersTableDAO asyncTaskDAO;
+        private final UsersTableDAO asyncTaskDAO;
 
         insertAsyncTask(UsersTableDAO doa)
         {
@@ -62,7 +61,7 @@ public class UsersRepo
 
             try
             {
-//                Log.d("PRINT", "insertAsyncTask > uid > " + params[0].getAuth_uid());
+
                 asyncTaskDAO.addUser(params[0]);
                 return params[0];
             }
@@ -78,14 +77,14 @@ public class UsersRepo
         @Override
         protected void onPostExecute(UserModel newUser) {
             super.onPostExecute(newUser);
-//            Log.d("PRINT", "User >> " + newUser.toString());
+
             user.setValue(newUser);
         }
     }
 
     private static class updateAsyncTask extends AsyncTask<UserModel, Void, Void>
     {
-        private UsersTableDAO asyncTaskDAO;
+        private final UsersTableDAO asyncTaskDAO;
 
         updateAsyncTask(UsersTableDAO doa)
         {
@@ -111,7 +110,7 @@ public class UsersRepo
 
     private static class deleteAsyncTask extends AsyncTask<Void, Void, Void>
     {
-        private UsersTableDAO asyncTaskDAO;
+        private final UsersTableDAO asyncTaskDAO;
 
         deleteAsyncTask(UsersTableDAO doa)
         {

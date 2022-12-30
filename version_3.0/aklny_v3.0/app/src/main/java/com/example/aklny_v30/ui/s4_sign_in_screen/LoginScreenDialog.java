@@ -9,8 +9,8 @@ import com.example.aklny_v30.R;
 import com.example.aklny_v30.databinding.DialogFailedLoginBinding;
 
 public class LoginScreenDialog {
-    private Dialog dialog;
-    private DialogFailedLoginBinding binder;
+    private final Dialog dialog;
+    private final DialogFailedLoginBinding binder;
 
     public LoginScreenDialog(Activity activity) {
         this.dialog = new Dialog(activity);

@@ -43,8 +43,8 @@ AipActivity.java</font>
 <a name="l26"><span class="ln">26   </span></a>
 <a name="l27"><span class="ln">27   </span></a>        <span class="s1">viewModel.getTimeZoneResponse().observe(</span><span class="s0">this, new </span><span class="s1">Observer&lt;ResponsesModel&gt;() {</span>
 <a name="l28"><span class="ln">28   </span></a>            <span class="s1">@Override</span>
-<a name="l29"><span class="ln">29   </span></a>            <span class="s0">public void </span><span class="s1">onChanged(<a href="ResponsesModel.java.html">ResponsesModel</a> responsesModel) {</span>
-<a name="l30"><span class="ln">30   </span></a>                <span class="s1">Toast.makeText(AipActivity.</span><span class="s0">this, </span><span class="s2">&quot;Time is &quot; </span><span class="s1">+ responsesModel.getDateTime()</span><span class="s0">, </span><span class="s1">Toast.LENGTH_SHORT).show()</span><span class="s0">;</span>
+<a name="l29"><span class="ln">29   </span></a>            <span class="s0">public void </span><span class="s1">onChanged(<a href="ResponsesModel.java.html">ResponsesModel</a> responseModel) {</span>
+<a name="l30"><span class="ln">30   </span></a>                <span class="s1">Toast.makeText(AipActivity.</span><span class="s0">this, </span><span class="s2">&quot;Time is &quot; </span><span class="s1">+ responseModel.getDateTime()</span><span class="s0">, </span><span class="s1">Toast.LENGTH_SHORT).show()</span><span class="s0">;</span>
 <a name="l31"><span class="ln">31   </span></a>            <span class="s1">}</span>
 <a name="l32"><span class="ln">32   </span></a>        <span class="s1">})</span><span class="s0">;</span>
 <a name="l33"><span class="ln">33   </span></a>

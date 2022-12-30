@@ -13,8 +13,8 @@ import android.widget.Toast;
 
 import com.example.aklny_v30.R;
 import com.example.aklny_v30.repos.UsersRepo;
-import com.example.aklny_v30.repos.firebase.FbUserRepo;
-import com.example.aklny_v30.models.user_model.UserModel;
+import com.example.aklny_v30.repos.FBUserRepo;
+import com.example.aklny_v30.models.UserModel;
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.identity.BeginSignInResult;
 import com.google.android.gms.auth.api.identity.Identity;
@@ -36,10 +36,9 @@ public class AuthorizationActivity extends AppCompatActivity {
 
     private boolean showOneTapUI = true;
     private SignInClient oneTapClient;
-    private BeginSignInRequest signInRequest;
     private BeginSignInRequest signUpRequest;
     private FirebaseAuth mAuth;
-    private FbUserRepo fbUserRepo;
+    private FBUserRepo fbUserRepo;
     private UsersRepo usersRepo;
     static public final int AUTHENTICATION_REQUEST_CODE = 1000;  // Can be any integer unique to the Activity.
 
@@ -57,7 +56,7 @@ public class AuthorizationActivity extends AppCompatActivity {
     static public final String USER_DOES_NOT_EXIST = "USER_DOES_NOT_EXIST";
 
     private String firstName, lastName, phoneNumber, email, password;
-    private String TAG = "PRINT";
+    private final String TAG = "PRINT";
 
 
     @Override
@@ -67,7 +66,7 @@ public class AuthorizationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_authorization);
         mAuth = FirebaseAuth.getInstance();
         oneTapClient = Identity.getSignInClient(this);
-        fbUserRepo = new FbUserRepo();
+        fbUserRepo = new FBUserRepo();
         usersRepo = new UsersRepo(getApplication());
 
 
@@ -115,7 +114,7 @@ public class AuthorizationActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-//        super.onBackPressed();
+
         Toast.makeText(this, "Please wait while we authenticate your account", Toast.LENGTH_SHORT).show();
     }
 
@@ -142,14 +141,14 @@ public class AuthorizationActivity extends AppCompatActivity {
                     if (idToken !=  null) {
                         // Got an ID token from Google. Use it to authenticate
                         // with Firebase.
-//                        Log.d("PRINT", "Got ID token.");
+
                         AuthCredential firebaseCredential = GoogleAuthProvider.getCredential(idToken, null);
                         signInWithCredentials(firebaseCredential);
                     }
                 }
                 catch (ApiException e)
                 {
-                    // ...
+                    
                     Log.d("PRINT", "Error.");
                     String message;
                     switch (e.getStatusCode()) {
@@ -229,7 +228,9 @@ public class AuthorizationActivity extends AppCompatActivity {
 /**------------------------------------Authentication Methods------------------------------------**/
     private void signInWithGoogle()
     {
-        signInRequest = BeginSignInRequest.builder()
+        // Your server's client ID, not your Android client ID.
+        // Show all accounts on the device.
+        BeginSignInRequest signInRequest = BeginSignInRequest.builder()
                 .setGoogleIdTokenRequestOptions(BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
                         .setSupported(true)
                         // Your server's client ID, not your Android client ID.
@@ -356,7 +357,7 @@ public class AuthorizationActivity extends AppCompatActivity {
                         Log.d(TAG, "checkUserIsInFirebaseDatabase > User Found > " + task.getResult().getValue());
                         if(action == SIGN_UP_WITH_GOOGLE)
                         {
-//                            mAuth.getCurrentUser().delete();
+
                             returnResult(RESULT_KEY, AUTHENTICATION_FAILED);
                         }
                         else if (action == SIGN_IN_WITH_GOOGLE)
@@ -365,7 +366,7 @@ public class AuthorizationActivity extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                                         @Override
                                         public void onSuccess(DataSnapshot dataSnapshot) {
-        //                                    Log.d("PRINT", "User > " + dataSnapshot.getValue(UserModel.class));
+        
                                             UserModel user = dataSnapshot.getValue(UserModel.class);
                                             user.setAuth_uid(dataSnapshot.getKey());
                                             addUserToRoomDatabase(user);

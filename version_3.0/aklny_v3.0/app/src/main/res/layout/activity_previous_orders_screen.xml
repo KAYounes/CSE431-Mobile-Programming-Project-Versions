@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF3E2"
-    tools:context=".ui.s9_previous_orders.Activity_PreviousOrdersScreen">
+    tools:context=".ui.s9_previous_orders.ACT_PreviousOrdersScreen">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/top_bar"

@@ -1,7 +1,6 @@
 package com.example.aklny_v30.ui.s7_cart_screen;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +8,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.aklny_v30.API.Constants;
+import com.example.aklny_v30.Constants;
 import com.example.aklny_v30.R;
 import com.example.aklny_v30.databinding.BgCartIsEmptyBinding;
 import com.example.aklny_v30.databinding.FooterCartScreenPaymentBinding;
 import com.example.aklny_v30.databinding.RvItemCartItemCardBinding;
-import com.example.aklny_v30.models.cart.CartItemModel;
+import com.example.aklny_v30.models.CartItemModel;
 import com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener;
 import com.squareup.picasso.Picasso;
 
@@ -27,7 +26,7 @@ public class RVAdapter_CartItemsList extends RecyclerView.Adapter<RecyclerView.V
     private final int CART_ITEM = 2;
     private final int FOOTER = 1;
     private List<CartItemModel> cartItems;
-    private RecyclerViewOnClickListener onClickListener;
+    private final RecyclerViewOnClickListener onClickListener;
     private HashMap<String, String> footerFields;
 
     public RVAdapter_CartItemsList(List<CartItemModel> cartItems, RecyclerViewOnClickListener onClickListener) {
@@ -172,16 +171,14 @@ public class RVAdapter_CartItemsList extends RecyclerView.Adapter<RecyclerView.V
     }
 
     class EmptyCartViewHolder extends RecyclerView.ViewHolder{
-        private BgCartIsEmptyBinding binder;
 
         public EmptyCartViewHolder(@NonNull BgCartIsEmptyBinding binder, RecyclerViewOnClickListener onClickListener) {
             super(binder.getRoot());
-            this.binder = binder;
         }
     }
 
     class FooterViewHolder extends RecyclerView.ViewHolder{
-        private FooterCartScreenPaymentBinding binder;
+        private final FooterCartScreenPaymentBinding binder;
 
         public FooterViewHolder(@NonNull FooterCartScreenPaymentBinding binder, RecyclerViewOnClickListener onClickListener) {
             super(binder.getRoot());
@@ -190,7 +187,7 @@ public class RVAdapter_CartItemsList extends RecyclerView.Adapter<RecyclerView.V
     }
 
     class CartItemViewHolder extends RecyclerView.ViewHolder{
-        private RvItemCartItemCardBinding binder;
+        private final RvItemCartItemCardBinding binder;
 
         public CartItemViewHolder(@NonNull RvItemCartItemCardBinding binder, RecyclerViewOnClickListener onClickListener) {
             super(binder.getRoot());

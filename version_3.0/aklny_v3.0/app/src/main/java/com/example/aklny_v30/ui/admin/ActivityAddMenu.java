@@ -9,13 +9,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.aklny_v30.API.Constants;
-import com.example.aklny_v30.models.menu_model.MenuItemModel;
-import com.example.aklny_v30.models.menu_model.MenuModel;
+import com.example.aklny_v30.Constants;
+import com.example.aklny_v30.models.MenuItemModel;
+import com.example.aklny_v30.models.MenuModel;
 import com.example.aklny_v30.R;
 import com.example.aklny_v30.databinding.ActivityAddMenuBinding;
-import com.example.aklny_v30.repos.firebase.FbMenuRepo;
-import com.example.aklny_v30.repos.RestaurantRepo;
+import com.example.aklny_v30.repos.FBRestaurantRepo;
+import com.example.aklny_v30.repos.FBMenuRepo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
@@ -24,8 +24,8 @@ import java.util.List;
 
 public class ActivityAddMenu extends AppCompatActivity {
     ActivityAddMenuBinding binder;
-    RestaurantRepo restaurantRepo;
-    FbMenuRepo fbMenuRepo;
+    FBRestaurantRepo FBRestaurantRepo;
+    FBMenuRepo fbMenuRepo;
 
     String menuTitle;
     String itemName;
@@ -44,8 +44,8 @@ public class ActivityAddMenu extends AppCompatActivity {
         setContentView(binder.getRoot());
         //
 
-        restaurantRepo = new RestaurantRepo();
-        fbMenuRepo = new FbMenuRepo();
+        FBRestaurantRepo = new FBRestaurantRepo();
+        fbMenuRepo = new FBMenuRepo();
         //
 
         generatedMenuKey = getIntent().getStringExtra(Constants.INTENT_KEY_MENU_KEY);
@@ -72,10 +72,10 @@ public class ActivityAddMenu extends AppCompatActivity {
                 if(validateMenuItem())
                 {
                     MenuItemModel menuItem = new MenuItemModel(itemName, itemDescription, itemPrice, itemThumbnailUrl);
-                    displayValidationMessage("Added " + menuItem.toString());
+                    displayValidationMessage("Added " + menuItem);
                     //
 
-                    // Clear edit texts
+                    
                     listOfMenuItems.add(menuItem);
                     binder.itemName.setText("");
                     binder.itemDescription.setText("");
@@ -92,7 +92,7 @@ public class ActivityAddMenu extends AppCompatActivity {
             public void onClick(View view)
             {
                 menuTitle = binder.menuTitle.getText().toString();
-//                Log.i("PRINT", "generatedMenuKey" + generatedMenuKey + " " + (generatedMenuKey == null));
+
                 if(generatedMenuKey == null){
                     generatedMenuKey = binder.menuKey.getText().toString();
                 }
@@ -126,7 +126,7 @@ public class ActivityAddMenu extends AppCompatActivity {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     Toast.makeText(ActivityAddMenu.this, "Failed to add menu", Toast.LENGTH_SHORT).show();
-//                                    Log.d("PRINT", "Add Menu> onFailure > " + e.getMessage());
+
                                     displayValidationMessage(e.getLocalizedMessage());
                                     dialog.dismiss();
                                 }
@@ -191,7 +191,7 @@ public class ActivityAddMenu extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-//        startActivity(new Intent(ActivityAddMenu.this, Activity_HomeScreen.class));
+
         finish();
     }
 }

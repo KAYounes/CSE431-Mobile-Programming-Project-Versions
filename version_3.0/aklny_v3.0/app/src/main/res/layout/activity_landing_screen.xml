@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/_primary_base"
-    tools:context=".ui.s2_landing_screen.LandingScreenActivity">
+    tools:context=".ui.s2_landing_screen.ACT_LandingScreen">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnGoToHome"

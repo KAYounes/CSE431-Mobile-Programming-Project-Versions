@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/_primary_base"
     android:orientation="vertical"
-    tools:context=".ui.s3_sign_up_screen.SignUpScreenActivity">
+    tools:context=".ui.s3_sign_up_screen.ACT_SignUpScreen">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"

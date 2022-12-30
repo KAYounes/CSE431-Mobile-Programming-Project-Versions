@@ -7,7 +7,7 @@
     android:background="#FFF3E2"
     android:paddingHorizontal="16dp"
     android:paddingTop="@dimen/statusBar_escape_margin"
-    tools:context=".ui.s10_order_screen.Activity_OrderScreen">
+    tools:context=".ui.s10_order_screen.ACT_OrderHistory">
 
 
     <TextView

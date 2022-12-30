@@ -10,16 +10,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
-import com.example.aklny_v30.API.Constants;
+import com.example.aklny_v30.Constants;
 import com.example.aklny_v30.databinding.ActivityRestaurantScreenBinding;
-import com.example.aklny_v30.models.cart.CartItemModel;
-import com.example.aklny_v30.models.menu_model.MenuItemModel;
-import com.example.aklny_v30.models.menu_model.MenuModel;
-import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
+import com.example.aklny_v30.models.CartItemModel;
+import com.example.aklny_v30.models.MenuItemModel;
+import com.example.aklny_v30.models.MenuModel;
+import com.example.aklny_v30.models.RestaurantModel;
 import com.example.aklny_v30.ui.s7_cart_screen.Activity_CartScreen;
 import com.example.aklny_v30.ui.admin.ActivityAddMenu;
 import com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener;
@@ -47,7 +45,7 @@ public class Activity_RestaurantScreen extends AppCompatActivity implements Recy
         registerReceiver(receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-//                Log.d("onReceive","Logout in progress");
+
                 finish();
             }
         }, intentFilter);
@@ -70,19 +68,10 @@ public class Activity_RestaurantScreen extends AppCompatActivity implements Recy
         viewModel.getFetchedMenus().observe(this, new Observer<List<MenuModel>>() {
             @Override
             public void onChanged(List<MenuModel> menuModels) {
-//                Log.d("menu", "onChanged");
+
                 menuAdapter.setMenusList(menuModels);
             }
         });
-
-//        List<String> headerFields = new ArrayList<>();
-//        headerFields.add(restaurant.getThumbnail());
-//        headerFields.add(restaurant.getName());
-//        headerFields.add(restaurant.getDescription());
-//        headerFields.add(restaurant.getAddress());
-//        headerFields.add(restaurant.getPhoneNumber());
-//        headerFields.add(Double.toString(restaurant.getDelivery_fee()));
-//        headerFields.add(Double.toString(restaurant.getRating()));
 
         HashMap<String, String> headerFields = new HashMap<>();
         headerFields.put("Name", restaurant.getName());
@@ -121,23 +110,21 @@ public class Activity_RestaurantScreen extends AppCompatActivity implements Recy
     protected void onDestroy() {
         super.onDestroy();
         viewModel.emptyTheCart();
-//        Log.d("PRINT", "onDestroy Restaurant Screen");
+
     }
-
-
 
     @Override
     public void onRecyclerViewClick(int position) {
         Intent addMenuIntent = new Intent(Activity_RestaurantScreen.this, ActivityAddMenu.class);
         addMenuIntent.putExtra(Constants.INTENT_KEY_MENU_KEY, restaurant.getMenuId());
         startActivity(addMenuIntent);
-//        finish();
+
     }
 
     @Override
     public void onRecyclerViewClickPayload(Object payload) {
         MenuItemModel item = (MenuItemModel) payload;
-//        Toast.makeText(this, item.getKey(), Toast.LENGTH_SHORT).show();
+
         Intent goToItemScreen = new Intent(Activity_RestaurantScreen.this, Activity_MenuItemScreen.class);
         goToItemScreen.putExtra("item", item);
         startActivity(goToItemScreen);

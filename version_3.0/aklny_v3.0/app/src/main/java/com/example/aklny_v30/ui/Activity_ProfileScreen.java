@@ -12,17 +12,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.aklny_v30.API.Constants;
+import com.example.aklny_v30.Constants;
 import com.example.aklny_v30.R;
 import com.example.aklny_v30.databinding.ActivityProfileScreenBinding;
-import com.example.aklny_v30.models.user_model.UserModel;
-import com.example.aklny_v30.repos.UsersRepo;
+import com.example.aklny_v30.models.UserModel;
 import com.example.aklny_v30.viewModels.VModel_ProfileScreen;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
@@ -46,7 +43,7 @@ public class Activity_ProfileScreen extends AppCompatActivity {
         registerReceiver(receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-//                Log.d("onReceive","Logout in progress");
+
                 finish();
             }
         }, intentFilter);
@@ -57,10 +54,10 @@ public class Activity_ProfileScreen extends AppCompatActivity {
         viewModel.getUser().observe(this, new Observer<UserModel>() {
             @Override
             public void onChanged(UserModel fetchedUser) {
-//                Log.d("PRINT", "profile changed > " + fetchedUser);
+
                 Picasso.get().load(fetchedUser.getPhotoURL())
                         .placeholder(R.drawable.icon_profile_placeholder)
-//                    .error(R.drawable.icon_failed_to_load_thumbnail)
+
                         .into(binder.profileImage);
                 user = fetchedUser;
                 binder.textInputEditPhotoURL.setText(fetchedUser.getPhotoURL());
@@ -81,13 +78,11 @@ public class Activity_ProfileScreen extends AppCompatActivity {
             }
         });
 
-
-
         binder.gateRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 int gate = binder.gateRadioGroup.getCheckedRadioButtonId();
-//                Log.i("PRINT", "gate > " + gate + " | " + i+ " | " + binder.gate3.getId() + " | " + binder.gate4.getId());
+
                 editor.putInt(Constants.SHAREDPREFERENCE_PUT_KEY_GATE + FirebaseAuth.getInstance().getUid(), i);
                 editor.commit();
                 Toast.makeText(Activity_ProfileScreen.this, "Saved", Toast.LENGTH_SHORT).show();
@@ -147,7 +142,7 @@ public class Activity_ProfileScreen extends AppCompatActivity {
                     return;
                 }
 
-//                user = new UserModel();
+
                 user.setPhotoURL(binder.textInputEditPhotoURL.getText().toString());
                 user.setFirstName(binder.textInputEditFirstName.getText().toString());
                 user.setLastName(binder.textInputEditLastName.getText().toString());

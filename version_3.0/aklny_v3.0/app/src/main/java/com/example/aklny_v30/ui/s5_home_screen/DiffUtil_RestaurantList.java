@@ -2,14 +2,14 @@ package com.example.aklny_v30.ui.s5_home_screen;
 
 import androidx.recyclerview.widget.DiffUtil;
 
-import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
+import com.example.aklny_v30.models.RestaurantModel;
 
 import java.util.List;
 import java.util.Objects;
 
 public class DiffUtil_RestaurantList extends DiffUtil.Callback {
-    private List<RestaurantModel> oldList;
-    private List<RestaurantModel> newList;
+    private final List<RestaurantModel> oldList;
+    private final List<RestaurantModel> newList;
 
     public DiffUtil_RestaurantList(List<RestaurantModel> oldList, List<RestaurantModel> newList) {
         this.oldList = oldList;

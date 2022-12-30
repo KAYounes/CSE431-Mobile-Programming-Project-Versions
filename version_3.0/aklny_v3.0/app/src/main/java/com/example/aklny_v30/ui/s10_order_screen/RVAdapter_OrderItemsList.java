@@ -1,28 +1,23 @@
 package com.example.aklny_v30.ui.s10_order_screen;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aklny_v30.databinding.RvItemOrderItemCardBinding;
-import com.example.aklny_v30.databinding.RvItemPreviousOrdersCardBinding;
-import com.example.aklny_v30.models.cart.CartItemModel;
+import com.example.aklny_v30.models.CartItemModel;
 import com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener;
 
 import java.util.List;
 
 public class RVAdapter_OrderItemsList extends RecyclerView.Adapter<RVAdapter_OrderItemsList.OrderItemViewHolder>{
     private List<CartItemModel> items;
-    private RecyclerViewOnClickListener onClickListener;
 
     public RVAdapter_OrderItemsList(List<CartItemModel> items) {
         this.items = items;
-        this.onClickListener = onClickListener;
     }
 
     public void setData(List<CartItemModel> items){
@@ -55,7 +50,7 @@ public class RVAdapter_OrderItemsList extends RecyclerView.Adapter<RVAdapter_Ord
     }
 
     class OrderItemViewHolder extends RecyclerView.ViewHolder{
-        private RvItemOrderItemCardBinding binder;
+        private final RvItemOrderItemCardBinding binder;
 
         public OrderItemViewHolder(RvItemOrderItemCardBinding binder) {
             super(binder.getRoot());

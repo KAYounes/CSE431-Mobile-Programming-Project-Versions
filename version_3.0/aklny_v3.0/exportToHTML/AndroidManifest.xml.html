@@ -43,7 +43,7 @@ AndroidManifest.xml</font>
 <a name="l24"><span class="ln">24   </span></a>        <span class="s1">android:testOnly</span><span class="s2">=&quot;true&quot;</span>
 <a name="l25"><span class="ln">25   </span></a>        <span class="s1">android:theme</span><span class="s2">=&quot;@style/Theme.AKLNY_V30&quot; </span><span class="s0">&gt;</span>
 <a name="l26"><span class="ln">26   </span></a>        <span class="s0">&lt;activity</span>
-<a name="l27"><span class="ln">27   </span></a>            <span class="s1">android:name</span><span class="s2">=&quot;com.example.aklny_v30.ui.s8_order_confirmation_screen.Activity_PlaceOrderScreen&quot;</span>
+<a name="l27"><span class="ln">27   </span></a>            <span class="s1">android:name</span><span class="s2">=&quot;com.example.aklny_v30.ui.s8_order_confirmation_screen.Activity_Checkout&quot;</span>
 <a name="l28"><span class="ln">28   </span></a>            <span class="s1">android:exported</span><span class="s2">=&quot;false&quot; </span><span class="s0">&gt;</span>
 <a name="l29"><span class="ln">29   </span></a>            <span class="s0">&lt;meta-data</span>
 <a name="l30"><span class="ln">30   </span></a>                <span class="s1">android:name</span><span class="s2">=&quot;android.app.lib_name&quot;</span>
@@ -88,7 +88,7 @@ AndroidManifest.xml</font>
 <a name="l69"><span class="ln">69   </span></a>        <span class="s4">&lt;!-- UI Activities --&gt;</span>
 <a name="l70"><span class="ln">70   </span></a>        <span class="s4">&lt;!-- Splash Screen Activity --&gt;</span>
 <a name="l71"><span class="ln">71   </span></a>        <span class="s0">&lt;activity</span>
-<a name="l72"><span class="ln">72   </span></a>            <span class="s1">android:name</span><span class="s2">=&quot;com.example.aklny_v30.ui.s1_splash_screen.SplashScreenActivity&quot;</span>
+<a name="l72"><span class="ln">72   </span></a>            <span class="s1">android:name</span><span class="s2">=&quot;com.example.aklny_v30.ui.s1_splash_screen.ACT_SplashScreen&quot;</span>
 <a name="l73"><span class="ln">73   </span></a>            <span class="s1">android:exported</span><span class="s2">=&quot;true&quot; </span><span class="s0">&gt;</span>
 <a name="l74"><span class="ln">74   </span></a>            <span class="s0">&lt;intent-filter&gt;</span>
 <a name="l75"><span class="ln">75   </span></a>                <span class="s0">&lt;action </span><span class="s1">android:name</span><span class="s2">=&quot;android.intent.action.MAIN&quot; </span><span class="s0">/&gt;</span>
@@ -101,21 +101,21 @@ AndroidManifest.xml</font>
 <a name="l82"><span class="ln">82   </span></a>                <span class="s1">android:value</span><span class="s2">=&quot;&quot; </span><span class="s0">/&gt;</span>
 <a name="l83"><span class="ln">83   </span></a>        <span class="s0">&lt;/activity&gt; </span><span class="s4">&lt;!-- Landing Screen Screen Activity --&gt;</span>
 <a name="l84"><span class="ln">84   </span></a>        <span class="s0">&lt;activity</span>
-<a name="l85"><span class="ln">85   </span></a>            <span class="s1">android:name</span><span class="s2">=&quot;com.example.aklny_v30.ui.s2_landing_screen.LandingScreenActivity&quot;</span>
+<a name="l85"><span class="ln">85   </span></a>            <span class="s1">android:name</span><span class="s2">=&quot;com.example.aklny_v30.ui.s2_landing_screen.ACT_LandingScreen&quot;</span>
 <a name="l86"><span class="ln">86   </span></a>            <span class="s1">android:exported</span><span class="s2">=&quot;false&quot; </span><span class="s0">&gt;</span>
 <a name="l87"><span class="ln">87   </span></a>            <span class="s0">&lt;meta-data</span>
 <a name="l88"><span class="ln">88   </span></a>                <span class="s1">android:name</span><span class="s2">=&quot;android.app.lib_name&quot;</span>
 <a name="l89"><span class="ln">89   </span></a>                <span class="s1">android:value</span><span class="s2">=&quot;&quot; </span><span class="s0">/&gt;</span>
 <a name="l90"><span class="ln">90   </span></a>        <span class="s0">&lt;/activity&gt; </span><span class="s4">&lt;!-- Sign Up Screen Activity --&gt;</span>
 <a name="l91"><span class="ln">91   </span></a>        <span class="s0">&lt;activity</span>
-<a name="l92"><span class="ln">92   </span></a>            <span class="s1">android:name</span><span class="s2">=&quot;com.example.aklny_v30.ui.s3_sign_up_screen.SignUpScreenActivity&quot;</span>
+<a name="l92"><span class="ln">92   </span></a>            <span class="s1">android:name</span><span class="s2">=&quot;com.example.aklny_v30.ui.s3_sign_up_screen.ACT_SignUpScreen&quot;</span>
 <a name="l93"><span class="ln">93   </span></a>            <span class="s1">android:exported</span><span class="s2">=&quot;false&quot; </span><span class="s0">&gt;</span>
 <a name="l94"><span class="ln">94   </span></a>            <span class="s0">&lt;meta-data</span>
 <a name="l95"><span class="ln">95   </span></a>                <span class="s1">android:name</span><span class="s2">=&quot;android.app.lib_name&quot;</span>
 <a name="l96"><span class="ln">96   </span></a>                <span class="s1">android:value</span><span class="s2">=&quot;&quot; </span><span class="s0">/&gt;</span>
 <a name="l97"><span class="ln">97   </span></a>        <span class="s0">&lt;/activity&gt; </span><span class="s4">&lt;!-- Sing In Screen Activity --&gt;</span>
 <a name="l98"><span class="ln">98   </span></a>        <span class="s0">&lt;activity</span>
-<a name="l99"><span class="ln">99   </span></a>            <span class="s1">android:name</span><span class="s2">=&quot;com.example.aklny_v30.ui.s4_sign_in_screen.LoginScreenActivity&quot;</span>
+<a name="l99"><span class="ln">99   </span></a>            <span class="s1">android:name</span><span class="s2">=&quot;com.example.aklny_v30.ui.s4_sign_in_screen.ACT_LoginScreen&quot;</span>
 <a name="l100"><span class="ln">100  </span></a>            <span class="s1">android:exported</span><span class="s2">=&quot;false&quot; </span><span class="s0">&gt;</span>
 <a name="l101"><span class="ln">101  </span></a>            <span class="s0">&lt;meta-data</span>
 <a name="l102"><span class="ln">102  </span></a>                <span class="s1">android:name</span><span class="s2">=&quot;android.app.lib_name&quot;</span>

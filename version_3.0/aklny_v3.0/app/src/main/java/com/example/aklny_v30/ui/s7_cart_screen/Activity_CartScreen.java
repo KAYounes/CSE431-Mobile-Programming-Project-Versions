@@ -12,11 +12,11 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.aklny_v30.API.Constants;
+import com.example.aklny_v30.Constants;
 import com.example.aklny_v30.databinding.ActivityCartScreenBinding;
-import com.example.aklny_v30.models.cart.CartItemModel;
-import com.example.aklny_v30.models.restaurant_model.RestaurantModel;
-import com.example.aklny_v30.ui.s8_order_confirmation_screen.Activity_PlaceOrderScreen;
+import com.example.aklny_v30.models.CartItemModel;
+import com.example.aklny_v30.models.RestaurantModel;
+import com.example.aklny_v30.ui.s8_order_confirmation_screen.Activity_Checkout;
 import com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener;
 import com.example.aklny_v30.viewModels.VModel_CartScreen;
 
@@ -45,7 +45,7 @@ public class Activity_CartScreen extends AppCompatActivity implements RecyclerVi
         registerReceiver(receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-//                Log.d("onReceive","Logout in progress");
+
                 finish();
             }
         }, intentFilter);
@@ -91,7 +91,7 @@ public class Activity_CartScreen extends AppCompatActivity implements RecyclerVi
         binder.btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Activity_CartScreen.this, Activity_PlaceOrderScreen.class);
+                Intent intent = new Intent(Activity_CartScreen.this, Activity_Checkout.class);
                 intent.putExtra(Constants.INTENT_KEY_PAYMENT, payment);
                 intent.putExtra(Constants.INTENT_KEY_RESTAURANT_OBJ, restaurant);
                 startActivity(intent);

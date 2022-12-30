@@ -10,10 +10,10 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.aklny_v30.models.cart.CartItemModel;
-import com.example.aklny_v30.models.cart.CartTableDAO;
-import com.example.aklny_v30.models.user_model.UserModel;
-import com.example.aklny_v30.models.user_model.UsersTableDAO;
+import com.example.aklny_v30.models.CartItemModel;
+import com.example.aklny_v30.DAOs.CartTableDAO;
+import com.example.aklny_v30.models.UserModel;
+import com.example.aklny_v30.DAOs.UsersTableDAO;
 
 @Database(entities = {UserModel.class, CartItemModel.class}, version = 1, exportSchema = false)
 public abstract class RootDatabase extends RoomDatabase {
@@ -34,7 +34,7 @@ public abstract class RootDatabase extends RoomDatabase {
                             RootDatabase.class,
                             "Root Database")
                             .fallbackToDestructiveMigration()
-//                            .addCallback(RoomDatabaseCallback)
+
                             .build();
                 }
             }
@@ -43,7 +43,7 @@ public abstract class RootDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    private static RoomDatabase.Callback RoomDatabaseCallback = new RoomDatabase.Callback(){
+    private static final RoomDatabase.Callback RoomDatabaseCallback = new RoomDatabase.Callback(){
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);
@@ -70,6 +70,6 @@ public abstract class RootDatabase extends RoomDatabase {
 //            }
             return null;
         }
-    };
+    }
 
 }

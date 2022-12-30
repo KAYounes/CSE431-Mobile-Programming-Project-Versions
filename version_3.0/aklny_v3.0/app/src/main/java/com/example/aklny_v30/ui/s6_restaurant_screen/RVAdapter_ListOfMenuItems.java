@@ -1,7 +1,6 @@
 package com.example.aklny_v30.ui.s6_restaurant_screen;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +10,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aklny_v30.R;
 import com.example.aklny_v30.databinding.RvItemMenuItemCardBinding;
-import com.example.aklny_v30.models.menu_model.MenuItemModel;
+import com.example.aklny_v30.models.MenuItemModel;
 import com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class RVAdapter_ListOfMenuItems extends RecyclerView.Adapter<RVAdapter_ListOfMenuItems.MenuItemViewHolder> {
-    private List<MenuItemModel> menuItems;
-    private RecyclerViewOnClickListener onClickListener;
+    private final List<MenuItemModel> menuItems;
+    private final RecyclerViewOnClickListener onClickListener;
 
     public RVAdapter_ListOfMenuItems(List<MenuItemModel> menuItems, RecyclerViewOnClickListener onClickListener) {
         this.menuItems = menuItems;
@@ -51,7 +50,7 @@ public class RVAdapter_ListOfMenuItems extends RecyclerView.Adapter<RVAdapter_Li
         holder.binder.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Log.d("onCLick", "inner > onClick");
+
                 onClickListener.onRecyclerViewClickPayload(menuItem);
             }
         });
@@ -66,7 +65,7 @@ public class RVAdapter_ListOfMenuItems extends RecyclerView.Adapter<RVAdapter_Li
     }
 
     class MenuItemViewHolder extends RecyclerView.ViewHolder{
-        private RvItemMenuItemCardBinding binder;
+        private final RvItemMenuItemCardBinding binder;
 
         public MenuItemViewHolder(@NonNull RvItemMenuItemCardBinding binder, RecyclerViewOnClickListener onClickListener) {
             super(binder.getRoot());

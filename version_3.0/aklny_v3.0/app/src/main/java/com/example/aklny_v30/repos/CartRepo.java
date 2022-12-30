@@ -6,15 +6,15 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.aklny_v30.models.cart.CartItemModel;
-import com.example.aklny_v30.models.cart.CartTableDAO;
+import com.example.aklny_v30.models.CartItemModel;
+import com.example.aklny_v30.DAOs.CartTableDAO;
 import com.example.aklny_v30.databases.RootDatabase;
 
 import java.util.List;
 
 public class CartRepo {
-    private CartTableDAO dao;
-    private LiveData<List<CartItemModel>> cart;
+    private final CartTableDAO dao;
+    private final LiveData<List<CartItemModel>> cart;
 
     public CartRepo(Application application)
     {
@@ -30,7 +30,7 @@ public class CartRepo {
         new deleteAsyncTask(dao).execute();
     }
     public void addItem(CartItemModel cartItem){
-//        Log.d("PRINT", "CartRepo > addItem > item > " + cartItem.toString());
+
         new insertAsyncTask(dao).execute(cartItem);
     }
     public void removeItem(String key){
@@ -41,13 +41,13 @@ public class CartRepo {
     }
     public CartItemModel getCartItem(String key){
 
-//        new getAsyncTask(dao).execute(key);
+
         return dao.getCartItem(key);
     }
 
     private class insertAsyncTask extends AsyncTask<CartItemModel, Void, CartItemModel>
     {
-        private CartTableDAO asyncTaskDAO;
+        private final CartTableDAO asyncTaskDAO;
 
         insertAsyncTask(CartTableDAO doa)
         {
@@ -73,50 +73,11 @@ public class CartRepo {
             return null;
         }
 
-//        @Override
-//        protected void onPostExecute(CartItemModel newUser) {
-//            super.onPostExecute(newUser);
-//            Log.d("PRINT", "User >> " + newUser.toString());
-//            user.setValue(newUser);
-//        }
     }
-
-//    private class getAsyncTask extends AsyncTask<String, Void,CartItemModel>
-//    {
-//        private CartTableDAO asyncTaskDAO;
-//
-//        getAsyncTask(CartTableDAO doa)
-//        {
-//            asyncTaskDAO = doa;
-//        }
-//
-//        @Override
-//        protected CartItemModel doInBackground(final String... keys)
-//        {
-//
-//            try
-//            {
-//                asyncTaskDAO.getCartItem(keys[0]);
-//            }
-//            catch (Exception e)
-//            {
-//                Log.e("PRINT", "CartRepo > getAsyncTask > " + e.getMessage());
-//            }
-//
-//            return null;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(CartItemModel newUser) {
-//            super.onPostExecute(newUser);
-//            Log.d("PRINT", "User >> " + newUser.toString());
-//            user.setValue(newUser);
-//        }
-//    }
 
     private static class updateAsyncTask extends AsyncTask<CartItemModel, Void, Void>
     {
-        private CartTableDAO asyncTaskDAO;
+        private final CartTableDAO asyncTaskDAO;
 
         updateAsyncTask(CartTableDAO doa)
         {
@@ -142,7 +103,7 @@ public class CartRepo {
 
     private static class deleteAsyncTask extends AsyncTask<Void, Void, Void>
     {
-        private CartTableDAO asyncTaskDAO;
+        private final CartTableDAO asyncTaskDAO;
 
         deleteAsyncTask(CartTableDAO doa)
         {
@@ -168,7 +129,7 @@ public class CartRepo {
 
     private static class removeItemAsyncTask extends AsyncTask<String, Void, Void>
     {
-        private CartTableDAO asyncTaskDAO;
+        private final CartTableDAO asyncTaskDAO;
 
         removeItemAsyncTask(CartTableDAO doa)
         {

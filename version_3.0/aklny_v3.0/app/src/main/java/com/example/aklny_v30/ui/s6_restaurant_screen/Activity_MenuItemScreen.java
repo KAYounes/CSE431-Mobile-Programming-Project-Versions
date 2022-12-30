@@ -9,13 +9,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.example.aklny_v30.R;
 import com.example.aklny_v30.databinding.ActivityMenuItemScreenBinding;
-import com.example.aklny_v30.models.cart.CartItemModel;
-import com.example.aklny_v30.models.menu_model.MenuItemModel;
+import com.example.aklny_v30.models.CartItemModel;
+import com.example.aklny_v30.models.MenuItemModel;
 import com.example.aklny_v30.viewModels.VModel_MenuItemScreen;
 import com.squareup.picasso.Picasso;
 
@@ -40,13 +39,11 @@ public class Activity_MenuItemScreen extends AppCompatActivity {
         registerReceiver(receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-//                Log.d("onReceive","Logout in progress");
+
                 finish();
             }
         }, intentFilter);
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 
         /** Update view to display current item **/
         MenuItemModel menuItem = getIntent().getParcelableExtra("item");
@@ -59,8 +56,6 @@ public class Activity_MenuItemScreen extends AppCompatActivity {
                 .error(R.drawable.icon_failed_to_load_thumbnail)
                 .into(binder.itemThumbnail);
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 
         /** Update item count, cart count, and cart subtotal **/
         viewModel.getCart().observe(this, new Observer<List<CartItemModel>>()
@@ -86,19 +81,11 @@ public class Activity_MenuItemScreen extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-//                Log.d("PRINT", "binder.btnAddToCart.setOnClickListener > Btn Clicked");
+
                 viewModel.addItemToCart(menuItem);
             }
         });
 ///////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
-//    @Override
-//    protected void onDestroy() {
-//        if (receiver != null) {
-//            unregisterReceiver(receiver);
-//            receiver = null;
-//        }
-//        super.onDestroy();
-//    }
 }

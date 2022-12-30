@@ -15,7 +15,7 @@
         android:theme="@style/Theme.AKLNY_V30"
         tools:targetApi="31">
         <activity
-            android:name=".ui.ViewUsersActivity"
+            android:name=".ui.ACT_ViewUsers"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -29,28 +29,21 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.s10_order_screen.Activity_OrderScreen"
+            android:name=".ui.s10_order_screen.ACT_OrderHistory"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.s9_previous_orders.Activity_PreviousOrdersScreen"
+            android:name=".ui.s9_previous_orders.ACT_PreviousOrdersScreen"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.s8_order_confirmation_screen.Activity_PlaceOrderScreen"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".API.AipActivity"
+            android:name=".ui.s8_order_confirmation_screen.Activity_Checkout"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -86,7 +79,7 @@
         </activity> <!-- UI Activities -->
         <!-- Splash Screen Activity -->
         <activity
-            android:name=".ui.s1_splash_screen.SplashScreenActivity"
+            android:name=".ui.s1_splash_screen.ACT_SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -99,21 +92,21 @@
                 android:value="" />
         </activity> <!-- Landing Screen Screen Activity -->
         <activity
-            android:name=".ui.s2_landing_screen.LandingScreenActivity"
+            android:name=".ui.s2_landing_screen.ACT_LandingScreen"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity> <!-- Sign Up Screen Activity -->
         <activity
-            android:name=".ui.s3_sign_up_screen.SignUpScreenActivity"
+            android:name=".ui.s3_sign_up_screen.ACT_SignUpScreen"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity> <!-- Sing In Screen Activity -->
         <activity
-            android:name=".ui.s4_sign_in_screen.LoginScreenActivity"
+            android:name=".ui.s4_sign_in_screen.ACT_LoginScreen"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
