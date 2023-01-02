@@ -72,6 +72,10 @@ public class Activity_Checkout extends AppCompatActivity {
         restaurant = getIntent().getParcelableExtra(Constants.INTENT_KEY_RESTAURANT_OBJ);
 
         order = new OrderModel();
+        Dialog dialog = new Dialog(this );
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_logging_in);
+        dialog.show();
     ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -87,7 +91,9 @@ public class Activity_Checkout extends AppCompatActivity {
         viewModel.getTimeZoneResponse().observe(this, new Observer<ResponseModel>() {
             @Override
             public void onChanged(ResponseModel responseModel) {
-                if(responseModel != null) {
+                if(responseModel != null)
+                {
+                    Log.d("PRINT", "Response is not null");
                     timeResponse = responseModel;
                     currentTime = responseModel.getHourString() + ":" + responseModel.getMinuteString();
                     currentDate = responseModel.getDayString() + "/" + responseModel.getMonthString() + "/" + responseModel.getYear();
@@ -98,15 +104,24 @@ public class Activity_Checkout extends AppCompatActivity {
                         timeOfDelivery = (Constants.SECOND_PERIOD + 2) + ":00";
                         binder.valueDeliveryTime.setText(timeOfDelivery);
                     } else {
+                        timeOfDelivery = (Constants.FIRST_PERIOD + 2) + ":00";
                         binder.valueDeliveryTime.setText("Tomorrow");
                     }
+                    Log.d("PRINT", "Time of delivery " + timeOfDelivery);
+                    dialog.dismiss();
                 }
-                else if (tries < 3){
+                else if (tries < 3)
+                {
+                    Log.d("PRINT", "Tries " + tries);
                     tries++;
                     viewModel.getTimeZone();
-                }else{
+                }
+                else
+                {
+                    Log.d("PRINT", "Response is null");
                     currentTime = calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
                     currentDate = calendar.get(Calendar.DAY_OF_MONTH) + "/" + (calendar.get(Calendar.MONTH) + 1) + "/" + calendar.get(Calendar.YEAR);
+
                     if (calendar.get(Calendar.HOUR_OF_DAY) < Constants.FIRST_PERIOD) {
                         timeOfDelivery = (Constants.FIRST_PERIOD + 2) + ":00";
                         binder.valueDeliveryTime.setText(timeOfDelivery);
@@ -114,8 +129,11 @@ public class Activity_Checkout extends AppCompatActivity {
                         timeOfDelivery = (Constants.SECOND_PERIOD + 2) + ":00";
                         binder.valueDeliveryTime.setText(timeOfDelivery);
                     } else {
+                        timeOfDelivery = (Constants.FIRST_PERIOD + 2) + ":00";
                         binder.valueDeliveryTime.setText("Tomorrow");
                     }
+                    Log.d("PRINT", "Time of delivery " + timeOfDelivery);
+                    dialog.dismiss();
                 }
             }
         });
@@ -134,6 +152,13 @@ public class Activity_Checkout extends AppCompatActivity {
             deliveryGate = "4";
             binder.btnPlaceOrder.setEnabled(true);
         }
+
+        binder.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         binder.valueTotalAmount.setText(payment.get("total"));
         binder.gateRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -160,22 +185,16 @@ public class Activity_Checkout extends AppCompatActivity {
         binder.btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-//                if (timeResponse == null){
-//                    Toast.makeText(Activity_Checkout.this, "We are facing some problems, please try again.", Toast.LENGTH_SHORT).show();
-//                    viewModel.getTimeZone();
-//                    return;
-//                }
-//                else if(timeResponse.getHour() >= Constants.SECOND_PERIOD){
-//                    Toast.makeText(Activity_Checkout.this, "Sorry, no more orders can be placed right now.", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
+                if(binder.valueDeliveryTime.getText().toString().equals("Tomorrow")){
+                    Toast.makeText(Activity_Checkout.this, "Sorry this is a late order and it will get cancelled automatically.", Toast.LENGTH_SHORT).show();
+                }
                     order = new OrderModel();
                     order.setSubTotal(payment.get("subtotal"));
                     order.setDeliveryFee(payment.get("deliveryFee"));
                     order.setDeliveryGate(deliveryGate);
                     order.setRestaurantName(restaurant.getName());
                     order.setRestaurantLogoURL(restaurant.getLogo());
+                    Log.d("PRINT", "Actual Time of delivery " + timeOfDelivery);
                     order.setTimeOfDelivery(timeOfDelivery);
                     order.setCart(cart);
 

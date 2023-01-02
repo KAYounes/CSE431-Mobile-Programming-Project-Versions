@@ -53,11 +53,15 @@ public class RVAdapter_OrdersList extends RecyclerView.Adapter<RVAdapter_OrdersL
         String status = "";
         binding.textStatus.setTextColor(binding.getRoot().getResources().getColor(R.color._secondary_base));
         switch (order.getOrderStatus()){
+            case CANCELLED:
+                status = "Cancelled";
+                binding.currentOrderLabel.setVisibility(View.INVISIBLE);
+                break;
             case NOT_CONFIRMED:
                 status = "Confirming";
                 break;
             case PREPARING:
-                status = "Prepearing food";
+                status = "Preparing food";
                 break;
             case DELIVERING:
                 status = "On its way";

@@ -8,7 +8,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class OrderModel {
-    public enum OrderStatus {NOT_CONFIRMED, PREPARING, DELIVERING, DELIVERED}
+    public enum OrderStatus {CANCELLED, NOT_CONFIRMED, PREPARING, DELIVERING, DELIVERED}
     private String
             orderKey,
             restaurantName,

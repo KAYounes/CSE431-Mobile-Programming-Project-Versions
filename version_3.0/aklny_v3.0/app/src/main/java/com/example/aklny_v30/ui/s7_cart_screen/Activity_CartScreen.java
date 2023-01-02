@@ -98,6 +98,13 @@ public class Activity_CartScreen extends AppCompatActivity implements RecyclerVi
             }
         });
 
+        binder.btnAddMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         recyclerViewAdapter = new RVAdapter_CartItemsList(new ArrayList<>(), this);
         recyclerViewAdapter.setFooter(payment);
         recyclerViewAdapter.addFooter();

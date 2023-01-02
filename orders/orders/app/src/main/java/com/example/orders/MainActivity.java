@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements OnClick{
+public class MainActivity extends AppCompatActivity implements DelegateToActivity {
     public final String FIREBASE_BASE_URL = "https://aklny-v3-default-rtdb.firebaseio.com/";
     public final String FIREBASE_ORDER_NODE = "orders";
     public final String FIREBASE_USERS_NODE = "users";
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements OnClick{
     }
 
     @Override
-    public void onClick(String userKey, String orderKey, OrderModel.OrderStatus status) {
+    public void updateOrder(String userKey, String orderKey, OrderModel.OrderStatus status) {
         orderRef.child(userKey).child(orderKey).child("orderStatus").setValue(status);
     }
 }

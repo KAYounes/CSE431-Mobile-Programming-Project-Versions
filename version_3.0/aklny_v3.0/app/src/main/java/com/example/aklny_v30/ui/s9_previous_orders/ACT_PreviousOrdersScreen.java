@@ -18,7 +18,9 @@ import com.example.aklny_v30.R;
 import com.example.aklny_v30.databinding.ActivityPreviousOrdersScreenBinding;
 import com.example.aklny_v30.models.OrderModel;
 import com.example.aklny_v30.models.UserModel;
+import com.example.aklny_v30.ui.Activity_ProfileScreen;
 import com.example.aklny_v30.ui.s10_order_screen.ACT_OrderHistory;
+import com.example.aklny_v30.ui.s5_home_screen.Activity_HomeScreen;
 import com.example.aklny_v30.ui.s5_home_screen.Fragment_SideBar;
 import com.example.aklny_v30.ui.ui_utilities.RecyclerViewOnClickListener;
 import com.example.aklny_v30.viewModels.VModel_PreviousOrders;
@@ -78,6 +80,13 @@ public class ACT_PreviousOrdersScreen extends AppCompatActivity implements Recyc
             @Override
             public void onClick(View view) {
                 getSupportFragmentManager().beginTransaction().add(binder.sidebar.getId(),new Fragment_SideBar()).commit();
+            }
+        });
+
+        binder.imageProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ACT_PreviousOrdersScreen.this, Activity_ProfileScreen.class));
             }
         });
 

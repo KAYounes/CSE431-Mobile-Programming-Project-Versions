@@ -41,7 +41,7 @@
                 android:id="@+id/textInputEdit_email"
                 style="@style/textInputEditLayoutYellow"
                 android:layout_width="match_parent"
-                android:text="test@test.com"
+                android:text="safe@mail.com"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
                 android:inputType="textEmailAddress" />

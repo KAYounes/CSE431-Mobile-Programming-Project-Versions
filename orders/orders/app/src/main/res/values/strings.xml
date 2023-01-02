@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">orders</string>
     <string-array name="status">
+        <item>CANCELLED</item>
         <item>NOT_CONFIRMED</item>
         <item>PREPARING</item>
         <item>DELIVERING</item>

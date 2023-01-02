@@ -34,7 +34,7 @@ public class ACT_LoginScreen extends AppCompatActivity {
             }
         });
 
-        binder.btnLogin.setEnabled(false);
+//        binder.btnLogin.setEnabled(false);
 
         binder.textInputEditEmail.addTextChangedListener(new TextWatcher() {
             @Override
@@ -44,14 +44,7 @@ public class ACT_LoginScreen extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(checkEmptyEmailOrPassword())
-                {
-                    binder.btnLogin.setEnabled(false);
-                }
-                else
-                {
-                    binder.btnLogin.setEnabled(true);
-                }
+                binder.btnLogin.setEnabled(!checkEmptyEmailOrPassword());
             }
         });
 

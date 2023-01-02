@@ -79,6 +79,10 @@ public class ACT_OrderHistory extends AppCompatActivity {
         String message = "";
         int icon = R.drawable.icon_timer;
         switch (status) {
+            case CANCELLED:
+                icon = R.drawable.icon_close_24dp;
+                message = "Sorry order was cancelled";
+                break;
             case NOT_CONFIRMED:
                 message = "Waiting for the restaurant to confirm your order";
                 break;
