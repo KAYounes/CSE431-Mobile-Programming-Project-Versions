@@ -118,7 +118,7 @@
                     android:fontFamily="@font/poppins_bold"
                     android:gravity="center"
                     android:padding="18dp"
-                    android:text="Orders Will Arrive Tomorrow"
+                    android:text="Come Back Tomorrow"
                     android:textColor="@color/_off_black_base"
                     android:textSize="14sp"
                     android:visibility="gone"

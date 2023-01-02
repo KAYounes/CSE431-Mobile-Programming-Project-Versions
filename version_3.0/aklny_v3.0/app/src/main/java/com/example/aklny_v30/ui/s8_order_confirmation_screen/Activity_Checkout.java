@@ -105,7 +105,7 @@ public class Activity_Checkout extends AppCompatActivity {
                         binder.valueDeliveryTime.setText(timeOfDelivery);
                     } else {
                         timeOfDelivery = (Constants.FIRST_PERIOD + 2) + ":00";
-                        binder.valueDeliveryTime.setText("Tomorrow");
+                        binder.valueDeliveryTime.setText("-");
                     }
                     Log.d("PRINT", "Time of delivery " + timeOfDelivery);
                     dialog.dismiss();
@@ -130,7 +130,7 @@ public class Activity_Checkout extends AppCompatActivity {
                         binder.valueDeliveryTime.setText(timeOfDelivery);
                     } else {
                         timeOfDelivery = (Constants.FIRST_PERIOD + 2) + ":00";
-                        binder.valueDeliveryTime.setText("Tomorrow");
+                        binder.valueDeliveryTime.setText("-");
                     }
                     Log.d("PRINT", "Time of delivery " + timeOfDelivery);
                     dialog.dismiss();
@@ -185,9 +185,7 @@ public class Activity_Checkout extends AppCompatActivity {
         binder.btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(binder.valueDeliveryTime.getText().toString().equals("Tomorrow")){
-                    Toast.makeText(Activity_Checkout.this, "Sorry this is a late order and it will get cancelled automatically.", Toast.LENGTH_SHORT).show();
-                }
+
                     order = new OrderModel();
                     order.setSubTotal(payment.get("subtotal"));
                     order.setDeliveryFee(payment.get("deliveryFee"));
@@ -197,12 +195,11 @@ public class Activity_Checkout extends AppCompatActivity {
                     Log.d("PRINT", "Actual Time of delivery " + timeOfDelivery);
                     order.setTimeOfDelivery(timeOfDelivery);
                     order.setCart(cart);
-
-
                     order.setTimeOfOrder(currentTime);
                     order.setDateOfOrder(currentDate);
-
-
+                    if(binder.valueDeliveryTime.getText().toString().equals("-")){
+                        order.setOrderStatus(OrderModel.OrderStatus.CANCELLED);
+                    }
                     Dialog dialog = new Dialog(Activity_Checkout.this);
                     dialog.setContentView(R.layout.dialog_logging_in);
                     dialog.setCancelable(false);
@@ -211,7 +208,11 @@ public class Activity_Checkout extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void unused) {
                             dialog.dismiss();
-                            Toast.makeText(Activity_Checkout.this, "Order Placed", Toast.LENGTH_SHORT).show();
+                            if(binder.valueDeliveryTime.getText().toString().equals("-")){
+                                Toast.makeText(Activity_Checkout.this, "Sorry this is a late order and it will get cancelled automatically.", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(Activity_Checkout.this, "Order Placed", Toast.LENGTH_SHORT).show();
+                            }
                             Intent broadcastIntent = new Intent();
                             broadcastIntent.setAction("com.package.ACTION_ORDER_PLACED");
                             sendBroadcast(broadcastIntent);

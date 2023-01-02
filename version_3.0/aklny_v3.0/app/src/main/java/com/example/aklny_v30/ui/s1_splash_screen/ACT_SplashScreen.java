@@ -24,14 +24,6 @@ public class ACT_SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binder = ActivitySplashScreenBinding.inflate(getLayoutInflater());
         setContentView(binder.getRoot());
-
-        binder.getRoot().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(ACT_SplashScreen.this, "Signing Out", Toast.LENGTH_SHORT).show();
-                firebaseAuth.signOut();
-            }
-        });
     }
 
     @Override

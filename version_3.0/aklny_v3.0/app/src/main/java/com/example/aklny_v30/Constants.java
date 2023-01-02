@@ -35,5 +35,5 @@ public class Constants {
 
     /** Delivery Times **/
     public static final int FIRST_PERIOD = 10;
-    public static final int SECOND_PERIOD = 18;
+    public static final int SECOND_PERIOD = 13;
 }

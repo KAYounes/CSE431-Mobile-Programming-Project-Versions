@@ -1,12 +1,14 @@
 package com.example.orders;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -78,41 +80,45 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
         Calendar calendar = Calendar.getInstance();
 
         Boolean orderOutDated = false;
-        if(order.getTimeOfDelivery().equals("12:00")){
-            if (calendar.get(Calendar.HOUR_OF_DAY) > 10){
-                orderOutDated = true;
-                binder.orderStatus.setAdapter(null);
-                binder.timePeriod.setText("Order Outdated");
-                delegateToActivity.updateOrder(order.getUserKey(), order.getOrderKey(), OrderModel.OrderStatus.CANCELLED);
-            }
-            else if (calendar.get(Calendar.HOUR_OF_DAY) == 10){
-                if(calendar.get(Calendar.MINUTE) > 30){
+
+        if ((order.getOrderStatus() == OrderModel.OrderStatus.NOT_CONFIRMED) || order.getOrderStatus() == OrderModel.OrderStatus.CANCELLED) {
+            if(order.getTimeOfDelivery().equals("12:00")){
+                if (calendar.get(Calendar.HOUR_OF_DAY) > 10){
                     orderOutDated = true;
                     binder.orderStatus.setAdapter(null);
                     binder.timePeriod.setText("Order Outdated");
                     delegateToActivity.updateOrder(order.getUserKey(), order.getOrderKey(), OrderModel.OrderStatus.CANCELLED);
                 }
+                else if (calendar.get(Calendar.HOUR_OF_DAY) == 10){
+                    if(calendar.get(Calendar.MINUTE) > 30){
+                        orderOutDated = true;
+                        binder.orderStatus.setAdapter(null);
+                        binder.timePeriod.setText("Order Outdated");
+                        delegateToActivity.updateOrder(order.getUserKey(), order.getOrderKey(), OrderModel.OrderStatus.CANCELLED);
+                    }
+                }
             }
-        }
-        else if(order.getTimeOfDelivery().equals("19:00")){
-            if (calendar.get(Calendar.HOUR_OF_DAY) > 20){
-                orderOutDated = true;
-                binder.orderStatus.setAdapter(null);
-                binder.timePeriod.setText("Order Outdated");
-                delegateToActivity.updateOrder(order.getUserKey(), order.getOrderKey(), OrderModel.OrderStatus.CANCELLED);
-            }
-            else if (calendar.get(Calendar.HOUR_OF_DAY) == 20){
-                if(calendar.get(Calendar.MINUTE) > 30){
+            else if(order.getTimeOfDelivery().equals("15:00")){
+                if (calendar.get(Calendar.HOUR_OF_DAY) > 13){
                     orderOutDated = true;
                     binder.orderStatus.setAdapter(null);
                     binder.timePeriod.setText("Order Outdated");
                     delegateToActivity.updateOrder(order.getUserKey(), order.getOrderKey(), OrderModel.OrderStatus.CANCELLED);
                 }
+                else if (calendar.get(Calendar.HOUR_OF_DAY) == 13){
+                    if(calendar.get(Calendar.MINUTE) > 30){
+                        orderOutDated = true;
+                        binder.orderStatus.setAdapter(null);
+                        binder.timePeriod.setText("Order Outdated");
+                        delegateToActivity.updateOrder(order.getUserKey(), order.getOrderKey(), OrderModel.OrderStatus.CANCELLED);
+                    }
+                }
+            }
+            else{
+                binder.statusDropDownRoot.setVisibility(View.VISIBLE);
             }
         }
-        else{
-            binder.statusDropDownRoot.setVisibility(View.VISIBLE);
-        }
+
         Picasso.get().load(order.getRestaurantLogoURL())
                 .placeholder(R.drawable.icon_logo_placeholder)
                     .error(R.drawable.icon_logo_error)
@@ -129,6 +135,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
                     }
 
                     switch (adapter.getItem(i)) {
+                        case "CANCELLED":
+                            delegateToActivity.updateOrder(order.getUserKey(), order.getOrderKey(), OrderModel.OrderStatus.CANCELLED);
+                            binder.getRoot().setAlpha(0.6f);
+                            break;
                         case "NOT_CONFIRMED":
                             Log.d("PRINT", "onItemClick > " + 1);
                             delegateToActivity.updateOrder(order.getUserKey(), order.getOrderKey(), OrderModel.OrderStatus.NOT_CONFIRMED);

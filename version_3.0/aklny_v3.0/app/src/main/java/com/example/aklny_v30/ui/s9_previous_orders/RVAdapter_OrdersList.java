@@ -52,9 +52,12 @@ public class RVAdapter_OrdersList extends RecyclerView.Adapter<RVAdapter_OrdersL
 
         String status = "";
         binding.textStatus.setTextColor(binding.getRoot().getResources().getColor(R.color._secondary_base));
+
+        binding.getRoot().setAlpha(1f);
         switch (order.getOrderStatus()){
             case CANCELLED:
                 status = "Cancelled";
+                binding.getRoot().setAlpha(0.7f);
                 binding.currentOrderLabel.setVisibility(View.INVISIBLE);
                 break;
             case NOT_CONFIRMED:
